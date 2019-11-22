@@ -6,6 +6,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.6.3'
 
 gem 'haml-rails'
+gem 'i18n'
 gem 'jbuilder', '~> 2.7'
 gem 'pg'
 gem 'puma', '~> 4.1'
