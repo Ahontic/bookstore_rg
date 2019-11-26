@@ -3,12 +3,14 @@
   %head
     %meta{charset: "UTF-8"}
     %meta{name: "viewport", content: "width=device-width"}
-    %title Bookstore
+    %title
+      = t :title
     %link{href: "https://fonts.googleapis.com/css?family=Open+Sans", rel: "stylesheet"}
     %link{href: "../css/style.css", rel: "stylesheet"}
   %body
     %main.container
-      %h1.general-title-margin Сatalog
+      %h1.general-title-margin
+        = t :catalog
       .hidden-xs.clearfix
         .dropdowns.pull-right
           .dropdown.width-240

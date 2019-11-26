@@ -30,7 +30,7 @@ group :development do
   gem 'annotate'
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'pry-rails'
-  gem 'rspec-rails'
+  gem 'rspec-rails', '~> 4.0.0.beta3'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'web-console', '>= 3.3.0'

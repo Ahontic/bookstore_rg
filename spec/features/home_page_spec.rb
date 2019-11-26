@@ -15,7 +15,6 @@ feature 'Home page' do
 
   scenario 'when click Home proceed to Home page' do
     first('a', text: I18n.t(:home)).click
-    # click_link(I18n.t(:home))
     expect(page).to have_content('Welcome to our amazing Bookstore!')
   end
 
@@ -32,9 +31,8 @@ feature 'Home page' do
   end
 
   scenario 'when click Get Started proceed to Catalog page' do
-    skip('Catalog controller is not exist yet')
-    click_link(I18n.t(:shop))
+    first('a', text: I18n.t(:shop)).click
 
-    expect(page).to have_content I18n.t(:to_be_implemented)
+    expect(page).to have_content('Catalog')
   end
 end
