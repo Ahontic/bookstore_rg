@@ -4,11 +4,9 @@
       .col-sm-9
         %ul.list-inline.general-align.mb-25
           %li
-            %a.nav-link{href: root_path}
-              = t :home
+            = link_to t(:home), root_path, class: 'nav-link'
           %li
-            %a.nav-link{href: "#"}
-              = t :shop
+            = link_to t(:shop), catalog_index_url, class: 'nav-link'
           %li
             %a.nav-link{href: "#"}
               = t :orders

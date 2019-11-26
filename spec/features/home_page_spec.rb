@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 feature 'Home page' do
   before :each do
     visit root_path
@@ -12,8 +14,8 @@ feature 'Home page' do
   end
 
   scenario 'when click Home proceed to Home page' do
-    Capybara.match = :first
-    click_link(I18n.t(:home))
+    first('a', text: I18n.t(:home)).click
+    # click_link(I18n.t(:home))
     expect(page).to have_content('Welcome to our amazing Bookstore!')
   end
 

@@ -20,11 +20,9 @@
           %span{'aria-hidden': "true"} &times;
         %ul.nav.navbar-nav
           %li
-            %a{href: root_path}
-              = t :home
+            = link_to t(:home), root_path, class: 'btn'
           %li
-            %a{type: "button", 'data-toggle': "collapse", href: "#menu", 'aria-expanded': "false", 'aria-controls': "menu"}
-              = t :shop
+            = link_to t(:shop), catalog_index_url, class: 'btn'
             %ul#menu.collapse.list-unstyled.pl-30.mb-10{'aria-expanded': "false"}
               %li
                 %a.collapse-link{href: "#"}
@@ -41,10 +39,9 @@
       .hidden-xs
         %ul.nav.navbar-nav
           %li
-            %a{href: root_path}
-              = t :home
+            = link_to t(:home), root_path
           %li.dropdown
-            %a.dropdown-toggle{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
+            %a.dropdown-toggle{href: catalog_index_url, 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
               = t :shop
             %ul.dropdown-menu
               %li

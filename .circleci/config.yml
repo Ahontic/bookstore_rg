@@ -20,7 +20,19 @@ jobs:
           command: |
             gem update --system
             gem install bundler
-            bundle install --jobs=4 --retry=3
+            bundle install --jobs=4 --retry=3 --path vendor/bundle
+
+      - run:
+          name: Bundle Audit
+          command: bundle exec bundle-audit check --update
+
+      - run:
+          name: Rubocop
+          command: bundle exec rubocop
+
+      - run:
+          name: Brakeman
+          command: bundle exec brakeman -Aqz
 
       - save_cache:
           paths:
