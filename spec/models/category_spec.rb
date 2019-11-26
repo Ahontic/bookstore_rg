@@ -14,8 +14,11 @@
 #  index_categories_on_title  (title) UNIQUE
 #
 
-class Category < ApplicationRecord
-  has_many :books
+RSpec.describe Category, type: :model do
+  let(:category) { FactoryBot.create(:category) }
 
-  validates :title, presence: true, uniqueness: true
+  describe 'validations' do
+    it { is_expected.to validate_presence_of(:title) }
+    it { is_expected.to validate_uniqueness_of(:title) }
+  end
 end

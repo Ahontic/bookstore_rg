@@ -14,8 +14,8 @@
 #  index_categories_on_title  (title) UNIQUE
 #
 
-class Category < ApplicationRecord
-  has_many :books
-
-  validates :title, presence: true, uniqueness: true
+FactoryBot.define do
+  factory :category do
+    title { FFaker::Book.genre }
+  end
 end
