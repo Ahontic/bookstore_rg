@@ -30,6 +30,10 @@ ActiveRecord::Schema.define(version: 2019_11_19_155052) do
     t.integer "quantity"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "author_id", null: false
+    t.bigint "category_id", null: false
+    t.index ["author_id"], name: "index_books_on_author_id"
+    t.index ["category_id"], name: "index_books_on_category_id"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -39,4 +43,6 @@ ActiveRecord::Schema.define(version: 2019_11_19_155052) do
     t.index ["title"], name: "index_categories_on_title", unique: true
   end
 
+  add_foreign_key "books", "authors"
+  add_foreign_key "books", "categories"
 end
