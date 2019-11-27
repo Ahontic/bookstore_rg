@@ -28,9 +28,9 @@
                 %a{href: "#"} Price: Hight to low
         %ul.list-inline.pt-10.mb-25.mr-240
           %li.mr-35
-            %a.filter-link{href: "#"}
-              All
-              %span.badge.general-badge 135
+            - @categories.each do |category|
+              = category.title
+
           %li.mr-35
             %a.filter-link{href: "#"}
               Mobile Development
