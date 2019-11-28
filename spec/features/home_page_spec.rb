@@ -5,29 +5,17 @@ feature 'Home page' do
     visit root_path
   end
 
-  scenario 'has title' do
+  scenario 'has appropriate content' do
     expect(page).to have_content I18n.t(:title)
-  end
-
-  scenario 'has link to Home page' do
+    expect(page).to have_button(I18n.t(:get_started))
+    expect(page).to have_content I18n.t(:latest_books)
+    expect(page).to have_content I18n.t(:best_sellers)
     expect(page).to have_link I18n.t(:home)
   end
 
   scenario 'when click Home proceed to Home page' do
     first('a', text: I18n.t(:home)).click
     expect(page).to have_content('Welcome to our amazing Bookstore!')
-  end
-
-  scenario 'has button Get Started' do
-    expect(page).to have_button(I18n.t(:get_started))
-  end
-
-  scenario 'it shows latest books' do
-    expect(page).to have_content I18n.t(:latest_books)
-  end
-
-  scenario 'it shows best books' do
-    expect(page).to have_content I18n.t(:best_sellers)
   end
 
   scenario 'when click Get Started proceed to Catalog page' do
