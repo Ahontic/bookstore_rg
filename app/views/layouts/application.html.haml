@@ -1,6 +1,8 @@
 !!!
 %html
   %head
+    %meta{charset: "UTF-8"}
+    %meta{name: "viewport", content: "width=device-width"}
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %title
       = t :title
@@ -13,5 +15,4 @@
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
     = render 'layouts/header'
     = yield
-    = yield :allo
     = render 'layouts/footer'
