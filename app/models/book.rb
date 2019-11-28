@@ -26,6 +26,7 @@
 #
 
 class Book < ApplicationRecord
+  scope :high_to_low, -> { order(price: :desc) }
   belongs_to :author
   belongs_to :category
 
