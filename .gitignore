@@ -18,6 +18,9 @@
 !/log/.keep
 !/tmp/.keep
 
+#SimpleCov coverage files
+/coverage/
+
 # Ignore uploaded files in development.
 /storage/*
 !/storage/.keep
@@ -34,3 +37,4 @@
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
+.env
