@@ -6,10 +6,9 @@ jobs:
         environment:
           RAILS_ENV: test
           PGHOST: 127.0.0.1
-      - image: circleci/postgres:latest
+      - image: circleci/postgres:10.10
         environment:
           POSTGRES_USER: circleci
-          POSTGRES_DB: bookstore_rg_test
     working_directory: ~/repo
 
     steps:
