@@ -2,9 +2,15 @@ version: 2
 jobs:
   build:
     docker:
-
       - image: circleci/ruby:2.6.3-node-browsers
-
+        environment:
+          RAILS_ENV: test
+          PGHOST: 127.0.0.1
+          PGUSER: dell
+      - image: circleci/postgres:latest-postgis
+        environment:
+          POSTGRES_USER: dell
+          POSTGRES_DB: bookstore_rg_test
     working_directory: ~/repo
 
     steps:
@@ -45,17 +51,20 @@ jobs:
       - run:
           name: run tests
           command: |
-            mkdir /tmp/test-results
-            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | \
-              circleci tests split --split-by=timings)"
+            mkdir -p /tmp/test-results
+            circleci tests glob "spec/**/*_spec.rb" > test_files.txt
+            cat test_files.txt | circleci tests split --split-by=timings > split_test_files.txt
 
-            bundle exec rspec \
-              --format progress \
-              --out /tmp/test-results/rspec.xml \
-              $TEST_FILES
+            TESTFILES="$(cat split_test_files.txt | xargs)"
+            if [ -z "$TESTFILES" ]; then echo  'No tests are scheduled to be executed on this node'; exit 0; fi
+
+            export SPEC="$TESTFILES"
+            export SPEC_OPTS="--format documentation --format RspecJunitFormatter --out tmp/rspec/rspec-${CIRCLE_NODE_INDEX:-0}.xml"
+
+            bin/rake spec
 
       - store_test_results:
-          path: /tmp/test-results
+          path: tmp/rspec
       - store_artifacts:
           path: /tmp/test-results
           destination: test-results
