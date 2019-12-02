@@ -51,9 +51,15 @@ jobs:
       - run:
           name: run tests
           command: |
-            mkdir /tmp/test-results
-            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | \
-              circleci tests split --split-by=timings --timings-type=classname)"
+            mkdir -p /tmp/test-results
+            circleci tests glob "spec/**/*_spec.rb" > test_files.txt
+            cat test_files.txt | circleci tests split --split-by=timings > split_test_files.txt
+
+            TESTFILES="$(cat split_test_files.txt | xargs)"
+            if [ -z "$TESTFILES" ]; then echo  'No tests are scheduled to be executed on this node'; exit 0; fi
+
+            export SPEC="$TESTFILES"
+            export SPEC_OPTS="--format documentation --format RspecJunitFormatter --out tmp/rspec/rspec-${CIRCLE_NODE_INDEX:-0}.xml"
 
             bundle exec rspec \
               --format progress \
