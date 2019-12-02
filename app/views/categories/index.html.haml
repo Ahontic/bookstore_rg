@@ -1,0 +1,72 @@
+%main.container
+  %h1.general-title-margin
+    = t :catalog
+  .hidden-xs.clearfix
+    .dropdowns.pull-right
+      .dropdown.width-240
+        = form_tag({url: categories_path}, method: :get) do
+          = select_tag :status, options_for_select([['Newest first', true], ['Popular first', false], ['Price low to high', false], ['Price: high to low', false]])
+          = submit_tag 'Filter'
+    %ul.list-inline.pt-10.mb-25.mr-240
+      %li.mr-35
+        %a.filter-link{href: categories_path}
+          All
+          %span.badge.general-badge
+            = @books.size
+      - @categories.each do |category|
+        %a.filter-link{href: category_path(category) }
+          = category.title
+          %span.badge.general-badge
+            = category.books.size
+  .dropdowns.mb-25.visible-xs
+    %p.lead.small.mb-10 Filter by category
+    .dropdown
+      %a.dropdown-toggle.lead.small{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
+        Newest first
+        %i.fa.fa-angle-down.dropdown-icon.pull-right
+      %ul.dropdown-menu
+        %li
+          %a{href: "#"} Newest first
+        %li
+          %a{href: "#"} Popular first
+        %li
+          %a{href: "#"} Price: Low to high
+        %li
+          %a{href: "#"} Price: High to low
+    %p.lead.small.mb-10 Sort by
+    .dropdown
+      %a.dropdown-toggle.lead.small{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
+        Newest first
+        %i.fa.fa-angle-down.dropdown-icon.pull-right
+      %ul.dropdown-menu
+        %li
+          %a{href: "#"} Newest first
+        %li
+          %a{href: "#"} Popular first
+        %li
+          %a{href: "#"} Price: Low to high
+        %li
+          %a{href: "#"} Price: High to low
+  .mb-120
+    .row
+    - @books.each do |book|
+      .col-xs-6.col-sm-3
+        .general-thumb-wrap
+          .thumbnail.general-thumbnail
+            %img.img-shadow.general-thumbnail-img{src: "http://jonathantweedy.com/resources/thumbs/SmashingBook5ResponsiveWebDesign.jpg", alt: "design-book"}
+            .thumb-hover
+              .general-thumb-link-wrap
+                %a.thumb-hover-link{href: category_book_path(book.category_id, book)}
+                  %i.fa.fa-eye.thumb-icon{'aria-hidden': "true"}
+                %a.thumb-hover-link{href: "#"}
+                  %i.fa.fa-shopping-cart.thumb-icon
+        .general-thumb-info
+          %p.title
+            = book.title
+          %p.font-16.in-gold-500
+            = book.price
+          %span.divider-sm
+          %p.lead.small
+            = book.author.first_name
+            = book.author.last_name
+  = pagy_bootstrap_nav(@pagy).html_safe
