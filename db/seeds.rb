@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-data = ['Mobile Development', 'Photo', 'Web Design']
-categories = data.map { |category| FactoryBot.build(:category, category)}
+# data = ['Mobile Development', 'Photo', 'Web Design']
+# categories = data.map { |category| FactoryBot.build(:category, category) }
 
 # Seeding Authors
 FactoryBot.create_list(:author, 5)
