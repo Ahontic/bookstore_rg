@@ -15,3 +15,17 @@ en:
   get_started: 'Get Started'
   latest_books: 'Latest Books'
   catalog: 'Catalog'
+
+  book:
+    piece:
+      one: '%{count} piece'
+      other: '%{count} pieces'
+
+    description: 'Description'
+    year_of_publication: 'Year of publication'
+    dimensions: 'Dimensions'
+    materials: 'Materials'
+
+  review:
+    write_a_review: 'Write a Review'
+    score: 'Score'

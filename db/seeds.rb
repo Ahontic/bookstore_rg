@@ -1,13 +1,11 @@
 # frozen_string_literal: true
 
-# Seeding Category
-categories = ['Mobile Development', 'Photo', 'Web Design'].map do |c|
-  Category.create(title: c)
-end
+data = ['Mobile Development', 'Photo', 'Web Design']
+categories = data.map { |category| FactoryBot.build(:category, category)}
 
-ma_catehory = Category.create(title: 'ma_catehory')
-category: category
 # Seeding Authors
 FactoryBot.create_list(:author, 5)
 # Seeding Books
-10.times { FactoryBot.create(:book, author_id: Author.ids.sample, category_id: Category.ids.sample) }
+FactoryBot.create_list(:book, 20)
+# Seeding Materials
+FactoryBot.create_list(:material, 3)
