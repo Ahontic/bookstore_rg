@@ -8,7 +8,7 @@ jobs:
           PGHOST: 127.0.0.1
       - image: circleci/postgres:latest
         environment:
-          POSTGRES_USER: postgres
+          POSTGRES_USER: circleci
           POSTGRES_DB: bookstore_rg_test
     working_directory: ~/repo
 
