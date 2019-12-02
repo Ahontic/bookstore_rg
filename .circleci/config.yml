@@ -7,9 +7,9 @@ jobs:
           RAILS_ENV: test
           PGHOST: 127.0.0.1
           PGUSER: dell
-      - image: circleci/postgres:latest-postgis
+      - image: circleci/postgres:latest
         environment:
-          POSTGRES_USER: dell
+          POSTGRES_USER: postgres
           POSTGRES_DB: bookstore_rg_test
     working_directory: ~/repo
 
