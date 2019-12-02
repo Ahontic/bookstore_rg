@@ -61,13 +61,10 @@ jobs:
             export SPEC="$TESTFILES"
             export SPEC_OPTS="--format documentation --format RspecJunitFormatter --out tmp/rspec/rspec-${CIRCLE_NODE_INDEX:-0}.xml"
 
-            bundle exec rspec \
-              --format progress \
-              --out /tmp/test-results/rspec.xml \
-              $TEST_FILES
+            bin/rake spec
 
       - store_test_results:
-          path: /tmp/test-results
+          path: tmp/rspec
       - store_artifacts:
           path: /tmp/test-results
           destination: test-results
