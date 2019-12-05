@@ -23,26 +23,28 @@
       %h1.mt-res-0
         %p.lead.small
           = I18n.t('book.piece', count: @book.quantity)
+          %button.btn.btn-sm.btn-success#decrease-quantity -
+          %button.btn.btn-sm.btn-success#increase-quantity +
       .row
         .col-xs-12.col-md-4
-          %p.h1.in-gold-500.mt-10
-            €
-            = @book.price
+          %p.h1.in-gold-500.mt-10#book-cost
+            = number_to_currency( @book.price, unit: '€')
+          %p.h1.in-gold-500.mt-10.invisible#book-price
+            = number_to_currency( @book.price, unit: '€')
         .col-xs-5.col-md-3
           .input-group.general-position
             %a.input-link{href: "#"}
               %i.fa.fa-minus.line-height-40
-            %input.form-control.quantity-input{type: "text"}
-            %a.input-link{href: "#"}
-              %i.fa.fa-plus.line-height-40
+            %input.form-control#quantity-input{ value: 1 }
         .col-xs-7.col-md-5
-          %button.btn.btn-default.pull-right.general-position Add to Cart
       .general-info-wrap.divider-lg
         %p
           = t 'book.description'
         %p.lead.small.line-height-2
-          = @book.description
-          %a.in-gold-500.ml-10{href: "#"} Read More
+          = truncate(@book.description, length: 25)
+          %a.in-gold-500.ml-10
+            = link_to 'Read more', '', class: "read-more-#{@book.id}"
+
       .general-info-wrap.divider-lg
         .clearfix
           %p.pull-left

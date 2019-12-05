@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe CatalogController, type: :controller do
+RSpec.describe CategoriesController do
   describe 'GET #index' do
     it 'returns http success' do
       get :index

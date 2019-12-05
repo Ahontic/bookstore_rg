@@ -12,9 +12,7 @@
 #  updated_at :datetime         not null
 #
 
-RSpec.describe Author, type: :model do
-  let(:author) { FactoryBot.create(:author) }
-
+RSpec.describe Author do
   describe 'validations' do
     it { is_expected.to validate_presence_of(:first_name) }
     it { is_expected.to validate_presence_of(:last_name) }

@@ -15,6 +15,7 @@ en:
   get_started: 'Get Started'
   latest_books: 'Latest Books'
   catalog: 'Catalog'
+  all: 'All'
 
   book:
     piece:

@@ -14,9 +14,7 @@
 #  index_categories_on_title  (title) UNIQUE
 #
 
-RSpec.describe Category, type: :model do
-  let(:category) { FactoryBot.create(:category) }
-
+RSpec.describe Category do
   describe 'validations' do
     it { is_expected.to validate_presence_of(:title) }
     it { is_expected.to validate_uniqueness_of(:title) }

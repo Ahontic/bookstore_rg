@@ -33,10 +33,19 @@
 #
 
 class Book < ApplicationRecord
+  AVAILABLE_FILTERS = %w[newest_first
+                         popular_first
+                         price_low_to_high
+                         price_high_to_low
+                         alphabetically
+                         analphabetically].freeze
+
   scope :newest_first, -> { order(created_at: :desc) }
   scope :popular_first, -> { order(created_at: :asc) }
   scope :price_low_to_high, -> { order(price: :asc) }
   scope :price_high_to_low, -> { order(price: :desc) }
+  scope :alphabetically, -> { order(title: :asc) }
+  scope :analphabetically, -> { order(title: :desc) }
 
   belongs_to :author
   belongs_to :category

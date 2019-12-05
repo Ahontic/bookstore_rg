@@ -32,9 +32,7 @@
 #  fk_rails_...  (material_id => materials.id)
 #
 
-RSpec.describe Book, type: :model do
-  let(:book) { FactoryBot.create(:book) }
-
+RSpec.describe Book do
   describe 'validations' do
     it { is_expected.to validate_presence_of(:title) }
     it { is_expected.to validate_presence_of(:price) }
@@ -44,6 +42,6 @@ RSpec.describe Book, type: :model do
   describe 'associations' do
     it { is_expected.to belong_to(:author) }
     it { is_expected.to belong_to(:category) }
-    it { is_expected.to have_many(:rating) }
+    it { is_expected.to belong_to(:material) }
   end
 end
