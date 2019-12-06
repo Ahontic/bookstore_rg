@@ -18,7 +18,7 @@
           %a.filter-link{href: category_path(category) }
             = category.title
             %span.badge.general-badge
-              = category.books.size
+              = category.books.count
   .dropdowns.mb-25.visible-xs
     %p.lead.small.mb-10 Filter by category
     .dropdown

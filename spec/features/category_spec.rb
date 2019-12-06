@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 feature 'Category page' do
-  before :each do
+  before do
     visit categories_path
   end
 

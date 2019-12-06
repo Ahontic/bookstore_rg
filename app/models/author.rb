@@ -6,8 +6,8 @@
 #
 #  id         :bigint           not null, primary key
 #  biography  :string
-#  first_name :string
-#  last_name  :string
+#  first_name :string           not null
+#  last_name  :string           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #

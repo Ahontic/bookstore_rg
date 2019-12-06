@@ -5,14 +5,14 @@
 # Table name: books
 #
 #  id          :bigint           not null, primary key
-#  depth       :decimal(, )
-#  description :string
-#  height      :decimal(, )
-#  issue_date  :integer
-#  price       :decimal(, )
-#  quantity    :integer
-#  title       :string
-#  width       :decimal(, )
+#  depth       :decimal(, )      not null
+#  description :string           not null
+#  height      :decimal(, )      not null
+#  issue_date  :integer          not null
+#  price       :decimal(, )      not null
+#  quantity    :integer          not null
+#  title       :string           not null
+#  width       :decimal(, )      not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  author_id   :bigint           not null
