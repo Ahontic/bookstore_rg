@@ -4,8 +4,8 @@ RSpec.describe BookSorter do
   let(:author) { FactoryBot.create(:author) }
   let(:category) { FactoryBot.create(:category) }
   let(:material) { FactoryBot.create(:material) }
-  let(:book2) { FactoryBot.create(:book, category_id: category.id, author_id: author.id, material_id: material.id) }
-  let(:book3) { FactoryBot.create(:book, category_id: category.id, author_id: author.id, material_id: material.id) }
+  let(:book2) { FactoryBot.create(:book, category: category, author: author, material: material) }
+  let(:book3) { FactoryBot.create(:book, category: category, author: author.id, material: material) }
 
   describe 'scope' do
     context 'sort books by' do
