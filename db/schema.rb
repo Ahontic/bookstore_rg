@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_06_132501) do
+ActiveRecord::Schema.define(version: 2019_12_06_142839) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,12 @@ ActiveRecord::Schema.define(version: 2019_12_06_132501) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "book_authors", force: :cascade do |t|
+    t.integer "author_id"
+    t.integer "book_id"
+    t.index ["author_id", "book_id"], name: "book_author"
+  end
+
   create_table "books", force: :cascade do |t|
     t.string "title", null: false
     t.string "description", null: false
@@ -30,14 +36,12 @@ ActiveRecord::Schema.define(version: 2019_12_06_132501) do
     t.integer "quantity", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "author_id", null: false
     t.bigint "category_id", null: false
     t.integer "issue_date", null: false
     t.decimal "height", null: false
     t.decimal "width", null: false
     t.decimal "depth", null: false
     t.bigint "material_id", null: false
-    t.index ["author_id"], name: "index_books_on_author_id"
     t.index ["category_id"], name: "index_books_on_category_id"
     t.index ["material_id"], name: "index_books_on_material_id"
   end
@@ -69,7 +73,6 @@ ActiveRecord::Schema.define(version: 2019_12_06_132501) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "books", "authors"
   add_foreign_key "books", "categories"
   add_foreign_key "books", "materials"
 end

@@ -68,6 +68,6 @@
             = book.price
           %span.divider-sm
           %p.lead.small
-            = book.author.first_name
-            = book.author.last_name
+            = book.authors.pluck('first_name')
+            = book.authors.pluck('last_name')
   = pagy_bootstrap_nav(@pagy).html_safe
