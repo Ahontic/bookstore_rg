@@ -38,12 +38,12 @@ FactoryBot.define do
     depth { rand(1.0..10.0).round(2) }
     height { rand(1.0..10.0).round(2) }
     width { rand(1.0..10.0).round(2) }
-    category { Category.ids.sample }
+    category_id { Category.ids.sample }
     issue_date { rand(1990..2010) }
-    material { Material.ids.sample }
+    material_id { Material.ids.sample }
 
     after(:create) do |book, _evaluator|
-      book.authors << Author.ids.sample
+      book.authors << Author.order('RANDOM()').first
     end
   end
 end
