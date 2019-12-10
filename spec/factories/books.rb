@@ -38,9 +38,8 @@ FactoryBot.define do
     depth { rand(1.0..10.0).round(2) }
     height { rand(1.0..10.0).round(2) }
     width { rand(1.0..10.0).round(2) }
-    author_id { Author.ids.sample }
-    category_id { Category.ids.sample }
+    category { Category.ids.sample }
     issue_date { rand(1990..2010) }
-    material_id { Material.ids.sample }
+    material { Material.ids.sample }
   end
 end

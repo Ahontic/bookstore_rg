@@ -10,7 +10,6 @@
 #  updated_at :datetime         not null
 #
 
-
 RSpec.describe Material do
   describe 'validations' do
     it { is_expected.to validate_presence_of(:name) }

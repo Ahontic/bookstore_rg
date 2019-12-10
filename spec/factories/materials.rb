@@ -12,6 +12,6 @@
 
 FactoryBot.define do
   factory :material do
-    name { FFaker::Vehicle.unique.interior_upholstery }
+    name { FFaker::Vehicle.interior_upholstery }
   end
 end

@@ -3,14 +3,14 @@
     = link_to t(:catalog), categories_path
   .mb-120
     .row
-      -@category.books.each do |book|
+      -category.books.each do |book|
         .col-xs-6.col-sm-3
           .general-thumb-wrap
             .thumbnail.general-thumbnail
               %img.img-shadow.general-thumbnail-img{src: "http://jonathantweedy.com/resources/thumbs/SmashingBook5ResponsiveWebDesign.jpg", alt: "design-book"}
               .thumb-hover
                 .general-thumb-link-wrap
-                  %a.thumb-hover-link{href: category_book_path(@category, book)}
+                  %a.thumb-hover-link{href: category_book_path(category, book)}
                     %i.fa.fa-eye.thumb-icon{'aria-hidden': "true"}
                   %a.thumb-hover-link{href: "#"}
                     %i.fa.fa-shopping-cart.thumb-icon
@@ -21,5 +21,4 @@
               = book.price
             %span.divider-sm
             %p.lead.small
-              = book.author.first_name
-              = book.author.last_name
+              = book.authors.decorate.reduce.full_name

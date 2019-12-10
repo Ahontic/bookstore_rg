@@ -1,13 +1,15 @@
 # frozen_string_literal: true
 
 class CategoriesController < ApplicationController
+  decorates_assigned :category, :categories, :books
+
   def index
-    @categories = Category.all
+    @categories = CategoryDecorator.decorate_collection(Category.all)
     @pagy, @books = pagy(BookSorter.call(sort_params))
   end
 
   def show
-    @category = Category.find(params[:id])
+    @category = CategoryDecorator.find(params[:id]).decorate
   end
 
   private
