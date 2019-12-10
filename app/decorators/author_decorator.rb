@@ -2,7 +2,7 @@
 
 class AuthorDecorator < Draper::Decorator
   delegate_all
-  decorates_association :book
+  decorates_association :books
 
   def full_name
     "#{first_name} #{last_name}"

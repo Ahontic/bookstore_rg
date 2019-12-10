@@ -68,5 +68,5 @@
             = book.price
           %span.divider-sm
           %p.lead.small
-            = book.authors.decorate.reduce.full_name
+            = book.authors_names
   = pagy_bootstrap_nav(@pagy).html_safe
