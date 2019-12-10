@@ -7,7 +7,6 @@ ruby '2.6.3'
 
 gem 'bundler-audit'
 gem 'draper'
-gem 'factory_bot_rails'
 gem 'haml-rails'
 gem 'i18n'
 gem 'pagy'
@@ -20,7 +19,7 @@ gem 'webpacker', '~> 4.0'
 
 gem 'bootsnap', '>= 1.4.2', require: false
 
-group :development, :test do
+group :development, :test, :production do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'factory_bot_rails'
   gem 'ffaker'
