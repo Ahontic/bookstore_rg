@@ -7,6 +7,7 @@ ruby '2.6.3'
 
 gem 'bundler-audit'
 gem 'draper'
+gem 'factory_bot_rails'
 gem 'haml-rails'
 gem 'i18n'
 gem 'pagy'
