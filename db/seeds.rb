@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'factory_bot_rails'
 # Seeding Authors
 FactoryBot.create_list(:author, 5)
 # Seeding Books
