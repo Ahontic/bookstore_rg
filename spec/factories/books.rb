@@ -42,8 +42,10 @@ FactoryBot.define do
     issue_date { rand(1990..2010) }
     material
 
-    after(:create) do |book, _evaluator|
-      book.authors << FactoryBot.build(:author)
+    trait :with_author do
+      after(:create) do |book, _evaluator|
+        book.authors << FactoryBot.build(:author)
+      end
     end
   end
 end

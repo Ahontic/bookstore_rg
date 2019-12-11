@@ -8,7 +8,7 @@ class BookSorter < ApplicationService
   end
 
   def call
-    current_sort = Book::AVAILABLE_FILTERS.include?(@params[:status]) ? @params[:status] : DEFAULT_FILTER
+    current_sort = Book::AVAILABLE_FILTERS[:sort].include?(@params[:status]) ? @params[:status] : DEFAULT_FILTER
     Book.public_send(current_sort)
   end
 end

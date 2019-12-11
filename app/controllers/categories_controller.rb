@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class CategoriesController < ApplicationController
-  decorates_assigned :category, :categories, :books
+  decorates_assigned :category, :books
 
   def index
     @categories = Category.all
@@ -9,12 +9,14 @@ class CategoriesController < ApplicationController
   end
 
   def show
-    @category = CategoryDecorator.find(params[:id])
+    @categories = Category.all
+    @category = Category.find(params[:id])
+    @pagy, @books = pagy_arel(@category.books)
   end
 
   private
 
   def sort_params
-    params.permit(:status)
+    params.permit(:status, :category, :commit, :id)
   end
 end

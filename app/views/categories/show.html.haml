@@ -1,16 +1,34 @@
 %main.container
   %h1.general-title-margin
     = link_to t(:catalog), categories_path
+  .hidden-xs.clearfix
+    .dropdowns.pull-right
+      .dropdown.width-240
+        = form_tag({url: category_path}, method: :get) do
+          = select_tag :status, options_for_select([['Newest first', 'newest_first'], ['Popular first', 'popular_first'], ['Price: low to high', 'price_low_to_high'], ['Price: high to low', 'price_high_to_low'], ['A - Z', 'alphabetically'], ['Z - A', 'analphabetically']])
+          = submit_tag 'Filter'
+    %ul.list-inline.pt-10.mb-25.mr-240
+      %li.mr-35
+        %a.filter-link{href: categories_path}
+          = t :all
+          %span.badge.general-badge
+            = Book.count
+      - @categories.each do |category|
+        %li.mr-35
+          %a.filter-link{href: category_path(category) }
+            = category.title
+            %span.badge.general-badge
+              = category.books.count
   .mb-120
     .row
-      -category.books.each do |book|
+      -@books.each do |book|
         .col-xs-6.col-sm-3
           .general-thumb-wrap
             .thumbnail.general-thumbnail
               %img.img-shadow.general-thumbnail-img{src: "http://jonathantweedy.com/resources/thumbs/SmashingBook5ResponsiveWebDesign.jpg", alt: "design-book"}
               .thumb-hover
                 .general-thumb-link-wrap
-                  %a.thumb-hover-link{href: category_book_path(category, book)}
+                  %a.thumb-hover-link{href: category_book_path(@category, book)}
                     %i.fa.fa-eye.thumb-icon{'aria-hidden': "true"}
                   %a.thumb-hover-link{href: "#"}
                     %i.fa.fa-shopping-cart.thumb-icon
@@ -22,3 +40,4 @@
             %span.divider-sm
             %p.lead.small
               = book.decorate.authors_names
+  = pagy_bootstrap_nav(@pagy).html_safe

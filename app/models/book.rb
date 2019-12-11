@@ -30,12 +30,9 @@
 #
 
 class Book < ApplicationRecord
-  AVAILABLE_FILTERS = %w[newest_first
-                         popular_first
-                         price_low_to_high
-                         price_high_to_low
-                         alphabetically
-                         analphabetically].freeze
+  # hash, book filters values
+  AVAILABLE_FILTERS = { sort:
+    %w[newest_first popular_first price_low_to_high price_high_to_low alphabetically analphabetically] }.freeze
 
   scope :newest_first, -> { order(created_at: :desc) }
   scope :popular_first, -> { order(created_at: :asc) }
