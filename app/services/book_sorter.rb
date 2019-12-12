@@ -9,11 +9,7 @@ class BookSorter < ApplicationService
   end
 
   def call
-    current_sort = if Book::AVAILABLE_FILTERS.values.include?(@params[:status])
-                     I18n.t('book_sort').key((@params[:status]).to_s)
-                   else
-                     DEFAULT_FILTER
-                   end
+    current_sort = Book::AVAILABLE_FILTERS.values.include?(@params[:status]) ? (@params[:status]).to_s : DEFAULT_FILTER
     @books.public_send(current_sort)
   end
 end

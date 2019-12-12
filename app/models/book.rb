@@ -30,7 +30,14 @@
 #
 
 class Book < ApplicationRecord
-  AVAILABLE_FILTERS = I18n.t(:book_sort)
+  AVAILABLE_FILTERS = {
+    I18n.t('book_sort.newest_first') => 'newest_first',
+    I18n.t('book_sort.popular_first') => 'popular_first',
+    I18n.t('book_sort.price_low_to_high') => 'price_low_to_high',
+    I18n.t('book_sort.price_high_to_low') => 'price_high_to_low',
+    I18n.t('book_sort.alphabetically') => 'alphabetically',
+    I18n.t('book_sort.analphabetically') => 'analphabetically'
+  }.freeze
 
   scope :newest_first, -> { order(created_at: :desc) }
   scope :popular_first, -> { order(created_at: :asc) }

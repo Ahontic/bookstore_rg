@@ -5,7 +5,7 @@
     .dropdowns.pull-right
       .dropdown.width-240
         = form_tag({url: category_path}, method: :get) do
-          = select_tag :status, options_for_select(Book::AVAILABLE_FILTERS.values)
+          = select_tag :status, options_for_select(Book::AVAILABLE_FILTERS)
           = submit_tag 'Filter'
     %ul.list-inline.pt-10.mb-25.mr-240
       %li.mr-35
