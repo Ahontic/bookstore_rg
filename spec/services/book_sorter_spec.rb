@@ -17,18 +17,27 @@ RSpec.describe BookSorter do
                   created_at: Date.today - 2, category: category, material: material)
   end
   let(:expected_result) { [book2, book3, book4] }
+  let(:reversed_expected_result) { [book4, book3, book2] }
 
   describe 'scope' do
     context 'sort books by' do
-      %w[newest_first price_low_to_high alphabetically].each do |filter|
-        example filter.to_s do
-          expect(BookSorter.call(status: filter)).to eq(expected_result)
-        end
+      example 'Newest first' do
+        expect(BookSorter.call(status: 'Newest first')).to eq(expected_result)
       end
-      %w[popular_first price_high_to_low analphabetically].each do |filter|
-        example filter.to_s do
-          expect(BookSorter.call(status: filter)).to eq(expected_result.reverse)
-        end
+      example 'Price: low to high' do
+        expect(BookSorter.call(status: 'Price: low to high')).to eq(expected_result)
+      end
+      example 'A - Z' do
+        expect(BookSorter.call(status: 'A - Z')).to eq(expected_result)
+      end
+      example 'Popular first' do
+        expect(BookSorter.call(status: 'Popular first')).to eq(reversed_expected_result)
+      end
+      example 'Price: high to low' do
+        expect(BookSorter.call(status: 'Price: high to low')).to eq(reversed_expected_result)
+      end
+      example 'Z - A' do
+        expect(BookSorter.call(status: 'Z - A')).to eq(reversed_expected_result)
       end
     end
   end

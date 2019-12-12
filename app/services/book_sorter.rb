@@ -3,12 +3,17 @@
 class BookSorter < ApplicationService
   DEFAULT_FILTER = 'newest_first'
 
-  def initialize(params)
+  def initialize(params, books = Book.all)
     @params = params
+    @books = books
   end
 
   def call
-    current_sort = Book::AVAILABLE_FILTERS[:sort].include?(@params[:status]) ? @params[:status] : DEFAULT_FILTER
-    Book.public_send(current_sort)
+    current_sort = if Book::AVAILABLE_FILTERS.values.include?(@params[:status])
+                     I18n.t('book_sort').key((@params[:status]).to_s)
+                   else
+                     DEFAULT_FILTER
+                   end
+    @books.public_send(current_sort)
   end
 end

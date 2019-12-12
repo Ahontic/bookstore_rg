@@ -4,14 +4,12 @@ class CategoriesController < ApplicationController
   decorates_assigned :category, :books
 
   def index
-    @categories = Category.all
     @pagy, @books = pagy(BookSorter.call(sort_params))
   end
 
   def show
-    @categories = Category.all
     @category = Category.find(params[:id])
-    @pagy, @books = pagy_arel(@category.books)
+    @pagy, @books = pagy(BookSorter.call(sort_params, @category.books))
   end
 
   private

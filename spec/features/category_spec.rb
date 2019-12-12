@@ -20,36 +20,20 @@ feature 'Category page' do
     expect(page).to have_link category2.title
   end
 
-  feature 'when click onto a category proceed to Category page' do
-    feature 'when click onto category 1' do
-      before do
-        click_on category1.title
-      end
-      scenario 'shows books of category1' do
-        expect(page).to have_content book1.title
-      end
-      scenario 'doesnt show books of category2' do
-        expect(page).not_to have_content book2.title
-      end
-    end
+  scenario 'when click onto category 1' do
+    click_on category1.title
+    expect(page).to have_content book1.title
+    expect(page).not_to have_content book2.title
+  end
 
-    feature 'when click onto category 2' do
-      before do
-        click_on category2.title
-      end
-      scenario 'shows books of category2' do
-        expect(page).to have_content book2.title
-      end
-      scenario 'doesnt show books of category1' do
-        expect(page).not_to have_content book1.title
-      end
-    end
+  scenario 'when click onto category 2' do
+    click_on category2.title
+    expect(page).to have_content book2.title
+    expect(page).not_to have_content book1.title
+  end
 
-    feature 'when click onto All' do
-      scenario 'shows books of all categories' do
-        expect(page).to have_content book1.title
-        expect(page).to have_content book2.title
-      end
-    end
+  scenario 'shows books of all categories' do
+    expect(page).to have_content book1.title
+    expect(page).to have_content book2.title
   end
 end

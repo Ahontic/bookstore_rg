@@ -5,7 +5,7 @@
     .dropdowns.pull-right
       .dropdown.width-240
         = form_tag({url: categories_path}, method: :get) do
-          = select_tag :status, options_for_select([['Newest first', 'newest_first'], ['Popular first', 'popular_first'], ['Price: low to high', 'price_low_to_high'], ['Price: high to low', 'price_high_to_low'], ['A - Z', 'alphabetically'], ['Z - A', 'analphabetically']])
+          = select_tag :status, options_for_select(Book::AVAILABLE_FILTERS.values)
           = submit_tag 'Filter'
     %ul.list-inline.pt-10.mb-25.mr-240
       %li.mr-35
@@ -13,7 +13,7 @@
           = t :all
           %span.badge.general-badge
             = Book.count
-      - @categories.each do |category|
+      - categories.each do |category|
         %li.mr-35
           %a.filter-link{href: category_path(category) }
             = category.title

@@ -2,4 +2,8 @@
 
 module ApplicationHelper
   include Pagy::Frontend
+
+  def categories
+    @categories ||= Category.all
+  end
 end
