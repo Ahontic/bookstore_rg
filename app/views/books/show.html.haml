@@ -28,13 +28,12 @@
         .col-xs-12.col-md-4
           %p.h1.in-gold-500.mt-10#book-cost
             = number_to_currency( @book.price, unit: '€')
-          %p.h1.in-gold-500.mt-10.invisible#book-price
-            = number_to_currency( @book.price, unit: '€')
         .col-xs-5.col-md-3
           .input-group.general-position
             %a.input-link{href: "#"}
               %i.fa.fa-minus.line-height-40
             %input.form-control#quantity-input{ value: 1 }
+              %input.form-control.invisible#book-price{ value: "#{@book.price}" }
         .col-xs-7.col-md-5
       .general-info-wrap.divider-lg
         %p
