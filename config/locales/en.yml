@@ -30,3 +30,11 @@ en:
   review:
     write_a_review: 'Write a Review'
     score: 'Score'
+
+  book_sort:
+    newest_first: 'Newest first'
+    popular_first: 'Popular first'
+    price_low_to_high: 'Price: low to high'
+    price_high_to_low: 'Price: high to low'
+    alphabetically: 'A - Z'
+    analphabetically: 'Z - A'

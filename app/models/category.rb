@@ -5,7 +5,7 @@
 # Table name: categories
 #
 #  id         :bigint           not null, primary key
-#  title      :string
+#  title      :string           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
@@ -15,7 +15,7 @@
 #
 
 class Category < ApplicationRecord
-  has_many :books
+  has_many :books, dependent: :destroy
 
-  validates :title, presence: true, uniqueness: true
+  validates :title, presence: true, uniqueness: true, case_sensitive: false
 end

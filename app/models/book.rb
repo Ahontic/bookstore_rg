@@ -5,40 +5,39 @@
 # Table name: books
 #
 #  id          :bigint           not null, primary key
-#  depth       :decimal(, )
-#  description :string
-#  height      :decimal(, )
-#  issue_date  :integer
-#  price       :decimal(, )
-#  quantity    :integer
-#  title       :string
-#  width       :decimal(, )
+#  depth       :decimal(, )      not null
+#  description :string           not null
+#  height      :decimal(, )      not null
+#  issue_date  :integer          not null
+#  price       :decimal(, )      not null
+#  quantity    :integer          not null
+#  title       :string           not null
+#  width       :decimal(, )      not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  author_id   :bigint           not null
 #  category_id :bigint           not null
 #  material_id :bigint           not null
 #
 # Indexes
 #
-#  index_books_on_author_id    (author_id)
 #  index_books_on_category_id  (category_id)
 #  index_books_on_material_id  (material_id)
 #
 # Foreign Keys
 #
-#  fk_rails_...  (author_id => authors.id)
 #  fk_rails_...  (category_id => categories.id)
 #  fk_rails_...  (material_id => materials.id)
 #
 
 class Book < ApplicationRecord
-  AVAILABLE_FILTERS = %w[newest_first
-                         popular_first
-                         price_low_to_high
-                         price_high_to_low
-                         alphabetically
-                         analphabetically].freeze
+  AVAILABLE_FILTERS = {
+    I18n.t('book_sort.newest_first') => 'newest_first',
+    I18n.t('book_sort.popular_first') => 'popular_first',
+    I18n.t('book_sort.price_low_to_high') => 'price_low_to_high',
+    I18n.t('book_sort.price_high_to_low') => 'price_high_to_low',
+    I18n.t('book_sort.alphabetically') => 'alphabetically',
+    I18n.t('book_sort.analphabetically') => 'analphabetically'
+  }.freeze
 
   scope :newest_first, -> { order(created_at: :desc) }
   scope :popular_first, -> { order(created_at: :asc) }
@@ -47,7 +46,8 @@ class Book < ApplicationRecord
   scope :alphabetically, -> { order(title: :asc) }
   scope :analphabetically, -> { order(title: :desc) }
 
-  belongs_to :author
+  has_many :book_authors
+  has_many :authors, through: :book_authors
   belongs_to :category
   belongs_to :material
 

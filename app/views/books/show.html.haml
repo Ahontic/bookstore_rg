@@ -15,14 +15,13 @@
             %img{src: "https://www.bramstein.com/static/smashing-book-5-photo-stack.9d5d114e3e.jpg"}
     .col-sm-6
       %h1.mt-res-0
-        = @book.title
+        = book.title
       %p.lead.small
-        = @book.author.first_name
-        = @book.author.last_name
+        = book.authors_names
     .col-sm-6
       %h1.mt-res-0
         %p.lead.small
-          = I18n.t('book.piece', count: @book.quantity)
+          = I18n.t('book.piece', count: book.quantity)
           %button.btn.btn-sm.btn-success#decrease-quantity -
           %button.btn.btn-sm.btn-success#increase-quantity +
       .row
@@ -41,33 +40,28 @@
         %p
           = t 'book.description'
         %p.lead.small.line-height-2
-          = truncate(@book.description, length: 25)
+          = truncate(book.description, length: 25)
           %a.in-gold-500.ml-10
-            = link_to 'Read more', '', class: "read-more-#{@book.id}"
+            = link_to 'Read more', '', class: "read-more-#{book.id}"
 
       .general-info-wrap.divider-lg
         .clearfix
           %p.pull-left
             = t 'book.year_of_publication'
           %p.lead.small.pull-right
-            =  @book.issue_date
+            =  book.issue_date
       .general-info-wrap.divider-lg
         .clearfix
           %p.pull-left
             = t 'book.dimensions'
           %p.lead.small.pull-right
-            = @book.height
-            \\"
-            = @book.width
-            \\"
-            = @book.depth
-            \\"
+            = book.dimensions
       .general-info-wrap.divider-lg
         .clearfix
           %p.pull-left
             = t 'book.materials'
           %p.lead.small.pull-right
-            = @book.material.name
+            = book.material.name
   .mb-80
     %h3
       = t 'review.write_a_review'

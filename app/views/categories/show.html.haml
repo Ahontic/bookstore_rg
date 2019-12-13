@@ -1,9 +1,27 @@
 %main.container
   %h1.general-title-margin
     = link_to t(:catalog), categories_path
+  .hidden-xs.clearfix
+    .dropdowns.pull-right
+      .dropdown.width-240
+        = form_tag({url: category_path}, method: :get) do
+          = select_tag :status, options_for_select(Book::AVAILABLE_FILTERS)
+          = submit_tag 'Filter'
+    %ul.list-inline.pt-10.mb-25.mr-240
+      %li.mr-35
+        %a.filter-link{href: categories_path}
+          = t :all
+          %span.badge.general-badge
+            = Book.count
+      - categories.each do |category|
+        %li.mr-35
+          %a.filter-link{href: category_path(category) }
+            = category.title
+            %span.badge.general-badge
+              = category.books.count
   .mb-120
     .row
-      -@category.books.each do |book|
+      -@books.each do |book|
         .col-xs-6.col-sm-3
           .general-thumb-wrap
             .thumbnail.general-thumbnail
@@ -21,5 +39,5 @@
               = book.price
             %span.divider-sm
             %p.lead.small
-              = book.author.first_name
-              = book.author.last_name
+              = book.decorate.authors_names
+  = pagy_bootstrap_nav(@pagy).html_safe

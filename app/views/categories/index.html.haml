@@ -5,7 +5,7 @@
     .dropdowns.pull-right
       .dropdown.width-240
         = form_tag({url: categories_path}, method: :get) do
-          = select_tag :status, options_for_select([['Newest first', 'newest_first'], ['Popular first', 'popular_first'], ['Price: low to high', 'price_low_to_high'], ['Price: high to low', 'price_high_to_low'], ['A - Z', 'alphabetically'], ['Z - A', 'analphabetically']])
+          = select_tag :status, options_for_select(Book::AVAILABLE_FILTERS)
           = submit_tag 'Filter'
     %ul.list-inline.pt-10.mb-25.mr-240
       %li.mr-35
@@ -13,12 +13,12 @@
           = t :all
           %span.badge.general-badge
             = Book.count
-      - @categories.each do |category|
+      - categories.each do |category|
         %li.mr-35
           %a.filter-link{href: category_path(category) }
             = category.title
             %span.badge.general-badge
-              = category.books.size
+              = category.books.count
   .dropdowns.mb-25.visible-xs
     %p.lead.small.mb-10 Filter by category
     .dropdown
@@ -50,7 +50,7 @@
           %a{href: "#"} Price: High to low
   .mb-120
     .row
-    - @books.each do |book|
+    - books.each do |book|
       .col-xs-6.col-sm-3
         .general-thumb-wrap
           .thumbnail.general-thumbnail
@@ -68,6 +68,5 @@
             = book.price
           %span.divider-sm
           %p.lead.small
-            = book.author.first_name
-            = book.author.last_name
+            = book.authors_names
   = pagy_bootstrap_nav(@pagy).html_safe

@@ -5,11 +5,10 @@
 # Table name: materials
 #
 #  id         :bigint           not null, primary key
-#  name       :string
+#  name       :string           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
-
 
 RSpec.describe Material do
   describe 'validations' do
