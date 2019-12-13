@@ -1,30 +1,25 @@
+
 %main.container.general-main-wrap
   .text-center
-    %h3.general-login-title
-      %a.general-login-icon
-        = link_to 'Log In', new_customer_session_path
+    %h3.general-login-title Sign Up
+    = link_to customer_facebook_omniauth_authorize_path, class: 'general-login-icon' do
       %i.fa.fa-facebook-official
     %p.general-login-text or
-  %form.general-form
+  = form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: 'general-form'}) do |f|
+    = devise_error_messages!
     .form-group.mb-30
-      %label.control-label.input-label{for: "email"} Enter Email
-      %input#email.form-control{name:"email", type: "email", placeholder: "Enter Email"}
+      = f.label :email, class: 'control-label input-label', html: {  'data-bar' => 'Enter Email' }
+      = f.email_field :email, autofocus: true, autocomplete: "email", id: 'email', class: 'form-control', placeholder: "Enter Email"
     .form-group.mb-30
-      %label.control-label.input-label{for: "password"} Password
-      %input#password.form-control{name:"password", type: "password", placeholder: "Password"}
-      %a.help-block.in-gold-500{href: "#"} Forgot password?
+      = f.label :password, class: 'control-label input-label', html: { 'data-bar' => 'Password' }
+      = f.password_field :password, autocomplete: "off", id: 'password', class: 'form-control', placeholder: "Password"
+      - if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations'
+        = link_to "Forgot password?", new_password_path(resource_name), class: 'help-block in-gold-500'
     .form-group.mb-30
-      %label.control-label.input-label{for: "confirm"} Confirm Password
-      %input#confirm.form-control{name:"confirm", type: "password", placeholder: "Confirm Password"}
-    .form-group.checkbox.text-center.mb-30
-      %label.checkbox-label
-        %input.checkbox-input{type: "checkbox", hidden: "true"}
-        %span.checkbox-icon
-          %i.fa.fa-check
-        %span.checkbox-text Remember me
+      = f.label :password_confirmation, class: 'control-label input-label', html: { 'data-bar' => 'Confirm Password' }
+      = f.password_field :password_confirmation, autocomplete: "off", id: 'password_confirmation', class: 'form-control', placeholder: "Confirm Password"
     .text-center
-      %button.btn.btn-default.mb-20 Back to Store
+      = f.submit "Sign Up", class: 'btn btn-default mb-20'
   %p.general-sign-text.text-center
-    Don’t have an Account?
-    %a.in-gold-500
-      = render "devise/shared/links"
+    Have an Account?
+    = link_to 'Log In', new_customer_session_path, class: 'in-gold-500'
