@@ -14,3 +14,7 @@ Metrics/ModuleLength:
 Metrics:
   Exclude:
     - bin/**/*
+Style/ClassAndModuleChildren:
+  Exclude:
+    - app/controllers/customers/*
+    - app/helpers/**/*

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: customers
@@ -47,7 +49,7 @@ class Customer < ApplicationRecord
     )
   end
 
-  def has_facebook_linked?
-    self.provider.present? && self.uid.present?
+  def facebook_linked?
+    provider.present? && uid.present?
   end
 end

@@ -8,7 +8,7 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = 'e11187e71e7199e3242bf9604dd6ae14aa2a6f37c8bc3f4c262ab77d14fbdbfee0ac6e94947f84452caedf9dbc578a90813eb9f56f040f1205af0f7ff771073b'
+  # config.secret_key = 'e11187e71e7199e3242bf9604dd6ae14aa2a6f37c8bc3f4c262ab77d14fbdbfee0ac6e94947f84452caedf9dbc578a'
 
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
@@ -18,13 +18,13 @@ Devise.setup do |config|
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
+  config.mailer_sender = 'hwpauler@gmail.com'
 
   # Configure the class responsible to send e-mails.
-  # config.mailer = 'Devise::Mailer'
+  config.mailer = 'Devise::Mailer'
 
   # Configure the parent class responsible to send e-mails.
-  # config.parent_mailer = 'ActionMailer::Base'
+  config.parent_mailer = 'ActionMailer::Base'
 
   # ==> ORM configuration
   # Load and configure the ORM. Supports :active_record (default) and
@@ -114,7 +114,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 11
 
   # Set up a pepper to generate the hashed password.
-  # config.pepper = 'ed794929a6550d02dcb8d1f039cbf1679b2fca83a498d282f37af71ce2482656a7b9d76b1b2d172c52084d51f8761a5f989633eba18c71eb15e3d4a298e15b76'
+  # config.pepper = 'ed794929a6550d02dcb8d1f039cbf1679b2fca83a498d282f37af71ce2482656a7b9d76b1b2d172c52084d51f8761a5f9'
 
   # Send a notification to the original email when the user's email is changed.
   # config.send_email_changed_notification = false
@@ -260,7 +260,8 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
-  config.omniauth :facebook, ENV['472687023378989'], ENV['2f1d12e7b5948b586b70ef8b95051273'], scope: 'name,email,user_birthday'
+  config.omniauth :facebook, ENV['472687023378989'], ENV['2f1d12e7b5948b586b70ef8b95051273'],
+                  scope: 'name,email,user_birthday'
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.
