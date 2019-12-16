@@ -15,6 +15,6 @@ class CategoriesController < ApplicationController
   private
 
   def sort_params
-    params.permit(:status, :commit, :id)
+    params.permit(:status, :id)
   end
 end
