@@ -692,6 +692,11 @@
   resolved "https://registry.yarnpkg.com/@csstools/convert-colors/-/convert-colors-1.4.0.tgz#ad495dc41b12e75d588c6db8b9834f08fa131eb7"
   integrity sha512-5a6wqoJV/xEdbRNKVo6I4hO3VjyDq//8q2f9I6PBAvMesJHFauXDorcNCsr9RzvsZnaWi5NYCcfyqP1QeFHFbw==
 
+"@fortawesome/fontawesome-free@^5.12.0":
+  version "5.12.0"
+  resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-free/-/fontawesome-free-5.12.0.tgz#8ceb9f09edfb85ea18a6c7bf098f6f5dd5ffd62b"
+  integrity sha512-vKDJUuE2GAdBERaQWmmtsciAMzjwNrROXA5KTGSZvayAsmuTGjam5z6QNqNPCwDfVljLWuov1nEC3mEQf/n6fQ==
+
 "@rails/actioncable@^6.0.0":
   version "6.0.1"
   resolved "https://registry.yarnpkg.com/@rails/actioncable/-/actioncable-6.0.1.tgz#43adf86c2ad6e6a076259b7ea02ba747e4f8bb6f"
@@ -3797,7 +3802,7 @@ jest-worker@^24.9.0:
     merge-stream "^2.0.0"
     supports-color "^6.1.0"
 
-jquery@>2.1.4, jquery@^3.4.1:
+jquery@^3.4.1:
   version "3.4.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.4.1.tgz#714f1f8d9dde4bdfa55764ba37ef214630d80ef2"
   integrity sha512-36+AdBzCL+y6qjw5Tx7HgzeGCzC81MDDgaUP8ld2zhx58HdqXGoBd+tHdrBMiyjGQs0Hxs/MLZTu/eHNJJuWPw==
@@ -5952,13 +5957,6 @@ readdirp@^2.2.1:
     graceful-fs "^4.1.11"
     micromatch "^3.1.10"
     readable-stream "^2.0.2"
-
-readmore-js@^2.2.1:
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/readmore-js/-/readmore-js-2.2.1.tgz#ab75036c8a47b6ffa2d3d14cd527c7f479edc117"
-  integrity sha512-hbPP0nQpYYkAywCEZ8ozHivvhWyHic37KJ2IXrHES4qzjp0+nmw8R33MeyMAtXBZfXX4Es8cpd5JBVf9qj47+Q==
-  dependencies:
-    jquery ">2.1.4"
 
 redent@^1.0.0:
   version "1.0.0"
