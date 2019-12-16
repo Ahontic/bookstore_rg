@@ -15,3 +15,26 @@ en:
   get_started: 'Get Started'
   latest_books: 'Latest Books'
   catalog: 'Catalog'
+  all: 'All'
+
+  book:
+    piece:
+      one: '%{count} piece'
+      other: '%{count} pieces'
+
+    description: 'Description'
+    year_of_publication: 'Year of publication'
+    dimensions: 'Dimensions'
+    materials: 'Materials'
+
+  review:
+    write_a_review: 'Write a Review'
+    score: 'Score'
+
+  book_sort:
+    newest_first: 'Newest first'
+    popular_first: 'Popular first'
+    price_low_to_high: 'Price: low to high'
+    price_high_to_low: 'Price: high to low'
+    alphabetically: 'A - Z'
+    analphabetically: 'Z - A'

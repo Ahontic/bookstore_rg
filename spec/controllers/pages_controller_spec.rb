@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe PagesController, type: :controller do
+RSpec.describe PagesController do
   describe 'GET #home' do
     it 'returns http ok' do
       get :home

@@ -6,10 +6,12 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.6.3'
 
 gem 'bundler-audit'
+gem 'draper'
 gem 'haml-rails'
 gem 'i18n'
+gem 'pagy'
 gem 'pg'
-gem 'puma', '~> 4.1'
+gem 'puma', '>= 4.3.1'
 gem 'rails', '~> 6.0.1'
 gem 'sass-rails', '>= 6'
 gem 'turbolinks', '~> 5'
@@ -38,6 +40,7 @@ end
 
 group :test do
   gem 'capybara', '>= 2.15'
+  gem 'database_cleaner'
   gem 'selenium-webdriver'
   gem 'simplecov'
   gem 'webdrivers'

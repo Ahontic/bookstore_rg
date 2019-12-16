@@ -3,5 +3,9 @@
 Rails.application.routes.draw do
   root to: 'pages#home'
 
-  resources :catalog, only: [:index]
+  resources :categories, only: %i[index show] do
+    resources :books, only: %i[index show]
+
+    match '*unmatched', to: 'application#not_found', via: :all
+  end
 end
