@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 def sign_up
   visit new_customer_registration_path
 
