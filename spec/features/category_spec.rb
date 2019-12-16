@@ -11,28 +11,23 @@ feature 'Category page' do
     visit categories_path
   end
 
-  scenario 'has appropriate content' do
+  scenario 'has categories with its content' do
     expect(page).to have_content I18n.t(:catalog)
     expect(page).to have_current_path categories_path
 
     expect(page).to have_link I18n.t(:all)
     expect(page).to have_link category1.title
     expect(page).to have_link category2.title
-  end
 
-  scenario 'when click onto category 1' do
     click_on category1.title
     expect(page).to have_content book1.title
     expect(page).not_to have_content book2.title
-  end
 
-  scenario 'when click onto category 2' do
     click_on category2.title
     expect(page).to have_content book2.title
     expect(page).not_to have_content book1.title
-  end
 
-  scenario 'shows books of all categories' do
+    click_on I18n.t(:all)
     expect(page).to have_content book1.title
     expect(page).to have_content book2.title
   end
