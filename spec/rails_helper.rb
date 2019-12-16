@@ -4,6 +4,8 @@
 require 'spec_helper'
 require 'simplecov'
 require 'support/database_cleaner'
+require 'support/session_helper'
+
 SimpleCov.start do
   minimum_coverage 95
 end
@@ -23,6 +25,7 @@ rescue ActiveRecord::PendingMigrationError => e
 end
 RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
+  config.include Devise::Test::IntegrationHelpers, type: :request
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
   config.infer_spec_type_from_file_location!
