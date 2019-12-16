@@ -9,7 +9,6 @@ $(document).ready(function() {
     quantityInput.val(newValue)
     bookCost.text(unit + newValue * bookPrice.val())
   }
-  debugger
   });
 
   $('#increase-quantity').click(function() {

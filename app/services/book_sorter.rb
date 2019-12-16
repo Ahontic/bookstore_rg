@@ -5,7 +5,7 @@ class BookSorter < ApplicationService
 
   def initialize(params, books = Book.all)
     @params = params
-    @books = books
+    @books = books.includes(:authors)
   end
 
   def call
