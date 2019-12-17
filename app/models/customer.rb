@@ -5,6 +5,9 @@
 # Table name: customers
 #
 #  id                     :bigint           not null, primary key
+#  confirmation_sent_at   :datetime
+#  confirmation_token     :string
+#  confirmed_at           :datetime
 #  current_sign_in_at     :datetime
 #  current_sign_in_ip     :inet
 #  email                  :string           default(""), not null
@@ -22,16 +25,20 @@
 #
 # Indexes
 #
+#  index_customers_on_confirmation_token    (confirmation_token) UNIQUE
 #  index_customers_on_email                 (email) UNIQUE
 #  index_customers_on_reset_password_token  (reset_password_token) UNIQUE
 #
 
 class Customer < ApplicationRecord
+  validates :email, presence: true
+  validates :email, confirmation: true
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
-         :omniauthable, :trackable, omniauth_providers: [:facebook]
+         :omniauthable, :trackable, :confirmable, omniauth_providers: [:facebook]
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |customer|
