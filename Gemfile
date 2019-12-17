@@ -7,6 +7,7 @@ ruby '2.6.3'
 
 gem 'bundler-audit'
 gem 'devise'
+gem 'devise-security'
 gem 'draper'
 gem 'figaro'
 gem 'haml-rails'

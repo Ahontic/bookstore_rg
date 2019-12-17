@@ -18,3 +18,6 @@ Style/ClassAndModuleChildren:
   Exclude:
     - app/controllers/customers/*
     - app/helpers/**/*
+Naming/FileName:
+  Exclude:
+    - config/initializers/*
