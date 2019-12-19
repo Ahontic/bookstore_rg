@@ -66,17 +66,16 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'https://staging-damp-dawn-43764.herokuapp.com/' }
   config.action_mailer.perform_deliveries = true
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.default charset: 'utf-8'
   config.action_mailer.raise_delivery_errors = false
   config.action_mailer.default_options = { from: 'hwpauler@gmail.com' }
   config.action_mailer.smtp_settings = {
     address: 'smtp.gmail.com',
     port: 587,
+    domain: 'mail.google.com',
     authentication: 'plain',
     enable_starttls_auto: true,
     user_name: ENV['GMAIL_USERNAME'],
-    password: ENV['GMAIL_PASSWORD'],
-    openssl_verify_mode: 'none'
+    password: ENV['GMAIL_PASSWORD']
   }
   config.action_mailer.perform_caching = false
 
