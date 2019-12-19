@@ -19,6 +19,7 @@ gem 'pg'
 gem 'puma', '>= 4.3.1'
 gem 'rails', '~> 6.0.1'
 gem 'sass-rails', '>= 6'
+gem 'sidekiq'
 gem 'turbolinks', '~> 5'
 gem 'webpacker', '~> 4.0'
 
