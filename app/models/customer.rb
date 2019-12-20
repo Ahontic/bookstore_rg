@@ -31,6 +31,8 @@
 #
 
 class Customer < ApplicationRecord
+  has_many :addresses, as: :addressable
+
   validates :email, presence: true
   validates :email, confirmation: true
 
