@@ -17,11 +17,11 @@ ActiveRecord::Schema.define(version: 20_191_220_141_245) do
   enable_extension 'plpgsql'
 
   create_table 'addresses', force: :cascade do |t|
-    t.string 'address'
-    t.integer 'zipcode'
-    t.string 'city'
-    t.integer 'phone'
-    t.string 'country'
+    t.string 'address', null: false
+    t.integer 'zipcode', null: false
+    t.string 'city', null: false
+    t.integer 'phone', null: false
+    t.string 'country', null: false
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
   end

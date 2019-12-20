@@ -5,11 +5,11 @@
 # Table name: addresses
 #
 #  id         :bigint           not null, primary key
-#  address    :string
-#  city       :string
-#  country    :string
-#  phone      :integer
-#  zipcode    :integer
+#  address    :string           not null
+#  city       :string           not null
+#  country    :string           not null
+#  phone      :integer          not null
+#  zipcode    :integer          not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
