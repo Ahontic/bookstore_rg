@@ -19,7 +19,16 @@ $(document).ready(function() {
     let unit = '€'
     quantityInput.val(newValue)
     bookCost.text(unit + newValue * bookPrice.val())
-
-
   });
-})
+});
+
+$(document).ready(function() {
+  $('.delete-link').on('click', function(e) {
+    var customer_id = $(this).attr("data-id");
+    if($("#delete_" + customer_id).is(':checked')) {
+      $("#customer_" + customer_id).trigger('click');
+    }else{
+      alert('Please check the checkbox!')
+  }
+  });
+});
