@@ -27,5 +27,7 @@ FactoryBot.define do
     country { FFaker::Address.country }
     phone { FFaker::PhoneNumber.short_phone_number }
     zipcode { FFaker::AddressUS.zip_code }
+    addressable_id { Customer.ids.sample }
+    addressable_type { Customer }
   end
 end

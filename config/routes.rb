@@ -4,9 +4,9 @@ Rails.application.routes.draw do
   devise_for :customers, controllers: { omniauth_callbacks: 'customers/omniauth_callbacks' }
   root to: 'pages#home'
 
+  resources :addresses
   resources :categories, only: %i[index show] do
     resources :books, only: %i[index show]
-
-    match '*unmatched', to: 'application#not_found', via: :all
   end
+  match '*unmatched', to: 'application#not_found', via: :all
 end
