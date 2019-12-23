@@ -8,6 +8,7 @@ require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
 require("jquery")
+import 'bootstrap';
 
 require("custom/index")
 
@@ -17,4 +18,3 @@ require("custom/index")
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
-import "@fortawesome/fontawesome-free/js/all"

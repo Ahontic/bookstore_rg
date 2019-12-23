@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).on("turbolinks:load", function() {
   $('#decrease-quantity').click(function() {
     let quantityInput = $('#quantity-input')
     let bookPrice = $('#book-price')
