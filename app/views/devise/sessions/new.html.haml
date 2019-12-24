@@ -2,9 +2,9 @@
   .text-center
     %h3.general-login-title Log In
     %a.general-login-icon
-    = link_to customer_facebook_omniauth_authorize_path, method: :post, class: 'general-login-icon' do
-      %i.fa.fa-facebook-official
-    %p.general-login-text or
+    = link_to customer_facebook_omniauth_authorize_path, method: :post, class: 'fab.fa-facebook-official' do
+      %i.fab.fa-facebook.fa-3x.mx-2
+      %p.general-login-text or
   = form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: 'general-form'}) do |f|
     .form-group.mb-30
       = f.label :email, class: 'control-label input-label', html: {  'data-bar' => 'Enter Email' }
@@ -22,7 +22,7 @@
             %i.fa.fa-check
           %span.checkbox-text Remember me
     .text-center
-      = f.submit "Back to Store", class: 'btn btn-default mb-20'
+      = f.submit "Log In", class: 'btn btn-default mb-20'
   %p.general-sign-text.text-center
     Don’t have an Account?
     = render "devise/shared/links"

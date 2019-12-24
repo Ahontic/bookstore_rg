@@ -19,22 +19,25 @@
           %li
             = link_to t(:home), root_path
           %li.dropdown
-            %button.btn.btn-default.dropdown-toggle#navigation{href: categories_path, 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "true"}
+            %a.dropdown-toggle#navigation{href: categories_path, 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "true"}
               = t :shop
             %ul.dropdown-menu{"aria-labelledby" => "navigation"}
               - categories.each do |category|
                 %li
-                  = link_to category.title, categories_path
-              %li.divider{role: "separator"}
-              %li
-                = link_to I18n.t(:log_out), destroy_customer_session_path
+                  = link_to category.title, category_path(category, status: BookSorter::DEFAULT_FILTER)
+              - if customer_signed_in?
+                %li.divider{role: "separator"}
+                  %li
+                    = link_to I18n.t(:log_out), destroy_customer_session_path, method: :delete
           %li.dropdown
-            %button.btn.btn-default.dropdown-toggle{href: new_customer_session_path, 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
+            %a.dropdown-toggle#account{href: new_customer_session_path, 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
               = t :my_account
-              %ul.dropdown-menu
-            - if customer_signed_in?
-              Hello, #{current_customer.email}
-              = link_to 'Sign Out', destroy_customer_session_path, method: :delete
-            - else
-              = link_to 'Sign In', new_customer_session_path
-              = link_to "Sign up", new_customer_registration_path
+            %ul.dropdown-menu{"aria-labelledby" => "account"}
+              - if customer_signed_in?
+                Hello, #{current_customer.email}
+                %li
+                  = link_to 'Sign Out', destroy_customer_session_path, method: :delete
+              - else
+                %li
+                  = link_to 'Sign In', new_customer_session_path
+                  = link_to "Sign up", new_customer_registration_path
