@@ -26,5 +26,5 @@ def sign_in_with(email: FFaker::Internet.disposable_email, password: '')
   fill_in :email, with: email
   fill_in :password, with: password
 
-  click_on 'Back to Store'
+  click_on 'Log In'
 end

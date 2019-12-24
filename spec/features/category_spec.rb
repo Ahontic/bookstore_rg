@@ -19,11 +19,11 @@ feature 'Category page' do
     expect(page).to have_link category1.title
     expect(page).to have_link category2.title
 
-    click_on category1.title
+    first('a', text: category1.title).click
     expect(page).to have_content book1.title
     expect(page).not_to have_content book2.title
 
-    click_on category2.title
+    first('a', text: category2.title).click
     expect(page).to have_content book2.title
     expect(page).not_to have_content book1.title
 

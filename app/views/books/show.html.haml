@@ -1,6 +1,5 @@
 %main.container
-  %i.fa.fa-long-arrow-left.mr-15
-    = link_to 'Back to results', category_path(@book.category_id)
+  = link_to 'Back to results', category_path(@book.category_id)
   .row
     .col-sm-6
       .product-gallery
@@ -30,10 +29,8 @@
             = number_to_currency( @book.price, unit: '€')
         .col-xs-5.col-md-3
           .input-group.general-position
-            %a.input-link{href: "#"}
-              %i.fa.fa-minus.line-height-40
             %input.form-control#quantity-input{ value: 1 }
-              %input.form-control.invisible#book-price{ value: "#{@book.price}" }
+              %input.form-control.hidden#book-price{ value: "#{@book.price}" }
         .col-xs-7.col-md-5
       .general-info-wrap.divider-lg
         %p

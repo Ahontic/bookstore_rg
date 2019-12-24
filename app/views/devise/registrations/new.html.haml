@@ -1,9 +1,8 @@
-
 %main.container.general-main-wrap
   .text-center
     %h3.general-login-title Sign Up
     = link_to customer_facebook_omniauth_authorize_path, method: :post, class: 'general-login-icon' do
-      %i.fa.fa-facebook-official
+      %i.fab.fa-facebook.fa-3x.mx-2
     %p.general-login-text or
   = form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: 'general-form'}) do |f|
     = render partial: 'devise/shared/error_messages'
