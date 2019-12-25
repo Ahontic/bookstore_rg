@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 
 class AddressesController < ApplicationController
-  def new; end
-
   def create
-    @address = current_customer.addresses.new(address_params)
+    @address = current_customer.addresses.create(address_params)
+    # current_customer.addresses << @address
+  end
+
+  def update
+    @address.update(address_params)
   end
 
   private
