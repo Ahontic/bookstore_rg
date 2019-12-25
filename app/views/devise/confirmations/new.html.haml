@@ -1,0 +1,13 @@
+%main.container.general-main-wrap
+  .text-center
+    %h2 Resend confirmation instructions
+    %form.general-form
+    = form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
+      = render "devise/shared/error_messages", resource: resource
+      .form-group.mb-25
+        = f.label :email
+        %br/
+        = f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), class: 'form-control'
+      %button.btn.btn-default.center-block.mb-20
+        = f.submit "Resend confirmation instructions", class: 'btn-default'
+    = render "devise/shared/links"
