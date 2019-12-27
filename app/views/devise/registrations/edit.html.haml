@@ -7,35 +7,71 @@
       %a.tab-link{href: "#privacy", 'aria-controls': "privacy", role: "tab", 'data-toggle': "tab"} Privacy
   .tab-content
     #address.tab-pane.fade.in.active.general-main-wrap{role: "tabpanel"}
-      %form
-        .hidden-xs.hidden-sm
-          .row
-            .col-md-5
-              %h3.general-subtitle.mt-0 Billing Address
-            .col-md-5.col-md-offset-1
-              %h3.general-subtitle.mt-0 Shipping Address
+      .hidden-xs.hidden-sm
         .row
-          .col-md-5.mb-40
-            .visible-xs.visible-sm
-              %h3.general-subtitle.mt-0 Billing Address
-            = form_for current_customer.addresses.find_or_initialize_by(id: Address.first) do |f|
-              .form-group
-              = f.label :address, class: 'control-label input-label', html: { 'data-bar' => 'Address' }
-              = f.text_field :address, autocomplete: "off", id: 'address', class: 'form-control', placeholder: "Address"
-              .form-group
-              = f.label :city, class: 'control-label input-label', html: { 'data-bar' => 'City' }
-              = f.text_field :city, autocomplete: "off", id: 'city', class: 'form-control', placeholder: "City"
-              .form-group
-              = f.label :zipcode, class: 'control-label input-label', html: { 'data-bar' => 'Zipcode' }
-              = f.text_field :zipcode, autocomplete: "off", id: 'zipcode', class: 'form-control', placeholder: "Zipcode"
-              .form-group
-              = f.label :Country, class: 'control-label input-label', html: { 'data-bar' => 'Country' }
-              = f.text_field :country, autocomplete: "off", id: 'сountry', class: 'form-control', placeholder: "Country"
-              .form-group
-              = f.label :phone, class: 'control-label input-label', html: { 'data-bar' => 'Phone' }
-              = f.text_field :phone, autocomplete: "off", id: 'phone', class: 'form-control', placeholder: "Example +355 66 123 4567"
-              .text-center.general-text-align
-                = f.submit "Save", class: 'btn btn-default.mb-10'
+          .col-md-5
+            %h3.general-subtitle.mt-0 Billing Address
+          .col-md-5.col-md-offset-1
+            %h3.general-subtitle.mt-0 Shipping Address
+      .row
+        .col-md-5.mb-40
+          .visible-xs.visible-sm
+            %h3.general-subtitle.mt-0 Billing Address
+          = form_for current_customer.addresses.find_or_initialize_by(address_type: 'billing') do |f|
+            .form-group
+            = f.text_field :address_type, autocomplete: "off", id: 'address_type', class: 'hidden', placeholder: "Address type"
+            .form-group
+            = f.label :first_name, class: 'control-label input-label', html: { 'data-bar' => 'First name' }
+            = f.text_field :first_name, autocomplete: "off", id: 'first_name', class: 'form-control', placeholder: "First name"
+            .form-group
+            = f.label :last_name, class: 'control-label input-label', html: { 'data-bar' => 'Last name' }
+            = f.text_field :last_name, autocomplete: "off", id: 'last_name', class: 'form-control', placeholder: "Last name"
+            .form-group
+            = f.label :address, class: 'control-label input-label', html: { 'data-bar' => 'Address' }
+            = f.text_field :address, autocomplete: "off", id: 'address', class: 'form-control', placeholder: "Address"
+            .form-group
+            = f.label :city, class: 'control-label input-label', html: { 'data-bar' => 'City' }
+            = f.text_field :city, autocomplete: "off", id: 'city', class: 'form-control', placeholder: "City"
+            .form-group
+            = f.label :zipcode, class: 'control-label input-label', html: { 'data-bar' => 'Zipcode' }
+            = f.text_field :zipcode, autocomplete: "off", id: 'zipcode', class: 'form-control', placeholder: "Zipcode"
+            .form-group
+            = f.label :Country, class: 'control-label input-label', html: { 'data-bar' => 'Country' }
+            = f.text_field :country, autocomplete: "off", id: 'сountry', class: 'form-control', placeholder: "Country"
+            .form-group
+            = f.label :phone, class: 'control-label input-label', html: { 'data-bar' => 'Phone' }
+            = f.text_field :phone, autocomplete: "off", id: 'phone', class: 'form-control', placeholder: "Example +355 66 123 4567"
+            .text-center.general-text-align
+              = f.submit "Save", class: 'btn btn-default.mb-10'
+        .col-md-5.col-md-offset-1.mb-25
+          .visible-xs.visible-sm
+            %h3.general-subtitle.mt-0 Shipping Address
+          = form_for current_customer.addresses.find_or_initialize_by(address_type: 'shipping') do |f|
+            .form-group
+            = f.text_field :address_type, autocomplete: "off", id: 'address_type', class: 'hidden', placeholder: "Address type"
+            .form-group
+            = f.label :first_name, class: 'control-label input-label', html: { 'data-bar' => 'First name' }
+            = f.text_field :first_name, autocomplete: "off", id: 'first_name', class: 'form-control', placeholder: "First name"
+            .form-group
+            = f.label :last_name, class: 'control-label input-label', html: { 'data-bar' => 'Last name' }
+            = f.text_field :last_name, autocomplete: "off", id: 'last_name', class: 'form-control', placeholder: "Last name"
+            .form-group
+            = f.label :address, class: 'control-label input-label', html: { 'data-bar' => 'Address' }
+            = f.text_field :address, autocomplete: "off", id: 'address', class: 'form-control', placeholder: "Address"
+            .form-group
+            = f.label :city, class: 'control-label input-label', html: { 'data-bar' => 'City' }
+            = f.text_field :city, autocomplete: "off", id: 'city', class: 'form-control', placeholder: "City"
+            .form-group
+            = f.label :zipcode, class: 'control-label input-label', html: { 'data-bar' => 'Zipcode' }
+            = f.text_field :zipcode, autocomplete: "off", id: 'zipcode', class: 'form-control', placeholder: "Zipcode"
+            .form-group
+            = f.label :Country, class: 'control-label input-label', html: { 'data-bar' => 'Country' }
+            = f.text_field :country, autocomplete: "off", id: 'сountry', class: 'form-control', placeholder: "Country"
+            .form-group
+            = f.label :phone, class: 'control-label input-label', html: { 'data-bar' => 'Phone' }
+            = f.text_field :phone, autocomplete: "off", id: 'phone', class: 'form-control', placeholder: "Example +355 66 123 4567"
+            .text-center.general-text-align
+              = f.submit "Save", class: 'btn btn-default.mb-10'
     #privacy.tab-pane.fade{role: "tabpanel"}
       .row.mb-60
         .col-sm-5
@@ -58,7 +94,7 @@
           %p.in-gold-500.font-18.mb-25 Password
           = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
             = render "devise/shared/error_messages", resource: resource
-            %form.general-form-md.divider-lg-bottom.pb-25
+            .general-form-md.divider-lg-bottom.pb-25
               .form-group.mb-30
                 %label.control-label.input-label Old Password
                 = f.password_field :current_password, autocomplete: "current-password", placeholder: "Old Password", class: 'form-control'
@@ -76,13 +112,14 @@
               .general-text-align
                 = f.submit "Save", class: 'btn btn-default.mb-10'
         .col-sm-12
-          %p.in-gold-500.font-18.mb-25 Remove Account
           %form
             .general-settings-btn
-              = link_to 'Please Remove Account', customer_registration_path, method: :delete, class: 'delete-link', data: { id: "#{@customer.id}" }
+              = link_to customer_registration_path, method: :delete, class: 'in-gold-500 font-18 mb-25 delete-link', data: { id: "#{@customer.id}" } do
+                %button.btn-disabled{disabled: true}
+                  Please Remove Account
             .form-group.checkbox.general-settings-checkbox
               %label.checkbox-label
-                %input.checkbox-input{type: "checkbox", hidden: "true"}
+                %input.checkbox-input#delete-account-checkbox{type: "checkbox", hidden: "true"}
                 %span.checkbox-icon
                   %i.fa.fa-check
                 %span.checkbox-text I understand that all data will be lost
