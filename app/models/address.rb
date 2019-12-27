@@ -28,5 +28,5 @@ class Address < ApplicationRecord
 
   validates :first_name, :last_name, :address, :city, :country, :phone, :zipcode, presence: true
 
-  validates_inclusion_of :address_type, in: ['shipping', 'billing']
+  validates_inclusion_of :address_type, in: %w[shipping billing]
 end

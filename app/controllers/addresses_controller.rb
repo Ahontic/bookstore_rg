@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class AddressesController < ApplicationController
   def create
     @address = current_customer.addresses.create(address_params)
