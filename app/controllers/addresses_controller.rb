@@ -7,7 +7,7 @@ class AddressesController < ApplicationController
   end
 
   def update
-    @address = Address.find(params[:id])
+    @address = current_customer.addresses.find(params[:id])
     @address.update(address_params)
     redirect_to edit_customer_registration_path
   end

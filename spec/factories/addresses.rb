@@ -30,7 +30,7 @@ FactoryBot.define do
     address { FFaker::Address.street_address }
     city { FFaker::Address.city }
     country { FFaker::Address.country }
-    phone { FFaker::PhoneNumberUA.international_mobile_phone_number }
+    phone { FFaker::PhoneNumberDA.international_phone_number }
     zipcode { FFaker::AddressUS.zip_code }
     addressable_id { Customer.ids.sample }
     addressable_type { Customer }
