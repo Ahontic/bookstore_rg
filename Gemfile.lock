@@ -291,6 +291,7 @@ GEM
       activesupport (>= 5.0)
       i18n
       polyamorous (= 2.3.0)
+    ratyrate (1.2.2.alpha)
     rb-fsevent (0.10.3)
     rb-inotify (0.10.0)
       ffi (~> 1.0)
@@ -351,6 +352,9 @@ GEM
       rack (>= 2.0.0)
       rack-protection (>= 2.0.0)
       redis (>= 4.1.0)
+    simple_form (5.0.1)
+      actionpack (>= 5.0)
+      activemodel (>= 5.0)
     simplecov (0.17.1)
       docile (~> 1.1)
       json (>= 1.8, < 3)
@@ -433,12 +437,14 @@ DEPENDENCIES
   pry-rails
   puma (>= 4.3.1)
   rails (~> 6.0.1)
+  ratyrate
   rspec-rails (~> 4.0.0.beta3)
   rubocop
   sass-rails (>= 6)
   selenium-webdriver
   shoulda-matchers
   sidekiq
+  simple_form
   simplecov
   spring
   spring-watcher-listen (~> 2.0.0)
