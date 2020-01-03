@@ -6,12 +6,13 @@
 #
 #  id               :bigint           not null, primary key
 #  address          :string           not null
+#  address_type     :integer          not null
 #  addressable_type :string
 #  city             :string           not null
 #  country          :string           not null
 #  first_name       :string           not null
 #  last_name        :string           not null
-#  phone            :integer          not null
+#  phone            :string           not null
 #  zipcode          :integer          not null
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null

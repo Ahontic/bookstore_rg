@@ -6,6 +6,7 @@
 #
 #  id               :bigint           not null, primary key
 #  address          :string           not null
+#  address_type     :integer          not null
 #  addressable_type :string
 #  city             :string           not null
 #  country          :string           not null
@@ -28,8 +29,8 @@ class Address < ApplicationRecord
   validates :first_name, :last_name, :address, :city, :country, :phone, :zipcode, presence: true
   validates :first_name, :last_name, :city, :country, format: { with: /\A[a-zA-Z ]*\z/ }, length: { maximum: 50 }
   validates :address, format: { with: /\A[a-zA-Z0-9 \-\,]*\z/ }, length: { maximum: 50 }
-  validates :zipcode, format: { with: /\A[0-9\-]*\z/ }, length: { maximum: 10 }
+  validates :zipcode, format: { with: /\A[0-9 \-]*\z/ }, length: { maximum: 10 }
   validates :phone, format: { with: /\A\+[0-9 \-]*\z/ }, length: { maximum: 15 }
 
-  validates_inclusion_of :address_type, in: %w[shipping billing]
+  enum address_type: %i[billing shipping]
 end

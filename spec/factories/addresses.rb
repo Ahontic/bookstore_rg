@@ -6,6 +6,7 @@
 #
 #  id               :bigint           not null, primary key
 #  address          :string           not null
+#  address_type     :integer          not null
 #  addressable_type :string
 #  city             :string           not null
 #  country          :string           not null

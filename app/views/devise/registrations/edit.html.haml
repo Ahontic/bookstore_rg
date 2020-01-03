@@ -17,7 +17,7 @@
         .col-md-5.mb-40
           .visible-xs.visible-sm
             %h3.general-subtitle.mt-0 Billing Address
-          = form_for current_customer.addresses.find_or_initialize_by(address_type: 'billing') do |f|
+          = form_for current_customer.addresses.find_or_initialize_by(address_type: Address.address_types.keys.first) do |f|
             .form-group
             = f.text_field :address_type, autocomplete: "off", id: 'address_type', class: 'hidden', placeholder: "Address type"
             .form-group
@@ -46,7 +46,7 @@
         .col-md-5.col-md-offset-1.mb-25
           .visible-xs.visible-sm
             %h3.general-subtitle.mt-0 Shipping Address
-          = form_for current_customer.addresses.find_or_initialize_by(address_type: 'shipping') do |f|
+          = form_for current_customer.addresses.find_or_initialize_by(address_type: Address.address_types.keys.last) do |f|
             .form-group
             = f.text_field :address_type, autocomplete: "off", id: 'address_type', class: 'hidden', placeholder: "Address type"
             .form-group
