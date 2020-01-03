@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   root to: 'pages#home'
 
   resources :addresses
+  resources :customers do
+    resources :addresses
+  end
   resources :categories, only: %i[index show] do
     resources :books, only: %i[index show]
   end

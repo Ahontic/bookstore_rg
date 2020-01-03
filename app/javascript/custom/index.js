@@ -23,13 +23,9 @@ $(document).on("turbolinks:load",function() {
 });
 
 $(document).ready(function() {
-  $('.delete-link').on('click', function(e) {
-    var customer_id = $(this).attr("data-id");
-    if($("#delete_" + customer_id).is(':checked')) {
-      $("#customer_" + customer_id).trigger('click');
-    }else{
-      alert('Please check the checkbox!')
-  }
+  $('#delete-account-checkbox').change(function() {
+    $('.delete-link button').toggleClass('btn-disabled')
+    $('.delete-link button').attr('disabled', !this.checked)
   });
 
 //custom.js

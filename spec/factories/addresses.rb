@@ -6,6 +6,7 @@
 #
 #  id               :bigint           not null, primary key
 #  address          :string           not null
+#  address_type     :integer          not null
 #  addressable_type :string
 #  city             :string           not null
 #  country          :string           not null
@@ -24,11 +25,14 @@
 
 FactoryBot.define do
   factory :address do
+    first_name { FFaker::Name.first_name }
+    last_name { FFaker::Name.last_name }
     address { FFaker::Address.street_address }
     city { FFaker::Address.city }
     country { FFaker::Address.country }
-    phone { FFaker::PhoneNumber.short_phone_number }
+    phone { FFaker::PhoneNumberDA.international_phone_number }
     zipcode { FFaker::AddressUS.zip_code }
+    address_type { rand(0..1) }
     addressable_id { Customer.ids.sample }
     addressable_type { Customer }
   end
