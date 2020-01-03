@@ -37,7 +37,8 @@
             = f.text_field :zipcode, autocomplete: "off", id: 'zipcode', class: 'form-control', placeholder: "Zipcode"
             .form-group
             = f.label :Country, class: 'control-label input-label', html: { 'data-bar' => 'Country' }
-            = f.text_field :country, autocomplete: "off", id: 'сountry', class: 'form-control', placeholder: "Country"
+            %br/
+            = f.country_select :country, priority_countries: ["UA", "US"], priority_countries_divider: "~~~~~~", autocomplete: "off", id: 'сountry', class: 'form-control'
             .form-group
             = f.label :phone, class: 'control-label input-label', html: { 'data-bar' => 'Phone' }
             = f.text_field :phone, autocomplete: "off", id: 'phone', class: 'form-control', placeholder: "Example +355 66 123 4567"
@@ -66,7 +67,8 @@
             = f.text_field :zipcode, autocomplete: "off", id: 'zipcode', class: 'form-control', placeholder: "Zipcode"
             .form-group
             = f.label :Country, class: 'control-label input-label', html: { 'data-bar' => 'Country' }
-            = f.text_field :country, autocomplete: "off", id: 'сountry', class: 'form-control', placeholder: "Country"
+            %br/
+            = f.country_select :country, priority_countries: ["UA", "US"], priority_countries_divider: "~~~~~~", autocomplete: "off", id: 'сountry', class: 'form-control'
             .form-group
             = f.label :phone, class: 'control-label input-label', html: { 'data-bar' => 'Phone' }
             = f.text_field :phone, autocomplete: "off", id: 'phone', class: 'form-control', placeholder: "Example +355 66 123 4567"

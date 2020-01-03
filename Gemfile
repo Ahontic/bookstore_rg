@@ -6,6 +6,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.6.3'
 
 gem 'bundler-audit'
+gem 'country_select'
 gem 'devise'
 gem 'devise-security'
 gem 'draper'
