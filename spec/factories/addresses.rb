@@ -32,6 +32,7 @@ FactoryBot.define do
     country { FFaker::Address.country }
     phone { FFaker::PhoneNumberDA.international_phone_number }
     zipcode { FFaker::AddressUS.zip_code }
+    address_type { rand(0..1) }
     addressable_id { Customer.ids.sample }
     addressable_type { Customer }
   end
