@@ -7,6 +7,7 @@ ruby '2.6.3'
 
 gem 'activeadmin'
 gem 'bundler-audit'
+gem 'country_select'
 gem 'devise'
 gem 'devise-security'
 gem 'draper'
