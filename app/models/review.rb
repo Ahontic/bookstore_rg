@@ -5,6 +5,7 @@
 #  id          :bigint           not null, primary key
 #  body        :string
 #  rating      :integer
+#  status      :integer          default(0)
 #  title       :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
@@ -17,4 +18,6 @@ class Review < ApplicationRecord
   belongs_to :book
 
   validates :title, :body, :rating, presence: true
+
+  enum status: %i[pending approved rejected]
 end
