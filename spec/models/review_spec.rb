@@ -5,7 +5,7 @@
 #  id          :bigint           not null, primary key
 #  body        :string
 #  rating      :integer
-#  status      :integer          default(0)
+#  status      :integer          default("pending")
 #  title       :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null

@@ -145,6 +145,7 @@ GEM
     formtastic_i18n (0.6.0)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
+    gravatar_image_tag (1.2.0)
     haml (5.1.2)
       temple (>= 0.8.0)
       tilt
@@ -291,7 +292,6 @@ GEM
       activesupport (>= 5.0)
       i18n
       polyamorous (= 2.3.0)
-    ratyrate (1.2.2.alpha)
     rb-fsevent (0.10.3)
     rb-inotify (0.10.0)
       ffi (~> 1.0)
@@ -426,6 +426,7 @@ DEPENDENCIES
   factory_bot_rails
   ffaker
   figaro
+  gravatar_image_tag
   haml-rails
   i18n
   letter_opener
@@ -437,7 +438,6 @@ DEPENDENCIES
   pry-rails
   puma (>= 4.3.1)
   rails (~> 6.0.1)
-  ratyrate
   rspec-rails (~> 4.0.0.beta3)
   rubocop
   sass-rails (>= 6)

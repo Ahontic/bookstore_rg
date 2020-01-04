@@ -33,6 +33,7 @@
 class Customer < ApplicationRecord
   has_many :addresses, as: :addressable
   has_many :reviews
+  has_one_attached :avatar
 
   validates :email, presence: true
   validates :email, confirmation: true
