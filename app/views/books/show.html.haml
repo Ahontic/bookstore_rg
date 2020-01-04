@@ -59,12 +59,12 @@
           %p.lead.small.pull-right
             = book.material.name
   .mb-80
+  - if customer_signed_in?
     %h3
       = t 'review.write_a_review'
     %p.general-info-text
       = t 'review.score'
     .mb-15
       = render 'reviews/form'
-  .mb-80
-    %h3.in-gold-500.mb-25 Reviews (#{@book.reviews.count})
-    = render @book.reviews
+    %h3.in-gold-500.mb-25 Reviews (#{@book.reviews.approved.count})
+    = render @book.reviews.approved

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class ReviewsController < ApplicationController
+
   def create
     @review = Review.new(review_params)
     if @review.save
