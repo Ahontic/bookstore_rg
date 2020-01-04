@@ -44,4 +44,10 @@ $('.review-rating').raty({
     },
     path: '/assets/'
 });
+
+$('#rating-form').raty({
+  path: '/assets/',
+  scoreName: 'review[rating]'
+});
+
 });
