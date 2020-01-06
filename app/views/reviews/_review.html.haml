@@ -1,7 +1,8 @@
 - if "#{@book.reviews.approved.count}" > "0"
   .general-message-wrap.divider-lg
     .clearfix
-      %img.img-circle.logo-size.inlide-block.pull-left{src: "https://www.smashingmagazine.com/wp-content/uploads/2015/09/smashing-book-5-2-large.jpg"}
+      .logo-size.inlide-block.pull-left
+        = image_tag (current_customer.avatar), size: 55
       .ml-70
         %div
           .general-message-date.hidden-xs= review.created_at&.strftime('%B %e, %Y')

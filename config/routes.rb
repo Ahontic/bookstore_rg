@@ -16,5 +16,7 @@ Rails.application.routes.draw do
   resources :books do
     resources :reviews
   end
-  match '*unmatched', to: 'application#not_found', via: :all
+  match '*unmatched', to: 'application#not_found', constraints: lambda { |req|
+    req.path.exclude? 'rails/active_storage'
+  }, via: :all
 end
