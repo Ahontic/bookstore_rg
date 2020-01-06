@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: reviews
@@ -15,8 +17,8 @@
 
 FactoryBot.define do
   factory :review do
-    title { "MyString" }
-    body { "MyString" }
+    title { 'MyString' }
+    body { 'MyString' }
     rating { 1 }
   end
 end
