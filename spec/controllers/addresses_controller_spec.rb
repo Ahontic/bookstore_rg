@@ -7,13 +7,14 @@ RSpec.describe AddressesController do
 
   describe '#create' do
     it 'creates address record' do
-      expect { address }.to change(Address, :count).by(1)
+      expect { post :create, params: { address: address } }.to change(Address, :count).by(1)
     end
   end
 
   describe '#update' do
+    before { patch :update, params: { address: address } }
     it 'updates address' do
-      expect(customer.addresses).not_to be_nil
+      expect(assigns(:address)).not_to be_nil
     end
   end
 end

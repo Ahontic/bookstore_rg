@@ -17,7 +17,7 @@
         .col-md-5.mb-40
           .visible-xs.visible-sm
             %h3.general-subtitle.mt-0 Billing Address
-          = form_for current_customer.addresses.find_or_initialize_by(address_type: Address.address_types.keys.first) do |f|
+          = form_for([@address,current_customer.addresses.find_or_initialize_by(address_type: Address.address_types.keys.first)]) do |f|
             .form-group
             = f.text_field :address_type, autocomplete: "off", id: 'address_type', class: 'hidden', placeholder: "Address type"
             .form-group
@@ -38,7 +38,7 @@
             .form-group
             = f.label :Country, class: 'control-label input-label', html: { 'data-bar' => 'Country' }
             %br/
-            = f.country_select :country, priority_countries: ["UA", "US"], priority_countries_divider: "~~~~~~", autocomplete: "off", id: 'сountry', class: 'form-control'
+            = f.country_select(:country, { priority_countries: ["UA", "US"], priority_countries_divider: "~~~~~~"}, {autocomplete: "off", id: 'сountry', class: 'form-control' })
             .form-group
             = f.label :phone, class: 'control-label input-label', html: { 'data-bar' => 'Phone' }
             = f.text_field :phone, autocomplete: "off", id: 'phone', class: 'form-control', placeholder: "Example +355 66 123 4567"
@@ -68,7 +68,7 @@
             .form-group
             = f.label :Country, class: 'control-label input-label', html: { 'data-bar' => 'Country' }
             %br/
-            = f.country_select :country, priority_countries: ["UA", "US"], priority_countries_divider: "~~~~~~", autocomplete: "off", id: 'сountry', class: 'form-control'
+            = f.country_select(:country, { priority_countries: ["UA", "US"], priority_countries_divider: "~~~~~~"}, {autocomplete: "off", id: 'сountry', class: 'form-control' })
             .form-group
             = f.label :phone, class: 'control-label input-label', html: { 'data-bar' => 'Phone' }
             = f.text_field :phone, autocomplete: "off", id: 'phone', class: 'form-control', placeholder: "Example +355 66 123 4567"
