@@ -32,6 +32,6 @@ FactoryBot.define do
     country { FFaker::Address.country }
     phone { FFaker::PhoneNumberDA.international_phone_number }
     zipcode { FFaker::AddressUS.zip_code }
-    address_type { ['billing', 'shipping'].sample }
+    address_type { %w[billing shipping].sample }
   end
 end
