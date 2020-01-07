@@ -15,8 +15,20 @@
 #  customer_id :integer
 #
 
-require 'rails_helper'
+RSpec.describe Review do
+  let(:review) { create(:review) }
 
-RSpec.describe Review, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'validations' do
+    it 'is expected to validate that :status is pending' do
+      expect(review.status).to eq('pending')
+    end
+    it { is_expected.to validate_presence_of(:body) }
+    it { is_expected.to validate_presence_of(:rating) }
+    it { is_expected.to validate_presence_of(:title) }
+  end
+
+  describe 'associations' do
+    it { is_expected.to belong_to(:book) }
+    it { is_expected.to belong_to(:customer) }
+  end
 end

@@ -39,6 +39,8 @@ RSpec.describe Book do
   describe 'associations' do
     it { is_expected.to have_many(:authors).through(:book_authors) }
     it { is_expected.to have_many(:book_authors) }
+    it { is_expected.to have_many(:reviews) }
+
     it { is_expected.to belong_to(:category) }
     it { is_expected.to belong_to(:material) }
   end

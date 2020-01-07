@@ -20,5 +20,7 @@ FactoryBot.define do
     title { 'MyString' }
     body { 'MyString' }
     rating { 1 }
+    customer
+    book
   end
 end

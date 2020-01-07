@@ -36,9 +36,9 @@
             = f.label :zipcode, class: 'control-label input-label', html: { 'data-bar' => 'Zipcode' }
             = f.text_field :zipcode, autocomplete: "off", id: 'zipcode', class: 'form-control', placeholder: "Zipcode"
             .form-group
-            = f.label :Country, class: 'control-label input-label', html: { 'data-bar' => 'Country' }
+            = f.label :country, class: 'control-label input-label', html: { 'data-bar' => 'Country' }
             %br/
-            = f.country_select :country, priority_countries: ["UA", "US"], priority_countries_divider: "~~~~~~", autocomplete: "off", id: 'сountry', class: 'form-control'
+            = f.country_select(:country, { priority_countries: ["UA", "US"], priority_countries_divider: "~~~~~~"}, {autocomplete: "off", id: 'сountry', class: 'form-control' })
             .form-group
             = f.label :phone, class: 'control-label input-label', html: { 'data-bar' => 'Phone' }
             = f.text_field :phone, autocomplete: "off", id: 'phone', class: 'form-control', placeholder: "Example +355 66 123 4567"
@@ -66,9 +66,9 @@
             = f.label :zipcode, class: 'control-label input-label', html: { 'data-bar' => 'Zipcode' }
             = f.text_field :zipcode, autocomplete: "off", id: 'zipcode', class: 'form-control', placeholder: "Zipcode"
             .form-group
-            = f.label :Country, class: 'control-label input-label', html: { 'data-bar' => 'Country' }
+            = f.label :country, class: 'control-label input-label', html: { 'data-bar' => 'Country' }
             %br/
-            = f.country_select :country, priority_countries: ["UA", "US"], priority_countries_divider: "~~~~~~", autocomplete: "off", id: 'сountry', class: 'form-control'
+            = f.country_select(:country, { priority_countries: ["UA", "US"], priority_countries_divider: "~~~~~~"}, {autocomplete: "off", id: 'сountry', class: 'form-control' })
             .form-group
             = f.label :phone, class: 'control-label input-label', html: { 'data-bar' => 'Phone' }
             = f.text_field :phone, autocomplete: "off", id: 'phone', class: 'form-control', placeholder: "Example +355 66 123 4567"
