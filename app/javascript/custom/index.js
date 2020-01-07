@@ -21,6 +21,7 @@ $(document).on("turbolinks:load",function() {
     bookCost.text(unit + newValue * bookPrice.val())
   });
 
+  const ratyAssetsPath = process.env.NODE_ENV == 'development' ? '/assets/' : ''
   $('.review-rating').raty({
       readOnly: true,
       score: function() {

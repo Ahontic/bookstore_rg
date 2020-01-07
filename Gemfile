@@ -7,6 +7,7 @@ ruby '2.6.3'
 
 gem 'activeadmin'
 gem 'bundler-audit'
+gem 'cloudinary'
 gem 'country_select'
 gem 'devise'
 gem 'devise-security'
