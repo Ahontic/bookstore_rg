@@ -11,6 +11,10 @@ class AddressesController < ApplicationController
     end
   end
 
+  def show
+    redirect_to edit_customer_registration_path
+  end
+
   def update
     @address = current_customer.addresses.find(params[:id])
     if @address.update(address_params)
