@@ -1,13 +1,12 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  devise_for :customers, controllers: { omniauth_callbacks: 'customers/omniauth_callbacks' }
+  devise_for :customers, controllers: { omniauth_callbacks: 'customers/omniauth_callbacks',
+                                        registrations: 'customers/registrations' }
   root to: 'pages#home'
 
   resources :addresses
-  resources :customers do
-    resources :addresses
-  end
+  resources :customers
   resources :categories, only: %i[index show] do
     resources :books, only: %i[index show]
   end
