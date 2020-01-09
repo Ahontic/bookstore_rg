@@ -34,5 +34,9 @@ FactoryBot.define do
   factory :customer do
     email { FFaker::Internet.disposable_email }
     password { FFaker::Internet.password }
+
+    trait :confirmed do
+      confirmed_at { Time.zone.now }
+    end
   end
 end

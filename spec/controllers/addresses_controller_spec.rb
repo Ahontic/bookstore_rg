@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe AddressesController do
-  let!(:customer) { create(:customer, password: '7qLyxOACqQ', confirmed_at: '2019-12-18 10:37:37.104758') }
+  let!(:customer) { create(:customer, :confirmed) }
   let(:address) { FactoryBot.attributes_for(:address) }
   before { sign_in(customer) }
 
