@@ -29,10 +29,13 @@
 #  index_customers_on_email                 (email) UNIQUE
 #  index_customers_on_reset_password_token  (reset_password_token) UNIQUE
 #
-
 FactoryBot.define do
   factory :customer do
     email { FFaker::Internet.disposable_email }
     password { FFaker::Internet.password }
+
+    trait :confirmed do
+      confirmed_at { Time.zone.now }
+    end
   end
 end
