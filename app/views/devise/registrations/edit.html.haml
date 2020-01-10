@@ -17,121 +17,67 @@
         .col-md-5.mb-40
           .visible-xs.visible-sm
             %h3.general-subtitle.mt-0 Billing Address
-          = form_for current_customer.addresses.find_or_initialize_by(address_type: Address.address_types.keys.first) do |f|
+          = simple_form_for((@address if @address&.billing?) || current_customer.addresses.find_or_initialize_by(address_type: Address.address_types.keys.first), defaults: { input_html: { class: 'form-control' }, required: false }) do |f|
             .form-group
-            = f.text_field :address_type, autocomplete: "off", id: 'address_type', class: 'hidden', placeholder: "Address type"
+              = f.input :address_type, as: :hidden, autocomplete: "off", id: 'address_type', class: 'hidden', placeholder: "Address type"
             .form-group
-            = f.label :first_name, class: 'control-label input-label', html: { 'data-bar' => 'First name' }
-            = f.text_field :first_name, autocomplete: "off", id: 'first_name', class: 'form-control', placeholder: "First name"
+              = f.input :first_name, autocomplete: "off", placeholder: "First name"
             .form-group
-            = f.label :last_name, class: 'control-label input-label', html: { 'data-bar' => 'Last name' }
-            = f.text_field :last_name, autocomplete: "off", id: 'last_name', class: 'form-control', placeholder: "Last name"
+              = f.input :last_name, autocomplete: "off", placeholder: "Last name"
             .form-group
-            = f.label :address, class: 'control-label input-label', html: { 'data-bar' => 'Address' }
-            = f.text_field :address, autocomplete: "off", id: 'address', class: 'form-control', placeholder: "Address"
+              = f.input :address, autocomplete: "off", placeholder: "Address"
             .form-group
-            = f.label :city, class: 'control-label input-label', html: { 'data-bar' => 'City' }
-            = f.text_field :city, autocomplete: "off", id: 'city', class: 'form-control', placeholder: "City"
+              = f.input :city, autocomplete: "off", placeholder: "City"
             .form-group
-            = f.label :zipcode, class: 'control-label input-label', html: { 'data-bar' => 'Zipcode' }
-            = f.text_field :zipcode, autocomplete: "off", id: 'zipcode', class: 'form-control', placeholder: "Zipcode"
+              = f.input :zipcode, autocomplete: "off", placeholder: "Zipcode"
             .form-group
-            = f.label :country, class: 'control-label input-label', html: { 'data-bar' => 'Country' }
-            %br/
-            = f.country_select(:country, { priority_countries: ["UA", "US"], priority_countries_divider: "~~~~~~"}, {autocomplete: "off", id: 'сountry', class: 'form-control' })
+              = f.label :country, required: false
+              %br/
+              = f.country_select(:country, { priority_countries: ["UA", "US"], priority_countries_divider: "~~~~~~"}, {autocomplete: "off", id: 'сountry', class: 'form-control' })
             .form-group
-            = f.label :phone, class: 'control-label input-label', html: { 'data-bar' => 'Phone' }
-            = f.text_field :phone, autocomplete: "off", id: 'phone', class: 'form-control', placeholder: "Example +355 66 123 4567"
+              = f.input :phone, placeholder: "Example +355 66 123 4567"
             .text-center.general-text-align
               = f.submit "Save", class: 'btn btn-default.mb-10'
         .col-md-5.col-md-offset-1.mb-25
           .visible-xs.visible-sm
             %h3.general-subtitle.mt-0 Shipping Address
-          = form_for current_customer.addresses.find_or_initialize_by(address_type: Address.address_types.keys.last) do |f|
+          = simple_form_for((@address if @address&.shipping?) || current_customer.addresses.find_or_initialize_by(address_type: Address.address_types.keys.last), defaults: { input_html: { class: 'form-control' }, required: false }) do |f|
             .form-group
-            = f.text_field :address_type, autocomplete: "off", id: 'address_type', class: 'hidden', placeholder: "Address type"
+              = f.input :address_type, as: :hidden, id: 'address_type', class: 'hidden', placeholder: "Address type"
             .form-group
-            = f.label :first_name, class: 'control-label input-label', html: { 'data-bar' => 'First name' }
-            = f.text_field :first_name, autocomplete: "off", id: 'first_name', class: 'form-control', placeholder: "First name"
+              = f.input :first_name, placeholder: "First name"
             .form-group
-            = f.label :last_name, class: 'control-label input-label', html: { 'data-bar' => 'Last name' }
-            = f.text_field :last_name, autocomplete: "off", id: 'last_name', class: 'form-control', placeholder: "Last name"
+              = f.input :last_name, placeholder: "Last name"
             .form-group
-            = f.label :address, class: 'control-label input-label', html: { 'data-bar' => 'Address' }
-            = f.text_field :address, autocomplete: "off", id: 'address', class: 'form-control', placeholder: "Address"
+              = f.input :address, placeholder: "Address"
             .form-group
-            = f.label :city, class: 'control-label input-label', html: { 'data-bar' => 'City' }
-            = f.text_field :city, autocomplete: "off", id: 'city', class: 'form-control', placeholder: "City"
+              = f.input :city, placeholder: "City"
             .form-group
-            = f.label :zipcode, class: 'control-label input-label', html: { 'data-bar' => 'Zipcode' }
-            = f.text_field :zipcode, autocomplete: "off", id: 'zipcode', class: 'form-control', placeholder: "Zipcode"
+              = f.input :zipcode, placeholder: "Zipcode"
             .form-group
-            = f.label :country, class: 'control-label input-label', html: { 'data-bar' => 'Country' }
-            %br/
-            = f.country_select(:country, { priority_countries: ["UA", "US"], priority_countries_divider: "~~~~~~"}, {autocomplete: "off", id: 'сountry', class: 'form-control' })
+              = f.label :country, required: false
+              %br/
+              = f.country_select(:country, { priority_countries: ["UA", "US"], priority_countries_divider: "~~~~~~"}, { id: 'сountry', class: 'form-control' })
             .form-group
-            = f.label :phone, class: 'control-label input-label', html: { 'data-bar' => 'Phone' }
-            = f.text_field :phone, autocomplete: "off", id: 'phone', class: 'form-control', placeholder: "Example +355 66 123 4567"
+              = f.input :phone, placeholder: "Example +355 66 123 4567"
             .text-center.general-text-align
               = f.submit "Save", class: 'btn btn-default.mb-10'
     #privacy.tab-pane.fade{role: "tabpanel"}
       .row.mb-60
         .col-sm-5
-          %p.in-gold-500.font-18.mb-25 Email
-          = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
-            = render "devise/shared/error_messages", resource: resource
-            %form.general-form-md
-              .form-group
-                .row
-                  .col-sm-4
-                    - if resource.avatar.attached?
-                      = image_tag resource.avatar.variant(resize: '40x40!'), class: 'rounded-circle'
-                    - else
-                      = image_tag gravatar_image_url(current_customer.email, size: 40), height:40, width: 40, class: 'rounded-circle'
-                  .col-sm-8
-                    = f.file_field :avatar
-              .form-group.mb-35
-                %label.control-label.input-label Enter Email
-                = f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control'
-                - if devise_mapping.confirmable? && resource.pending_reconfirmation?
-                  %div
-                    Currently waiting confirmation for: #{resource.unconfirmed_email}
-              .form-group.mb-30
-                %label.control-label.input-label Old Password
-                = f.password_field :current_password, autocomplete: "current-password", placeholder: "Old Password", class: 'form-control'
-              .general-text-align
-                = f.submit "Save", class: 'btn btn-default.mb-10'
-        .col-sm-5.col-sm-offset-1
-          %p.in-gold-500.font-18.mb-25 Password
-          = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
-            = render "devise/shared/error_messages", resource: resource
-            .general-form-md.divider-lg-bottom.pb-25
-              .form-group.mb-30
-                %label.control-label.input-label Old Password
-                = f.password_field :current_password, autocomplete: "current-password", placeholder: "Old Password", class: 'form-control'
-              .form-group.mb-30
-                %label.control-label.input-label New Password
-                = f.password_field :password, autocomplete: "new-password", placeholder: "New Password", class: 'form-control'
-                - if @minimum_password_length
-                  %br/
-                  %em
-                    = @minimum_password_length
-                    characters minimum
-              .form-group.mb-40
-                %label.control-label.input-label Confirm Password
-                = f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Confirm Password", class: 'form-control'
-              .general-text-align
-                = f.submit "Save", class: 'btn btn-default.mb-10'
-        .col-sm-12
-          %form
-            .general-settings-btn
-              = link_to customer_registration_path, method: :delete, class: 'in-gold-500 font-18 mb-25 delete-link', data: { id: "#{@customer.id}" } do
-                %button.btn-disabled{disabled: true}
-                  Please Remove Account
-            .form-group.checkbox.general-settings-checkbox
-              %label.checkbox-label
-                %input.checkbox-input#delete-account-checkbox{type: "checkbox", hidden: "true"}
-                %span.checkbox-icon
-                  %i.fa.fa-check
-                %span.checkbox-text I understand that all data will be lost
-    = link_to "Back", :back
+          = render 'devise/registrations/email'
+        .col-sm-5
+          = render 'devise/registrations/password'
+      .col-sm-12
+        %form
+          .general-settings-btn
+            = link_to customer_registration_path, method: :delete, class: 'in-gold-500 font-18 mb-25 delete-link' do
+              %button.btn-disabled{disabled: true}
+                Please Remove Account
+          .form-group.checkbox.general-settings-checkbox
+            %label.checkbox-label
+              %input.checkbox-input#delete-account-checkbox{type: "checkbox", hidden: "true"}
+              %span.checkbox-icon
+                %i.fa.fa-check
+              %span.checkbox-text I understand that all data will be lost
+= link_to "Back", :back
