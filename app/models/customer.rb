@@ -29,7 +29,7 @@
 #  index_customers_on_email                 (email) UNIQUE
 #  index_customers_on_reset_password_token  (reset_password_token) UNIQUE
 #
-
+# require './app/workers/devise_worker.rb'
 class Customer < ApplicationRecord
   has_many :addresses, as: :addressable
   has_many :reviews
@@ -43,6 +43,10 @@ class Customer < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :secure_validatable,
          :omniauthable, :trackable, :confirmable, omniauth_providers: [:facebook]
+
+  def send_devise_notification(notification, *args)
+    devise_mailer.send(notification, self, *args).deliver_later
+  end
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |customer|
