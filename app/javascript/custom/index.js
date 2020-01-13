@@ -1,4 +1,4 @@
-$(document).on("turbolinks:load", function() {
+$(document).on("turbolinks:load",function() {
   $('#decrease-quantity').click(function() {
     let quantityInput = $('#quantity-input')
     let bookPrice = $('#book-price')
@@ -19,10 +19,14 @@ $(document).on("turbolinks:load", function() {
     let unit = '€'
     quantityInput.val(newValue)
     bookCost.text(unit + newValue * bookPrice.val())
-
-
   });
-})
+});
+
+$(document).ready(function() {
+  $('#delete-account-checkbox').change(function() {
+    $('.delete-link button').toggleClass('btn-disabled')
+    $('.delete-link button').attr('disabled', !this.checked)
+  });
 
 //custom.js
 $(function() {
@@ -31,4 +35,5 @@ $(function() {
 
 $(function() {
   $('[data-toggle="popover"]').popover();
+});
 });

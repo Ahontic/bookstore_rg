@@ -2,9 +2,9 @@
   .text-center
     %h3.general-login-title Log In
     %a.general-login-icon
-    = link_to customer_facebook_omniauth_authorize_path, method: :post, class: 'fab.fa-facebook-official' do
+    = link_to customer_facebook_omniauth_authorize_path, method: :post, class: 'general-login-icon' do
       %i.fab.fa-facebook.fa-3x.mx-2
-      %p.general-login-text or
+    %p.general-login-text or
   = form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: 'general-form'}) do |f|
     .form-group.mb-30
       = f.label :email, class: 'control-label input-label', html: {  'data-bar' => 'Enter Email' }

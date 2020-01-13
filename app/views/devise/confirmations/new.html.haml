@@ -7,7 +7,7 @@
       .form-group.mb-25
         = f.label :email
         %br/
-        = f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), class: 'form-control'
+        = f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email)
       %button.btn.btn-default.center-block.mb-20
-        = f.submit "Resend confirmation instructions", class: 'btn-default'
+        = f.submit "Resend confirmation instructions"
     = render "devise/shared/links"

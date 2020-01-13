@@ -8,6 +8,10 @@ Metrics/BlockLength:
     - spec/**/*
     - lib/tasks/*
     - db/**/*
+Metrics/MethodLength:
+    Exclude:
+    - db/**/*
+    - bin/**/*
 Metrics/ModuleLength:
   Exclude:
     - spec/**/*

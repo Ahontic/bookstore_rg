@@ -88,6 +88,13 @@ GEM
     coderay (1.1.2)
     concurrent-ruby (1.1.5)
     connection_pool (2.2.2)
+    countries (3.0.0)
+      i18n_data (~> 0.8.0)
+      sixarm_ruby_unaccent (~> 1.1)
+      unicode_utils (~> 1.4)
+    country_select (4.0.0)
+      countries (~> 3.0)
+      sort_alphabetical (~> 1.0)
     crass (1.0.5)
     database_cleaner (1.7.0)
     devise (4.7.1)
@@ -139,6 +146,7 @@ GEM
       ruby_parser (~> 3.5)
     i18n (1.7.0)
       concurrent-ruby (~> 1.0)
+    i18n_data (0.8.0)
     jaro_winkler (1.5.4)
     json (2.2.0)
     jwt (2.2.1)
@@ -295,11 +303,17 @@ GEM
       rack (>= 2.0.0)
       rack-protection (>= 2.0.0)
       redis (>= 4.1.0)
+    simple_form (5.0.1)
+      actionpack (>= 5.0)
+      activemodel (>= 5.0)
     simplecov (0.17.1)
       docile (~> 1.1)
       json (>= 1.8, < 3)
       simplecov-html (~> 0.10.0)
     simplecov-html (0.10.2)
+    sixarm_ruby_unaccent (1.2.0)
+    sort_alphabetical (1.1.0)
+      unicode_utils (>= 1.2.2)
     spring (2.1.0)
     spring-watcher-listen (2.0.1)
       listen (>= 2.7, < 4.0)
@@ -321,6 +335,7 @@ GEM
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
     unicode-display_width (1.6.0)
+    unicode_utils (1.4.0)
     warden (1.2.8)
       rack (>= 2.0.6)
     web-console (4.0.1)
@@ -353,6 +368,7 @@ DEPENDENCIES
   bundler-audit
   byebug
   capybara (>= 2.15)
+  country_select
   database_cleaner
   devise
   devise-security
@@ -377,6 +393,7 @@ DEPENDENCIES
   selenium-webdriver
   shoulda-matchers
   sidekiq
+  simple_form
   simplecov
   spring
   spring-watcher-listen (~> 2.0.0)
