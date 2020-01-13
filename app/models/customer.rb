@@ -29,7 +29,7 @@
 #  index_customers_on_email                 (email) UNIQUE
 #  index_customers_on_reset_password_token  (reset_password_token) UNIQUE
 #
-# require './app/workers/devise_worker.rb'
+
 class Customer < ApplicationRecord
   has_many :addresses, as: :addressable
 
