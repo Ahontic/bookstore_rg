@@ -1,12 +1,10 @@
-# frozen_string_literal: true
-
 ActiveAdmin.setup do |config|
   # == Site Title
   #
   # Set the title that is displayed on the main layout
   # for each of the active admin pages.
   #
-  config.site_title = 'Bookstore Rg'
+  config.site_title = "Bookstore Rg"
 
   # Set the link url for the title. For example, to take
   # users to your main site. Defaults to no link.
@@ -159,7 +157,7 @@ ActiveAdmin.setup do |config|
   # You can exclude possibly sensitive model attributes from being displayed,
   # added to forms, or exported by default by ActiveAdmin
   #
-  config.filter_attributes = %i[encrypted_password password password_confirmation]
+  config.filter_attributes = [:encrypted_password, :password, :password_confirmation]
 
   # == Localize Date/Time Format
   #
@@ -211,7 +209,9 @@ ActiveAdmin.setup do |config|
   #
   # To load a stylesheet:
   config.clear_stylesheets!
-  config.register_stylesheet 'admin/active_admin.css'
+  config.register_stylesheet 'admin/active_admin'
+
+  #   config.register_stylesheet 'my_stylesheet.css'
   #
   # You can provide an options hash for more control, which is passed along to stylesheet_link_tag():
   #   config.register_stylesheet 'my_print_stylesheet.css', media: :print

@@ -9,3 +9,4 @@ FactoryBot.create_list(:material, 3)
 # Seeding Category
 categories = ['Mobile Development', 'Photo', 'Web Design']
 categories.each { |category| Category.create(title: category) }
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
