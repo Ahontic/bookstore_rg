@@ -209,7 +209,7 @@ ActiveAdmin.setup do |config|
   #
   # To load a stylesheet:
   config.clear_stylesheets!
-  config.register_stylesheet 'admin/active_admin'
+  config.register_stylesheet 'admin/active_admin.css'
 
   #   config.register_stylesheet 'my_stylesheet.css'
   #
