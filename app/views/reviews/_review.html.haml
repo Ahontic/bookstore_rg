@@ -1,15 +1,16 @@
-- if "#{@reviews.count}" > "0"
-  .general-message-wrap.divider-lg
-    .clearfix
-      .logo-size.inlide-block.pull-left
-        = image_tag (current_customer.avatar), size: 55
-      .ml-70
-        %div
-          .general-message-date.hidden-xs= review.created_at&.strftime('%B %e, %Y')
-          .review-rating{"data-score" => "#{review.rating}"}
-          .max-240
-            .general-message-verified Verified Reviewer
-            .general-message-name= review.title
-        .mb-15
-        %p
-        = review.body
+- @reviews.each do |review|
+  - if "#{@reviews.count}" > "0"
+    .general-message-wrap.divider-lg
+      .clearfix
+        .logo-size.inlide-block.pull-left
+          = image_tag (current_customer.avatar), size: 55
+        .ml-70
+          %div
+            .general-message-date.hidden-xs= review.created_at&.strftime('%B %e, %Y')
+            .review-rating{"data-score" => "#{review.rating}"}
+            .max-240
+              .general-message-verified Verified Reviewer
+              .general-message-name= review.title
+          .mb-15
+          %p
+          = review.body
