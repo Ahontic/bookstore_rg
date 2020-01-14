@@ -9,7 +9,7 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    @book = BookDecorator.find_by(id: params[:book_id]) if legal_partial?
+    @book = BookDecorator.find_by(id: params[:book_id])
     @review = Review.new(review_params)
     @reviews = @book.reviews.approved
     if @review.save
@@ -21,10 +21,6 @@ class ReviewsController < ApplicationController
   end
 
   private
-
-  def legal_partial?
-    Book.ids.to_s.include? params[:book_id]
-  end
 
   def review_params
     params.require(:review).permit(:title, :body, :rating, :book_id, :customer_id)
