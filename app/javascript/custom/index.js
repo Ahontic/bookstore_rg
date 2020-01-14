@@ -20,25 +20,27 @@ $(document).on("turbolinks:load",function() {
     quantityInput.val(newValue)
     bookCost.text(unit + newValue * bookPrice.val())
   });
+});
+
 
   $('.review-rating').raty({
       readOnly: true,
       score: function() {
-          return $(this).attr('data-score');
+        return $(this).attr('data-score');
       },
       path: '/assets/'
   });
 
-    $('#rating-form').raty({
+  $('#rating-form').raty({
     path: '/assets/',
     scoreName: 'review[rating]'
   });
- });
 
 $(document).ready(function() {
   $('#delete-account-checkbox').change(function() {
     $('.delete-link button').toggleClass('btn-disabled')
     $('.delete-link button').attr('disabled', !this.checked)
+
   });
 });
 
@@ -50,6 +52,3 @@ $(function() {
 $(function() {
   $('[data-toggle="popover"]').popover();
 });
-
-
-
