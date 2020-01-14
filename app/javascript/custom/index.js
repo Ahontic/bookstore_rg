@@ -20,7 +20,6 @@ $(document).on("turbolinks:load",function() {
     quantityInput.val(newValue)
     bookCost.text(unit + newValue * bookPrice.val())
   });
-});
 
 
   $('.review-rating').raty({
@@ -35,6 +34,7 @@ $(document).on("turbolinks:load",function() {
     path: '/assets/',
     scoreName: 'review[rating]'
   });
+});
 
 $(document).ready(function() {
   $('#delete-account-checkbox').change(function() {

@@ -4,12 +4,11 @@ class ReviewsController < ApplicationController
   def create
     @review = Review.new(review_params)
     if @review.save
-      flash[:success] = 'Thanks for Review. It will be published as soon as Admin will approve it.'
+      flash[:notice] = 'Thanks for Review. It will be published as soon as Admin will approve it.'
+      redirect_back(fallback_location: root_path)
     else
-      flash[:danger] = @review.errors.full_messages.join('. ').gsub('Text', 'Review')
+      render 'books/show'
     end
-
-    redirect_back(fallback_location: root_path)
   end
 
   private
