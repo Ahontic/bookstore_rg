@@ -7,7 +7,7 @@ feature 'Address page' do
 
   feature 'forbids customer to create address with' do
     scenario 'invalid_params' do
-      login_as(customer)
+      sign_in(customer)
       visit edit_customer_registration_path
       fill_in_address_billing_form
       first('.btn[type=submit]').click
