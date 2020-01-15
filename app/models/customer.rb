@@ -54,6 +54,7 @@ class Customer < ApplicationRecord
       customer.provider = auth.provider
       customer.uid = auth.uid
       customer.password = Devise.friendly_token[0, 20]
+      # customer.image = auth.info.image
     end
   end
 

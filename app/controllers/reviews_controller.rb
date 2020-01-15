@@ -4,25 +4,29 @@ class ReviewsController < ApplicationController
   decorates_assigned :book
 
   def index
-    @book = BookDecorator.find_by(id: params[:book_id])
-    redirect_to category_book_path(id: @book.id, category_id: @book.category_id)
+    book = Book.find(params[:book_id])
+    redirect_to category_book_path(book.category_id, book.id)
   end
 
   def create
     @book = BookDecorator.find_by(id: params[:book_id])
-    @review = Review.new(review_params)
+    @review = @book.reviews.new(review_params.merge(customer: current_customer))
     @reviews = @book.reviews.approved
+    review_save_messsage
+  end
+
+  private
+
+  def review_save_messsage
     if @review.save
-      flash[:notice] = 'Thanks for Review. It will be published as soon as Admin will approve it.'
+      flash[:notice] = I18n.t('review.review_created')
       redirect_back(fallback_location: root_path)
     else
       render 'books/show'
     end
   end
 
-  private
-
   def review_params
-    params.require(:review).permit(:title, :body, :rating, :book_id, :customer_id)
+    params.require(:review).permit(:title, :body, :rating)
   end
 end
