@@ -1,4 +1,5 @@
-- if "#{@book.reviews.approved.count}" > "0"
+- @reviews.each do |review|
+  - if "#{@reviews.count}" > "0"
   .general-message-wrap.divider-lg
     .clearfix
       .logo-size.inlide-block.pull-left

@@ -10,6 +10,15 @@ def sign_up
   click_on 'Sign up'
 end
 
+def sign_in(customer)
+  visit new_customer_session_path
+
+  fill_in :email, with: customer.email
+  fill_in :password, with: customer.password
+
+  click_on 'Log In'
+end
+
 def sign_up_with(email: FFaker::Internet.disposable_email, password: '7qLyxOACqQ')
   visit new_customer_registration_path
 

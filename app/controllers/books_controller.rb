@@ -5,5 +5,6 @@ class BooksController < ApplicationController
 
   def show
     @book = BookDecorator.find_by(id: params[:id], category_id: params[:category_id])
+    @reviews = @book.reviews.approved
   end
 end

@@ -35,6 +35,7 @@ group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'factory_bot_rails'
   gem 'ffaker'
+  gem 'pry-rails'
   gem 'rubocop'
   gem 'shoulda-matchers'
 end
@@ -44,7 +45,6 @@ group :development do
   gem 'brakeman'
   gem 'letter_opener'
   gem 'listen', '>= 3.0.5', '< 3.2'
-  gem 'pry-rails'
   gem 'rspec-rails', '~> 4.0.0.beta3'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
