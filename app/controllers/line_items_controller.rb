@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class LineItemsController < ApplicationController
   def create
-  # Find associated product and current cart
+    # Find associated product and current cart
     chosen_product = Book.find(params[:book_id])
     current_cart = @current_cart
 
@@ -29,23 +31,20 @@ class LineItemsController < ApplicationController
   end
 
   def add_quantity
-    binding.pry
-  @line_item = LineItem.find(params[:id])
-  @line_item.quantity += 1
-  @line_item.save
-  redirect_to cart_path(@current_cart)
+    @line_item = LineItem.find(params[:id])
+    @line_item.quantity += 1
+    @line_item.save
+    redirect_to cart_path(@current_cart)
 end
 
-def reduce_quantity
-  @line_item = LineItem.find(params[:id])
-  if @line_item.quantity > 1
-    @line_item.quantity -= 1
+  def reduce_quantity
+    @line_item = LineItem.find(params[:id])
+    @line_item.quantity -= 1 if @line_item.quantity > 1
+    @line_item.save
+    redirect_to cart_path(@current_cart)
   end
-  @line_item.save
-  redirect_to cart_path(@current_cart)
-end
 
-private
+  private
 
   def line_item_params
     params.require(:line_item).permit(:quantity, :book_id, :cart_id)

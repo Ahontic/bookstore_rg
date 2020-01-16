@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: carts
@@ -14,9 +16,9 @@ class Cart < ApplicationRecord
   # LOGIC
   def sub_total
     sum = 0
-    self.line_items.each do |line_item|
-      sum+= line_item.total_price
+    line_items.each do |line_item|
+      sum += line_item.total_price
     end
-    return sum
+    sum
   end
 end

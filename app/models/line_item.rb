@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: line_items
@@ -18,6 +20,6 @@ class LineItem < ApplicationRecord
 
   # LOGIC
   def total_price
-    self.quantity * self.product.price
+    quantity * product.price
   end
 end
