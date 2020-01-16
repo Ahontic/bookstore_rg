@@ -15,8 +15,5 @@
       - if devise_mapping.confirmable? && resource.pending_reconfirmation?
         %div
           Currently waiting confirmation for: #{resource.unconfirmed_email}
-    .form-group.mb-30
-      %label.control-label.input-label Old Password
-      = f.password_field :current_password, autocomplete: "current-password", placeholder: "Old Password", class: 'form-control'
     .general-text-align
       = f.submit "Save", class: 'btn btn-default.mb-10'
