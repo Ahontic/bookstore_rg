@@ -150,14 +150,18 @@ ActiveRecord::Schema.define(version: 20_200_104_135_454) do
     t.string 'title'
     t.string 'body'
     t.integer 'rating'
+    t.integer 'status', default: 0
+    t.bigint 'book_id'
+    t.bigint 'customer_id'
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
-    t.integer 'customer_id'
-    t.integer 'book_id'
-    t.integer 'status', default: 0
+    t.index ['book_id'], name: 'index_reviews_on_book_id'
+    t.index ['customer_id'], name: 'index_reviews_on_customer_id'
   end
 
   add_foreign_key 'active_storage_attachments', 'active_storage_blobs', column: 'blob_id'
   add_foreign_key 'books', 'categories'
   add_foreign_key 'books', 'materials'
+  add_foreign_key 'reviews', 'books'
+  add_foreign_key 'reviews', 'customers'
 end

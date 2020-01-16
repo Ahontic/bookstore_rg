@@ -11,8 +11,18 @@
 #  title       :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  book_id     :integer
-#  customer_id :integer
+#  book_id     :bigint
+#  customer_id :bigint
+#
+# Indexes
+#
+#  index_reviews_on_book_id      (book_id)
+#  index_reviews_on_customer_id  (customer_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (book_id => books.id)
+#  fk_rails_...  (customer_id => customers.id)
 #
 
 RSpec.describe Review do
