@@ -32,7 +32,7 @@
 
 class Customer < ApplicationRecord
   has_many :addresses, as: :addressable
-  has_many :reviews
+  has_many :reviews, dependent: :destroy
   has_one_attached :avatar
 
   validates :email, presence: true
@@ -54,7 +54,9 @@ class Customer < ApplicationRecord
       customer.provider = auth.provider
       customer.uid = auth.uid
       customer.password = Devise.friendly_token[0, 20]
-      # customer.image = auth.info.image
+      downloaded_image = open(auth.info.image)
+      customer.avatar.attach(io: downloaded_image, filename: 'avatar.jpg', content_type: downloaded_image.content_type)
+      customer.skip_confirmation!
     end
   end
 

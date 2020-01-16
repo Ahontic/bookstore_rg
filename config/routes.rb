@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   devise_for :customers, controllers: { omniauth_callbacks: 'customers/omniauth_callbacks' }
-  # , registrations: 'customers/registrations'
 
   root to: 'pages#home'
 
