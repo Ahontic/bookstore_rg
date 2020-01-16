@@ -29,12 +29,10 @@ RSpec.describe Review do
   let(:review) { create(:review) }
 
   describe 'validations' do
-    it 'is expected to validate that :status is pending' do
-      expect(review.status).to eq('pending')
-    end
     it { is_expected.to validate_presence_of(:body) }
     it { is_expected.to validate_presence_of(:rating) }
     it { is_expected.to validate_presence_of(:title) }
+    it { should define_enum_for(:status).with_values(pending: 0, approved: 1, rejected: 2) }
   end
 
   describe 'associations' do
