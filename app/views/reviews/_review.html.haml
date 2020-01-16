@@ -1,5 +1,5 @@
 - @reviews.each do |review|
-  - if "#{@reviews.count}" > "0"
+  - if @reviews.any?
     .general-message-wrap.divider-lg
       .clearfix
         .logo-size.inlide-block.pull-left

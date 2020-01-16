@@ -20,7 +20,7 @@ class ReviewsController < ApplicationController
   def review_save_messsage
     if @review.save
       flash[:notice] = I18n.t('review.review_created')
-      redirect_back(fallback_location: root_path)
+      redirect_to category_book_path(@book.category_id, @book.id)
     else
       render 'books/show'
     end

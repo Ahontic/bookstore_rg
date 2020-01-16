@@ -26,8 +26,6 @@
 #
 
 RSpec.describe Review do
-  let(:review) { create(:review) }
-
   describe 'validations' do
     it { is_expected.to validate_presence_of(:body) }
     it { is_expected.to validate_presence_of(:rating) }
