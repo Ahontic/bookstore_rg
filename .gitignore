@@ -17,6 +17,7 @@
 /tmp/*
 !/log/.keep
 !/tmp/.keep
+dump.rdb
 
 #SimpleCov coverage files
 /coverage/
@@ -41,3 +42,5 @@ yarn-debug.log*
 
 # Ignore application configuration
 /config/application.yml
+/config/cloudinary.yml
+

@@ -30,6 +30,7 @@ en:
   review:
     write_a_review: 'Write a Review'
     score: 'Score'
+    review_created: 'Thanks for Review. It will be published as soon as Admin will approve it.'
 
   book_sort:
     newest_first: 'Newest first'
@@ -38,3 +39,6 @@ en:
     price_high_to_low: 'Price: high to low'
     alphabetically: 'A - Z'
     analphabetically: 'Z - A'
+
+  address:
+    address_created: 'Your address has been added.'

@@ -29,13 +29,14 @@
 #  index_customers_on_email                 (email) UNIQUE
 #  index_customers_on_reset_password_token  (reset_password_token) UNIQUE
 #
-FactoryBot.define do
-  factory :customer do
-    email { FFaker::Internet.disposable_email }
-    password { '7qLyxOACqQ' }
 
-    trait :confirmed do
-      confirmed_at { Time.zone.now }
-    end
+RSpec.describe Customer do
+  describe 'validations' do
+    it { is_expected.to validate_presence_of(:email) }
+    it { is_expected.to validate_confirmation_of(:email) }
+  end
+
+  describe 'associations' do
+    it { is_expected.to have_many(:reviews) }
   end
 end
