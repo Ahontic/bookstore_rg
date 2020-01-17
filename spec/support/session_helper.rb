@@ -37,3 +37,11 @@ def sign_in_with(email: FFaker::Internet.disposable_email, password: '')
 
   click_on 'Log In'
 end
+
+def fill_in_address_billing_form
+  within('#new_address', match: :first) do
+    %w[first_name last_name address city phone zipcode].each do |field|
+      fill_in "address[#{field}]", with: invalid_params[field.to_sym]
+    end
+  end
+end

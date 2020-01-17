@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   devise_for :customers, controllers: { omniauth_callbacks: 'customers/omniauth_callbacks',
                                         registrations: 'customers/registrations' }
+
   root to: 'pages#home'
 
   resources :addresses
@@ -12,6 +13,7 @@ Rails.application.routes.draw do
   resources :customers do
     resources :addresses
   end
+
   resources :categories, only: %i[index show] do
     resources :books, only: %i[index show]
   end

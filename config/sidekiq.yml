@@ -1,7 +1,7 @@
 
-----
--concurrency: 5
--queues:
+---
+concurrency: 5
+queues:
   - default
   - mailers
   - orders
