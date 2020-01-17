@@ -17,9 +17,9 @@
 
 FactoryBot.define do
   factory :review do
-    title { 'MyString' }
-    body { 'MyString' }
-    rating { 1 }
+    title { FFaker::Book.title }
+    body { FFaker::Lorem.phrase }
+    rating { rand(1..5) }
     customer
     book
   end

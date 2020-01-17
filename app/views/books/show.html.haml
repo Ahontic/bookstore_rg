@@ -66,5 +66,5 @@
       = t 'review.score'
     .mb-15
       = render 'reviews/form'
-    %h3.in-gold-500.mb-25 Reviews (#{@reviews.count})
+    %h3.in-gold-500.mb-25 Reviews (#{@book.reviews.approved.count})
     = render 'reviews/review'

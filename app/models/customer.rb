@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'open-uri'
 # == Schema Information
 #
 # Table name: customers
@@ -32,7 +33,7 @@
 
 class Customer < ApplicationRecord
   has_many :addresses, as: :addressable
-  has_many :reviews
+  has_many :reviews, dependent: :destroy
   has_one_attached :avatar
 
   validates :email, presence: true
@@ -48,14 +49,19 @@ class Customer < ApplicationRecord
     devise_mailer.send(notification, self, *args).deliver_later
   end
 
+  # rubocop:disable Metrics/AbcSize
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |customer|
       customer.email = auth.info.email
       customer.provider = auth.provider
       customer.uid = auth.uid
       customer.password = Devise.friendly_token[0, 20]
+      downloaded_image = URI.parse(auth.info.image).open
+      customer.avatar.attach(io: downloaded_image, filename: 'avatar.jpg', content_type: downloaded_image.content_type)
+      customer.skip_confirmation!
     end
   end
+  # rubocop:enable Metrics/AbcSize
 
   def apply_omniauth(auth)
     update_attributes(
