@@ -23,7 +23,6 @@
           = I18n.t('book.piece', count: book.quantity)
           %button.btn.btn-sm.btn-success#decrease-quantity -
           %button.btn.btn-sm.btn-success#increase-quantity +
-          = button_to "Add #{book.title} to cart", line_items_path(:book_id => book.id)
       .row
         .col-xs-12.col-md-4
           %p.h1.in-gold-500.mt-10#book-cost

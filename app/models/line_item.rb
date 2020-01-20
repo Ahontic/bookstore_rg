@@ -5,7 +5,7 @@
 # Table name: line_items
 #
 #  id         :bigint           not null, primary key
-#  quantity   :integer
+#  quantity   :integer          default(1)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  book_id    :integer
@@ -16,10 +16,10 @@
 class LineItem < ApplicationRecord
   belongs_to :book
   belongs_to :cart
-  belongs_to :order
+  #belongs_to :order
 
   # LOGIC
   def total_price
-    quantity * product.price
+    quantity * book.price
   end
 end
