@@ -5,7 +5,8 @@
       .general-cart-item.divider-lg-bottom
         = link_to "Empty cart", cart_path(@current_cart),method: :delete, data: {confirm: "Are you sure?"}
         %button.close.general-cart-close{type: "button", 'aria-label': "Close"}
-          %span{'aria-hidden': "true"} &times;
+          = link_to line_item_path(line_item), method: :delete, type: "button", 'aria-label': "Close" do
+            %span{'aria-hidden': "true"} &times;
         .general-img-wrap-table
           %img.cart-img-shadow{src: "http://jonathantweedy.com/resources/thumbs/SmashingBook5ResponsiveWebDesign.jpg", alt: "design-book"}
         %p.title
@@ -21,10 +22,10 @@
               %span.in-grey-600 Quantity
             %td
               .input-group
-                %a.input-link{href: line_item_reduce_path(id: line_item), method: :post }
+                = link_to line_item_reduce_path(id: line_item), method: :post do
                   %i.fa.fa-minus.line-heaght-40
-                %input.form-control.quantity-input{type: "text"}
-                %a.input-link{href: line_item_add_path(id: line_item), method: :post }
+                %input.quantity-input{ value: "#{line_item.quantity}", type: "text"}
+                = link_to line_item_add_path(id: line_item), method: :post do
                   %i.fa.fa-plus.line-heaght-40
           %tr
             %td
@@ -49,21 +50,24 @@
             .general-img-wrap-table
               %img.cart-img-shadow.pull-left{src: "http://jonathantweedy.com/resources/thumbs/SmashingBook5ResponsiveWebDesign.jpg", alt: "design-book"}
           %td
-            %p.title Android Programming for Beginners
+            %p.title
+              = link_to category_book_path(line_item.book) do
+                = line_item.book.title
           %td
             %span.font-16.in-gold-500= number_to_currency(line_item.book.price, unit: '€')
           %td
             .input-group
-              %a.input-link{href: line_item_reduce_path(id: line_item), method: :post }
+              = link_to line_item_reduce_path(id: line_item), method: :post do
                 %i.fa.fa-minus.line-heaght-40
-              %input.form-control.quantity-input{type: "text"}
-              %a.input-link{href: line_item_add_path(id: line_item), method: :post }
+              %input.quantity-input{value: "#{line_item.quantity}", type: "text"}
+              = link_to line_item_add_path(id: line_item), method: :post do
                 %i.fa.fa-plus.line-heaght-40
           %td
             %span.font-16.in-gold-500= number_to_currency(line_item.total_price, unit: '€')
           %td
-            %button.close.general-cart-close{href: line_item_path(line_item), method: :delete, type: "button", 'aria-label': "Close"}
-              %span{'aria-hidden': "true"} &times;
+            %button.close.general-cart-close
+              = link_to line_item_path(line_item), method: :delete, type: "button", 'aria-label': "Close" do
+                %span{'aria-hidden': "true"} &times;
   .general-order-wrap
     .row
       .col-sm-4
@@ -91,7 +95,8 @@
               %td
                 %strong.font-18 Order Total:
               %td
-                %strong.font-18 €117.69
+                %strong.font-18
+                  = number_to_currency(@cart.sub_total, unit: '€')
           %button.btn.btn-default.mb-20.visible-xs-inline-block
             = link_to "Checkout", new_order_path, class: 'btn-default'
   %button.btn.btn-default.mb-20.hidden-xs.center-block

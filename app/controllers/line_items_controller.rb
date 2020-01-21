@@ -5,7 +5,6 @@ class LineItemsController < ApplicationController
     # Find associated product and current cart
     chosen_product = Book.find(params[:book_id])
     current_cart = @current_cart
-
     # If cart already has this product then find the relevant line_item and iterate quantity otherwise create a new
     # line_item for this product
     if current_cart.books.include?(chosen_product)
@@ -18,7 +17,6 @@ class LineItemsController < ApplicationController
       @line_item.cart = current_cart
       @line_item.book = chosen_product
     end
-
     # Save and redirect to cart show path
     @line_item.save
     redirect_to cart_path(current_cart)
@@ -35,7 +33,7 @@ class LineItemsController < ApplicationController
     @line_item.quantity += 1
     @line_item.save
     redirect_to cart_path(@current_cart)
-end
+  end
 
   def reduce_quantity
     @line_item = LineItem.find(params[:id])

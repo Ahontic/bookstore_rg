@@ -1,10 +1,6 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  get 'orders/index'
-  get 'orders/show'
-  get 'orders/new'
-  get 'carts/show'
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   devise_for :customers, controllers: { omniauth_callbacks: 'customers/omniauth_callbacks' }
@@ -23,6 +19,10 @@ Rails.application.routes.draw do
 
   get 'carts/:id' => 'carts#show', as: 'cart'
   delete 'carts/:id' => 'carts#destroy'
+  get 'carts/show'
+  get 'orders/index'
+  get 'orders/show'
+  get 'orders/new'
 
   resources :orders
   post 'line_items/:id/add' => 'line_items#add_quantity', as: 'line_item_add'

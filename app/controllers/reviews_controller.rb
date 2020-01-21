@@ -4,24 +4,26 @@ class ReviewsController < ApplicationController
   decorates_assigned :book
 
   def index
-    redirect_back(fallback_location: root_path)
+    book = Book.find(params[:book_id])
+    redirect_to category_book_path(book.category_id, book.id)
   end
 
+  # rubocop:disable Metrics/AbcSize
   def create
-    @review = Review.new(review_params)
-    if @review.save
-      flash[:notice] = 'Thanks for Review. It will be published as soon as Admin will approve it.'
-      redirect_back(fallback_location: root_path)
+    @book = Book.find(params[:book_id])
+    review = @book.reviews.new(review_params.merge(customer: current_customer))
+    if review.save
+      flash[:notice] = I18n.t('review.review_created')
+      redirect_to category_book_path(@book.category_id, @book.id)
     else
-      @book = BookDecorator.find_by(id: params[:book_id])
-      binding.pry
       render 'books/show'
     end
   end
+  # rubocop:enable Metrics/AbcSize
 
   private
 
   def review_params
-    params.require(:review).permit(:title, :body, :rating, :book_id, :customer_id)
+    params.require(:review).permit(:title, :body, :rating)
   end
 end
