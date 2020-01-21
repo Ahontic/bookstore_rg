@@ -6,6 +6,7 @@ require 'open-uri'
 # Table name: customers
 #
 #  id                     :bigint           not null, primary key
+#  avatar                 :string
 #  confirmation_sent_at   :datetime
 #  confirmation_token     :string
 #  confirmed_at           :datetime
@@ -56,6 +57,7 @@ class Customer < ApplicationRecord
       customer.provider = auth.provider
       customer.uid = auth.uid
       customer.password = Devise.friendly_token[0, 20]
+      # customer.avatar = auth.info.image
       downloaded_image = URI.parse(auth.info.image).open
       customer.avatar.attach(io: downloaded_image, filename: 'avatar.jpg', content_type: downloaded_image.content_type)
       customer.skip_confirmation!
