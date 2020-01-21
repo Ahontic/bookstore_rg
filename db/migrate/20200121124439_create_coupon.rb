@@ -4,6 +4,7 @@ class CreateCoupon < ActiveRecord::Migration[6.0]
       t.string :code
       t.string :description
       t.integer :discount_percent
+
       t.timestamps null: false
     end
   end

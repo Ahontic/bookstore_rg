@@ -48,10 +48,11 @@
         %tr
           %td
             .general-img-wrap-table
-              %img.cart-img-shadow.pull-left{src: "http://jonathantweedy.com/resources/thumbs/SmashingBook5ResponsiveWebDesign.jpg", alt: "design-book"}
+              = link_to category_book_path(line_item.book.category_id, line_item.book.id) do
+                %img.cart-img-shadow.pull-left{src: "http://jonathantweedy.com/resources/thumbs/SmashingBook5ResponsiveWebDesign.jpg", alt: "design-book"}
           %td
             %p.title
-              = link_to category_book_path(line_item.book) do
+              = link_to category_book_path(line_item.book.category_id, line_item.book.id) do
                 = line_item.book.title
           %td
             %span.font-16.in-gold-500= number_to_currency(line_item.book.price, unit: '€')
