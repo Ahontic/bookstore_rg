@@ -33,7 +33,6 @@
 class Customer < ApplicationRecord
   has_many :addresses, as: :addressable
   has_many :reviews
-  has_one_attached :avatar
 
   validates :email, presence: true
   validates :email, confirmation: true
@@ -50,6 +49,8 @@ class Customer < ApplicationRecord
       customer.provider = auth.provider
       customer.uid = auth.uid
       customer.password = Devise.friendly_token[0, 20]
+      customer.avatar = auth.info.image
+      customer.skip_confirmation!
     end
   end
 

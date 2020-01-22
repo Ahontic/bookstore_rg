@@ -1,8 +1,8 @@
-- if "#{@book.reviews.approved.count}" > "0"
+- @book.reviews.approved.each do |review|
   .general-message-wrap.divider-lg
     .clearfix
       .logo-size.inlide-block.pull-left
-        = image_tag (current_customer.avatar), height: 50, width: 50
+        = image_tag(review.customer.avatar) if review.customer.avatar.present?
       .ml-70
         %div
           .general-message-date.hidden-xs= review.created_at&.strftime('%B %e, %Y')
