@@ -32,7 +32,7 @@ Rails.application.configure do
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
 
-  config.active_storage.service = :cloudinary_development
+  config.active_storage.service = :local
 
   # Use a real queuing backend for Active Job (and separate queues per environment).
   config.active_job.queue_adapter = :sidekiq
