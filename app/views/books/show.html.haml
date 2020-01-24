@@ -7,12 +7,9 @@
           %img.img-responsive
             = image_tag url_for(book.images.first)
         .images.clearfix
-          %a.img-link{href: "#"}
-            %img{src: "https://www.bramstein.com/static/smashing-book-5-photo-stack.9d5d114e3e.jpg"}
-          %a.img-link{href: "#"}
-            %img{src: "https://www.bramstein.com/static/smashing-book-5-photo-stack.9d5d114e3e.jpg"}
-          %a.img-link{href: "#"}
-            %img{src: "https://www.bramstein.com/static/smashing-book-5-photo-stack.9d5d114e3e.jpg"}
+        - book.images.each do |image|
+          %a.img-link
+            = image_tag url_for(image)
     .col-sm-6
       %h1.mt-res-0
         = book.title

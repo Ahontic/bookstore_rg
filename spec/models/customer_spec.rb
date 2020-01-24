@@ -10,11 +10,11 @@
 #  confirmation_token     :string
 #  confirmed_at           :datetime
 #  current_sign_in_at     :datetime
-#  current_sign_in_ip     :inet
+#  current_sign_in_ip     :string
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
 #  last_sign_in_at        :datetime
-#  last_sign_in_ip        :inet
+#  last_sign_in_ip        :string
 #  provider               :string
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime

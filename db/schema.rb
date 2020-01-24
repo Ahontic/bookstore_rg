@@ -59,11 +59,11 @@ ActiveRecord::Schema.define(version: 20_200_121_143_743) do
     t.string 'city', null: false
     t.string 'phone', null: false
     t.string 'country', null: false
+    t.integer 'address_type', null: false
     t.string 'addressable_type'
     t.bigint 'addressable_id'
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
-    t.integer 'address_type', null: false
     t.index %w[addressable_type addressable_id], name: 'index_addresses_on_addressable_type_and_addressable_id'
   end
 
@@ -110,24 +110,11 @@ ActiveRecord::Schema.define(version: 20_200_121_143_743) do
     t.index ['material_id'], name: 'index_books_on_material_id'
   end
 
-  create_table 'carts', force: :cascade do |t|
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-  end
-
   create_table 'categories', force: :cascade do |t|
     t.string 'title', null: false
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
     t.index ['title'], name: 'index_categories_on_title', unique: true
-  end
-
-  create_table 'coupons', force: :cascade do |t|
-    t.string 'code'
-    t.string 'description'
-    t.integer 'discount_percent'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
   end
 
   create_table 'customers', force: :cascade do |t|
@@ -140,27 +127,18 @@ ActiveRecord::Schema.define(version: 20_200_121_143_743) do
     t.datetime 'updated_at', precision: 6, null: false
     t.string 'provider'
     t.string 'uid'
-    t.integer 'sign_in_count', default: 0, null: false
-    t.datetime 'current_sign_in_at'
-    t.datetime 'last_sign_in_at'
-    t.inet 'current_sign_in_ip'
-    t.inet 'last_sign_in_ip'
     t.string 'confirmation_token'
     t.datetime 'confirmed_at'
     t.datetime 'confirmation_sent_at'
     t.string 'avatar'
+    t.integer 'sign_in_count', default: 0, null: false
+    t.datetime 'current_sign_in_at'
+    t.datetime 'last_sign_in_at'
+    t.string 'current_sign_in_ip'
+    t.string 'last_sign_in_ip'
     t.index ['confirmation_token'], name: 'index_customers_on_confirmation_token', unique: true
     t.index ['email'], name: 'index_customers_on_email', unique: true
     t.index ['reset_password_token'], name: 'index_customers_on_reset_password_token', unique: true
-  end
-
-  create_table 'line_items', force: :cascade do |t|
-    t.integer 'quantity', default: 1
-    t.integer 'book_id'
-    t.integer 'cart_id'
-    t.integer 'order_id'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
   end
 
   create_table 'materials', force: :cascade do |t|
@@ -169,20 +147,10 @@ ActiveRecord::Schema.define(version: 20_200_121_143_743) do
     t.datetime 'updated_at', precision: 6, null: false
   end
 
-  create_table 'orders', force: :cascade do |t|
-    t.string 'name'
-    t.string 'email'
-    t.text 'address'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.bigint 'coupon_id'
-    t.index ['coupon_id'], name: 'index_orders_on_coupon_id'
-  end
-
   create_table 'reviews', force: :cascade do |t|
-    t.string 'title'
-    t.string 'body'
-    t.integer 'rating'
+    t.string 'title', null: false
+    t.string 'body', null: false
+    t.integer 'rating', null: false
     t.integer 'status', default: 0
     t.bigint 'book_id'
     t.bigint 'customer_id'
@@ -195,7 +163,6 @@ ActiveRecord::Schema.define(version: 20_200_121_143_743) do
   add_foreign_key 'active_storage_attachments', 'active_storage_blobs', column: 'blob_id'
   add_foreign_key 'books', 'categories'
   add_foreign_key 'books', 'materials'
-  add_foreign_key 'orders', 'coupons'
   add_foreign_key 'reviews', 'books'
   add_foreign_key 'reviews', 'customers'
 end
