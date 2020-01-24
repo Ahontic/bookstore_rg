@@ -7,7 +7,7 @@
           %img.img-responsive
             = image_tag url_for(book.images.first)
         .images.clearfix
-        - book.images.each do |image|
+        - book.images.limit(3).each do |image|
           %a.img-link
             = image_tag url_for(image)
     .col-sm-6
