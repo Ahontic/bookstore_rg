@@ -23,6 +23,77 @@
     {
       "warning_type": "Unscoped Find",
       "warning_code": 82,
+      "fingerprint": "a44fec30f3c92815d1c886020e94b5c3bd8fb7ff170531c45d6257af0380cbe5",
+      "check_name": "UnscopedFind",
+      "message": "Unscoped call to `LineItem#find`",
+      "file": "app/controllers/line_items_controller.rb",
+      "line": 49,
+      "link": "https://brakemanscanner.org/docs/warning_types/unscoped_find/",
+      "code": "LineItem.find(params[:id])",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "LineItemsController",
+        "method": "line_item_finder"
+      },
+      "user_input": "params[:id]",
+      "confidence": "Weak",
+      "note": ""
+    },
+    {
+      "warning_type": "Unscoped Find",
+      "warning_code": 82,
+      "fingerprint": "ba7b8a82498daa68538e63a871b0f41609cca76e792daf436caf5c85fe235a02",
+      "check_name": "UnscopedFind",
+      "message": "Unscoped call to `Book#find`",
+      "file": "app/controllers/line_items_controller.rb",
+      "line": 6,
+      "link": "https://brakemanscanner.org/docs/warning_types/unscoped_find/",
+      "code": "Book.find(params[:book_id])",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "LineItemsController",
+        "method": "create"
+      },
+      "user_input": "params[:book_id]",
+      "confidence": "Weak",
+      "note": ""
+    },
+    {
+      "warning_type": "Dynamic Render Path",
+      "warning_code": 15,
+      "fingerprint": "e18bafb974ce73a2d7a53bd3c40824c196330fa1f0e427ab081fca2344b4dd4a",
+      "check_name": "Render",
+      "message": "Render path contains parameter value",
+      "file": "app/views/books/show.html.haml",
+      "line": 70,
+      "link": "https://brakemanscanner.org/docs/warning_types/dynamic_render_path/",
+      "code": "render(action => BookDecorator.find_by(:id => params[:id], :category_id => params[:category_id]).reviews.approved, {})",
+      "render_path": [
+        {
+          "type": "controller",
+          "class": "BooksController",
+          "method": "show",
+          "line": 8,
+          "file": "app/controllers/books_controller.rb",
+          "rendered": {
+            "name": "books/show",
+            "file": "app/views/books/show.html.haml"
+          }
+        }
+      ],
+      "location": {
+        "type": "template",
+        "template": "books/show"
+      },
+      "user_input": "params[:category_id]",
+      "confidence": "Weak",
+      "note": ""
+    },
+    {
+      "warning_type": "Unscoped Find",
+      "warning_code": 82,
       "fingerprint": "f51edd8394d53b0a17bed72f8f82d1762ea7d712fc9cc0514495c1d0d312fca8",
       "check_name": "UnscopedFind",
       "message": "Unscoped call to `Book#find`",
@@ -41,6 +112,6 @@
       "note": ""
     }
   ],
-  "updated": "2020-01-17 11:59:11 +0200",
+  "updated": "2020-01-27 18:51:54 +0200",
   "brakeman_version": "4.7.2"
 }
