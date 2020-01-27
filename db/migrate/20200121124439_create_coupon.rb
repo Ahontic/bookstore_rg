@@ -3,9 +3,10 @@
 class CreateCoupon < ActiveRecord::Migration[6.0]
   def change
     create_table :coupons do |t|
-      t.string :code
-      t.string :description
-      t.integer :discount_percent
+      t.string :code, null: false
+      t.string :description, null: false
+      t.integer :discount_percent, null: false
+      t.belongs_to :cart, foreign_key: true
 
       t.timestamps null: false
     end

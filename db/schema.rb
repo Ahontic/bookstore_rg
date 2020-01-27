@@ -171,6 +171,14 @@ ActiveRecord::Schema.define(version: 20_200_121_143_743) do
     t.datetime 'updated_at', precision: 6, null: false
   end
 
+  create_table 'orders', force: :cascade do |t|
+    t.string 'name'
+    t.string 'email'
+    t.text 'address'
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+  end
+
   create_table 'reviews', force: :cascade do |t|
     t.string 'title', null: false
     t.string 'body', null: false
