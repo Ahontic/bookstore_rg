@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-# rubocop:disable Metrics/BlockLength
-
 ActiveAdmin.register Book do
   permit_params :title, :price, :quantity, :category_id, :material_id, :description, :issue_date, :height, :width,
                 :depth, images: []
@@ -34,4 +32,3 @@ ActiveAdmin.register Book do
     end
   end
 end
-# rubocop:enable Metrics/BlockLength
