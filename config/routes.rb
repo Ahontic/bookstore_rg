@@ -19,6 +19,9 @@ Rails.application.routes.draw do
   resources :carts, only: %i[destroy show update] do
     resources :coupons
   end
+  resources :books, only: [] do
+    resources :reviews
+  end
 
   resources :orders, only: %i[index show new]
   post 'line_items/:id/add' => 'line_items#add_quantity', as: 'line_item_add'
@@ -30,8 +33,4 @@ Rails.application.routes.draw do
   match '*unmatched', to: 'application#not_found', constraints: lambda { |req|
     req.path.exclude? 'rails/active_storage'
   }, via: :all
-
-  resources :books, only: [] do
-    resources :reviews
-  end
 end

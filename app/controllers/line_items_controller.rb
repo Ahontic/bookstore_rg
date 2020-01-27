@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class LineItemsController < ApplicationController
+  # rubocop:disable Metrics/MethodLength
   def create
     chosen_product = Book.find(params[:book_id])
     current_cart = @current_cart
@@ -16,6 +17,7 @@ class LineItemsController < ApplicationController
     @line_item.save
     redirect_to cart_path(current_cart)
   end
+  # rubocop:enable Metrics/MethodLength
 
   def destroy
     line_item_finder

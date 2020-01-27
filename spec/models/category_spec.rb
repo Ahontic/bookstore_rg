@@ -15,15 +15,13 @@
 #
 
 RSpec.describe Category do
-  let(:category) { create(:category) }
+  let!(:category) { create(:category) }
 
   describe 'validations' do
-    it 'is expected to validate that :title is case-sensitively unique' do
-      expect(category).to validate_uniqueness_of(:title)
-    end
-
+    it { is_expected.to validate_uniqueness_of(:title) }
     it { is_expected.to validate_presence_of(:title) }
   end
+
   describe 'associations' do
     it { is_expected.to have_many(:books).dependent(:destroy) }
   end

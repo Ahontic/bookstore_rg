@@ -8,11 +8,11 @@ Metrics/BlockLength:
     - spec/**/*
     - lib/tasks/*
     - db/**/*
+    - app/admin/**/*
 Metrics/MethodLength:
     Exclude:
     - db/**/*
     - bin/**/*
-    - app/admin/**/*
 Metrics/ModuleLength:
   Exclude:
     - spec/**/*

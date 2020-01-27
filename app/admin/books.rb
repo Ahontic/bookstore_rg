@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-# frozen_string_literal: true
-
-ActiveAdmin.register Book do
-  permit_params :title, :price, :quantity, :category_id, :material_id, :description, :issue_date, :height, :width,
-                :depth
-end
-||||||| merged common ancestors
-=======
 # frozen_string_literal: true
 
 ActiveAdmin.register Book do
@@ -41,4 +32,3 @@ ActiveAdmin.register Book do
     end
   end
 end
->>>>>>> develop

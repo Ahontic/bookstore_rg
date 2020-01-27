@@ -23,5 +23,13 @@
 
 FactoryBot.define do
   factory :coupon do
+    code { FFaker::CheesyLingo.unique.word.upcase }
+    description { FFaker::Book.description }
+    discount_percent { rand(3..15) }
+    cart
+
+    trait :skip_validate do
+      to_create { |instance| instance.save(validate: false) }
+    end
   end
 end
