@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'open-uri'
 # == Schema Information
 #
 # Table name: customers
@@ -10,11 +11,11 @@
 #  confirmation_token     :string
 #  confirmed_at           :datetime
 #  current_sign_in_at     :datetime
-#  current_sign_in_ip     :inet
+#  current_sign_in_ip     :string
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
 #  last_sign_in_at        :datetime
-#  last_sign_in_ip        :inet
+#  last_sign_in_ip        :string
 #  provider               :string
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
@@ -33,7 +34,7 @@
 
 class Customer < ApplicationRecord
   has_many :addresses, as: :addressable
-  has_many :reviews
+  has_many :reviews, dependent: :destroy
 
   validates :email, presence: true
   validates :email, confirmation: true
@@ -43,6 +44,10 @@ class Customer < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :secure_validatable,
          :omniauthable, :trackable, :confirmable, omniauth_providers: [:facebook]
+
+  def send_devise_notification(notification, *args)
+    devise_mailer.send(notification, self, *args).deliver_later
+  end
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |customer|

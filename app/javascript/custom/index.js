@@ -30,11 +30,12 @@ $(document).on("turbolinks:load",function() {
       path: '/assets/'
   });
 
-    $('#rating-form').raty({
+  $('#rating-form').raty({
     path: '/assets/',
     scoreName: 'review[rating]'
   });
- });
+});
+
 
 $(document).ready(function() {
   $('#delete-account-checkbox').change(function() {

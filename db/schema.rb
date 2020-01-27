@@ -142,15 +142,16 @@ ActiveRecord::Schema.define(version: 20_200_121_143_743) do
     t.datetime 'updated_at', precision: 6, null: false
     t.string 'provider'
     t.string 'uid'
-    t.integer 'sign_in_count', default: 0, null: false
-    t.datetime 'current_sign_in_at'
-    t.datetime 'last_sign_in_at'
-    t.inet 'current_sign_in_ip'
-    t.inet 'last_sign_in_ip'
     t.string 'confirmation_token'
     t.datetime 'confirmed_at'
     t.datetime 'confirmation_sent_at'
     t.string 'avatar'
+    t.integer 'sign_in_count', default: 0, null: false
+    t.datetime 'current_sign_in_at'
+    t.datetime 'last_sign_in_at'
+    t.string 'current_sign_in_ip'
+    t.string 'last_sign_in_ip'
+
     t.index ['confirmation_token'], name: 'index_customers_on_confirmation_token', unique: true
     t.index ['email'], name: 'index_customers_on_email', unique: true
     t.index ['reset_password_token'], name: 'index_customers_on_reset_password_token', unique: true
@@ -180,9 +181,9 @@ ActiveRecord::Schema.define(version: 20_200_121_143_743) do
   end
 
   create_table 'reviews', force: :cascade do |t|
-    t.string 'title'
-    t.string 'body'
-    t.integer 'rating'
+    t.string 'title', null: false
+    t.string 'body', null: false
+    t.integer 'rating', null: false
     t.integer 'status', default: 0
     t.bigint 'book_id'
     t.bigint 'customer_id'

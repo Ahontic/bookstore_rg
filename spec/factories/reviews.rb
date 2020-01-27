@@ -5,10 +5,10 @@
 # Table name: reviews
 #
 #  id          :bigint           not null, primary key
-#  body        :string
-#  rating      :integer
+#  body        :string           not null
+#  rating      :integer          not null
 #  status      :integer          default("pending")
-#  title       :string
+#  title       :string           not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  book_id     :bigint
@@ -27,9 +27,9 @@
 
 FactoryBot.define do
   factory :review do
-    title { 'MyString' }
-    body { 'MyString' }
-    rating { 1 }
+    title { FFaker::Book.title }
+    body { FFaker::Lorem.phrase }
+    rating { rand(1..5) }
     customer
     book
   end

@@ -12,6 +12,7 @@ Metrics/MethodLength:
     Exclude:
     - db/**/*
     - bin/**/*
+    - app/admin/**/*
 Metrics/ModuleLength:
   Exclude:
     - spec/**/*

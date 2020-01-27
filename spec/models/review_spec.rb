@@ -5,10 +5,10 @@
 # Table name: reviews
 #
 #  id          :bigint           not null, primary key
-#  body        :string
-#  rating      :integer
+#  body        :string           not null
+#  rating      :integer          not null
 #  status      :integer          default("pending")
-#  title       :string
+#  title       :string           not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  book_id     :bigint
@@ -26,15 +26,11 @@
 #
 
 RSpec.describe Review do
-  let(:review) { create(:review) }
-
   describe 'validations' do
-    it 'is expected to validate that :status is pending' do
-      expect(review.status).to eq('pending')
-    end
     it { is_expected.to validate_presence_of(:body) }
     it { is_expected.to validate_presence_of(:rating) }
     it { is_expected.to validate_presence_of(:title) }
+    it { is_expected.to define_enum_for(:status).with_values(pending: 0, approved: 1, rejected: 2) }
   end
 
   describe 'associations' do

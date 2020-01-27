@@ -4,17 +4,21 @@ class AddressesController < ApplicationController
   def create
     @address = current_customer.addresses.new(address_params)
     if @address.save
-      flash[:notice] = 'Your address has been added.'
+      flash[:notice] = I18n.t('address.address_created')
       redirect_to edit_customer_registration_path
     else
       render 'devise/registrations/edit'
     end
   end
 
+  def show
+    redirect_to edit_customer_registration_path
+  end
+
   def update
     @address = current_customer.addresses.find(params[:id])
     if @address.update(address_params)
-      flash[:notice] = 'Your address has been modified.'
+      flash[:notice] =  I18n.t('address_modified')
       redirect_to edit_customer_registration_path
     else
       render 'devise/registrations/edit'
