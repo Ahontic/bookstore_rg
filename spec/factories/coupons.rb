@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: coupons
@@ -8,10 +10,18 @@
 #  discount_percent :integer
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
+#  cart_id          :bigint
+#
+# Indexes
+#
+#  index_coupons_on_cart_id  (cart_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (cart_id => carts.id)
 #
 
 FactoryBot.define do
   factory :coupon do
-    
   end
 end

@@ -2,9 +2,6 @@
   #rating-form
     %label Rating
   .form-group
-    = f.input :book_id, label: false, input_html: { value: @book.id, type: 'hidden' }
-    = f.input :customer_id, label: false, input_html: { value: current_customer.id, type: 'hidden' }
-  .form-group
     = f.input :title, required: false
   .form-group.mb-30
     = f.input :body, required: false, label: "Review"

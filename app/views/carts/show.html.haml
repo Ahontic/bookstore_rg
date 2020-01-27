@@ -72,11 +72,7 @@
   .general-order-wrap
     .row
       .col-sm-4
-        .input-group.general-input-group
-          %label.input-label Enter Your Coupon Code
-          %input.form-control.mb-30{type: "text", placeholder: "Enter Your Coupon Code "}
-          %div
-            %button.btn.btn-primary.mr-5.mb-15 Apply Coupon
+        = render 'coupons/coupon_form'
       .col-sm-8
         .res-mr-200.text-center.general-text-right
           %p.in-gold-500.font-18 Order Summary
@@ -91,13 +87,14 @@
               %td
                 %p.font-16 Coupon:
               %td
-                %p.font-16 €0.00
+                %p.font-16
+                  = number_to_currency(@cart.discount, unit: '€')
             %tr
               %td
                 %strong.font-18 Order Total:
               %td
                 %strong.font-18
-                  = number_to_currency(@cart.sub_total, unit: '€')
+                  = number_to_currency(@cart.order_total, unit: '€')
           %button.btn.btn-default.mb-20.visible-xs-inline-block
             = link_to "Checkout", new_order_path, class: 'btn-default'
   %button.btn.btn-default.mb-20.hidden-xs.center-block

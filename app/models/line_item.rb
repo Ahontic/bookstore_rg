@@ -16,9 +16,7 @@
 class LineItem < ApplicationRecord
   belongs_to :book
   belongs_to :cart
-  # belongs_to :order
 
-  # LOGIC
   def total_price
     quantity * book.price
   end

@@ -4,7 +4,8 @@
     .col-sm-6
       .product-gallery
         .mb-20
-          %img.img-responsive{src: "https://www.bramstein.com/static/smashing-book-5-photo-stack.9d5d114e3e.jpg"}
+          %img.img-responsive
+            = image_tag url_for(book.images.first)
         .images.clearfix
           %a.img-link{href: "#"}
             %img{src: "https://www.bramstein.com/static/smashing-book-5-photo-stack.9d5d114e3e.jpg"}
@@ -32,8 +33,8 @@
             %input.form-control#quantity-input{ value: 1 }
               %input.form-control.hidden#book-price{ value: "#{@book.price}" }
         .col-xs-7.col-md-5
-          %button.btn.btn-default.pull-right.general-position#quantity-input
-            = button_to "Add to Cart", line_items_path(book_id: book.id), class: 'btn.btn-default'
+          %button.btn.btn-default.pull-right.general-position
+            = button_to "Add to Cart", line_items_path(book_id: book.id), class: 'btn-default'
       .general-info-wrap.divider-lg
         %p
           = t 'book.description'

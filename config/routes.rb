@@ -3,7 +3,8 @@
 Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  devise_for :customers, controllers: { omniauth_callbacks: 'customers/omniauth_callbacks' }
+  devise_for :customers, controllers: { omniauth_callbacks: 'customers/omniauth_callbacks',
+                                        registrations: 'customers/registrations' }
   root to: 'pages#home'
 
   resources :addresses
@@ -17,14 +18,12 @@ Rails.application.routes.draw do
     resources :reviews
   end
 
-  get 'carts/:id' => 'carts#show', as: 'cart'
-  delete 'carts/:id' => 'carts#destroy'
-  get 'carts/show'
-  get 'orders/index'
-  get 'orders/show'
-  get 'orders/new'
+  resources :coupons
+  resources :carts, only: %i[destroy show update] do
+    resources :coupons
+  end
 
-  resources :orders
+  resources :orders, only: %i[index show new]
   post 'line_items/:id/add' => 'line_items#add_quantity', as: 'line_item_add'
   post 'line_items/:id/reduce' => 'line_items#reduce_quantity', as: 'line_item_reduce'
   post 'line_items' => 'line_items#create'
