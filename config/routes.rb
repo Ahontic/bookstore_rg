@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   resources :addresses
   resources :customers, only: %i[edit]
+
   resources :categories, only: %i[index show] do
     resources :books, only: %i[index show]
   end

@@ -2,13 +2,6 @@
 = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
   = render "devise/shared/error_messages", resource: resource
   %form.general-form-md
-    .form-group
-      .row
-        .col-sm-4
-          - if resource.avatar.attached?
-            = image_tag(current_customer.avatar)
-        .col-sm-8
-          = f.file_field :avatar, direct_upload: true
     .form-group.mb-35
       %label.control-label.input-label Enter Email
       = f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control'

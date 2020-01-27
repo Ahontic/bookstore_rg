@@ -5,10 +5,10 @@
 # Table name: reviews
 #
 #  id          :bigint           not null, primary key
-#  body        :string
-#  rating      :integer
+#  body        :string           not null
+#  rating      :integer          not null
 #  status      :integer          default("pending")
-#  title       :string
+#  title       :string           not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  book_id     :bigint

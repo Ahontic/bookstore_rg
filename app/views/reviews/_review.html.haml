@@ -2,7 +2,7 @@
   .general-message-wrap.divider-lg
     .clearfix
       .logo-size.inlide-block.pull-left
-        = image_tag (current_customer.avatar), size: 55  if current_customer.avatar.attached?
+        = image_tag(review.customer.avatar) if review.customer.avatar.present?
       .ml-70
         %div
           .general-message-date.hidden-xs= review.created_at&.strftime('%B %e, %Y')
