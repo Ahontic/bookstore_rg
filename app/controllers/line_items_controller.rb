@@ -1,51 +1,47 @@
 # frozen_string_literal: true
 
 class LineItemsController < ApplicationController
-  # rubocop:disable Metrics/MethodLength
   def create
-    chosen_product = Book.find(params[:book_id])
-    current_cart = @current_cart
-
-    if current_cart.books.include?(chosen_product)
-      @line_item = current_cart.line_items.find_by(book_id: chosen_product)
-      @line_item.quantity += 1
-    else
-      @line_item = LineItem.new
-      @line_item.cart = current_cart
-      @line_item.book = chosen_product
-    end
-    @line_item.save
-    redirect_to cart_path(current_cart)
+    line_item = current_cart.line_items.find_or_initialize_by(book_id: params[:book_id])
+    line_item.quantity += 1
+    line_item.save
+    redirect_to cart_path(@current_cart)
   end
-  # rubocop:enable Metrics/MethodLength
 
   def destroy
-    line_item_finder
-    @line_item.destroy
+    current_line_item
+    @current_line_item.destroy
     redirect_to cart_path(@current_cart)
   end
 
   def add_quantity
-    line_item_finder
-    @line_item.quantity += 1
-    @line_item.save
-    redirect_to cart_path(@current_cart)
+    current_line_item
+    current_line_item.quantity += 1
+    save_and_redirect
   end
 
   def reduce_quantity
-    line_item_finder
-    @line_item.quantity -= 1 if @line_item.quantity > 1
-    @line_item.save
-    redirect_to cart_path(@current_cart)
+    current_line_item
+    current_line_item.quantity -= 1 if current_line_item.quantity > 1
+    save_and_redirect
   end
 
   private
 
   def line_item_params
-    params.require(:line_item).permit(:quantity, :book_id, :cart_id)
+    params.require(:line_item).permit(:quantity, :book_id)
   end
 
-  def line_item_finder
-    @line_item = LineItem.find(params[:id])
+  def current_line_item
+    @current_line_item ||= LineItem.find(params[:id])
+  end
+
+  def save_and_redirect
+    if current_line_item.save
+      flash[:notice] = 'Successfully'
+    else
+      flash[:alert] = 'Error'
+    end
+    redirect_to cart_path(@current_cart)
   end
 end

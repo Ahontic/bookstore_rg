@@ -5,7 +5,7 @@
 # Table name: line_items
 #
 #  id         :bigint           not null, primary key
-#  quantity   :integer          default(1)
+#  quantity   :integer          default(0)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  book_id    :bigint

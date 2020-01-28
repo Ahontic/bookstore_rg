@@ -1,6 +1,6 @@
 %main.container.general-main-wrap
   %h1.general-title-margin Cart
-  - @cart.line_items.each do |line_item|
+  - current_cart.line_items.each do |line_item|
     .visible-xs
       .general-cart-item.divider-lg-bottom
         = link_to "Empty cart", cart_path(@current_cart),method: :delete, data: {confirm: "Are you sure?"}
@@ -84,19 +84,19 @@
                 %p.font-16 Subtotal:
               %td
                 %p.font-16
-                  = number_to_currency(@cart.sub_total, unit: '€')
+                  = number_to_currency(current_cart.sub_total, unit: '€')
             %tr
               %td
                 %p.font-16 Coupon:
               %td
                 %p.font-16
-                  = number_to_currency(@cart.discount, unit: '€')
+                  = number_to_currency(current_cart.discount, unit: '€')
             %tr
               %td
                 %strong.font-18 Order Total:
               %td
                 %strong.font-18
-                  = number_to_currency(@cart.order_total, unit: '€')
+                  = number_to_currency(current_cart.order_total, unit: '€')
           %button.btn.btn-default.mb-20.visible-xs-inline-block
             = link_to "Checkout", checkout_path, class: 'btn-default'
   %button.btn.btn-default.mb-20.hidden-xs.center-block

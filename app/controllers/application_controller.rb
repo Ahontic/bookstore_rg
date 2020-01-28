@@ -20,15 +20,11 @@ class ApplicationController < ActionController::Base
   end
 
   def current_cart
-    if session[:cart_id]
-      cart = Cart.find_by(id: session[:cart_id])
-      cart.present? ? @current_cart = cart : session[:cart_id] = nil
+    @current_cart ||= begin
+      cart = Cart.find_or_create_by(id: session[:cart_id])
+      session[:cart_id] = cart.id
+      cart
     end
-
-    return unless session[:cart_id].nil?
-
-    @current_cart = Cart.create
-    session[:cart_id] = @current_cart.id
   end
   helper_method :current_cart
 end
