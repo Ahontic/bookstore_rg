@@ -158,23 +158,16 @@ ActiveRecord::Schema.define(version: 20_200_121_143_743) do
 
   create_table 'line_items', force: :cascade do |t|
     t.integer 'quantity', default: 1
-    t.integer 'book_id'
-    t.integer 'cart_id'
-    t.integer 'order_id'
+    t.bigint 'book_id'
+    t.bigint 'cart_id'
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
+    t.index ['book_id'], name: 'index_line_items_on_book_id'
+    t.index ['cart_id'], name: 'index_line_items_on_cart_id'
   end
 
   create_table 'materials', force: :cascade do |t|
     t.string 'name', null: false
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-  end
-
-  create_table 'orders', force: :cascade do |t|
-    t.string 'name'
-    t.string 'email'
-    t.text 'address'
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
   end
@@ -196,6 +189,8 @@ ActiveRecord::Schema.define(version: 20_200_121_143_743) do
   add_foreign_key 'books', 'categories'
   add_foreign_key 'books', 'materials'
   add_foreign_key 'coupons', 'carts'
+  add_foreign_key 'line_items', 'books'
+  add_foreign_key 'line_items', 'carts'
   add_foreign_key 'reviews', 'books'
   add_foreign_key 'reviews', 'customers'
 end

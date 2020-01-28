@@ -6,16 +6,16 @@ class CouponsController < ApplicationController
 
     if coupon
       @current_cart.update(coupon: coupon)
-      flash[:notice] = 'You successfully applied coupon!'
+      flash[:notice] = I18n.t('coupon.successfully_applied')
     else
-      flash[:alert] = 'Sorry, invalid coupon code! Use valid code.'
+      flash[:alert] = I18n.t('coupon.invalid')
     end
     redirect_to cart_path(@current_cart)
   end
 
   def destroy
     @current_cart.coupon.update(cart_id: nil)
-    flash[:notice] = 'You successfully removed coupon!'
+    flash[:notice] = I18n.t('coupon.removed')
     redirect_to cart_path(@current_cart)
   end
 

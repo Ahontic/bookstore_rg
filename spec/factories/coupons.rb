@@ -27,9 +27,5 @@ FactoryBot.define do
     description { FFaker::Book.description }
     discount_percent { rand(3..15) }
     cart
-
-    trait :skip_validate do
-      to_create { |instance| instance.save(validate: false) }
-    end
   end
 end

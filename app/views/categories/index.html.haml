@@ -59,7 +59,7 @@
               .general-thumb-link-wrap
                 %a.thumb-hover-link{href: category_book_path(book.category_id, book)}
                   %i.fa.fa-eye.thumb-icon{'aria-hidden': "true"}
-                %a.thumb-hover-link{href: "#"}
+                %a.thumb-hover-link{href: line_items_path(line_items: {book_id: book.id}) }
                   %i.fa.fa-shopping-cart.thumb-icon
         .general-thumb-info
           %p.title

@@ -3,7 +3,7 @@
 feature 'Cart page' do
   let!(:customer) { create(:customer, :confirmed) }
   let!(:book) { create(:book, :with_author) }
-  let(:coupon) { create(:coupon, :skip_validate) }
+  let(:coupon) { create(:coupon) }
 
   feature 'allows customer to', js: true do
     scenario 'add a book into cart' do

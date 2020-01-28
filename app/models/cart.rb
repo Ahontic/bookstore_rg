@@ -15,11 +15,7 @@ class Cart < ApplicationRecord
   has_one :coupon
 
   def sub_total
-    sum = 0
-    line_items.each do |line_item|
-      sum += line_item.total_price
-    end
-    sum
+    line_items.sum(&:total_price)
   end
 
   def discount
