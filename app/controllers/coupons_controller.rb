@@ -2,9 +2,9 @@
 
 class CouponsController < ApplicationController
   def create
-    coupon = Coupon.find_by(code: coupon_params[:code]) # , status: unused)
+    coupon = Coupon.find_by(code: coupon_params[:code])
 
-    if coupon
+    if coupon.cart_id.nil?
       @current_cart.update(coupon: coupon)
       flash[:notice] = I18n.t('coupon.successfully_applied')
     else

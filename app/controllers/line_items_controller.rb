@@ -33,7 +33,6 @@ class LineItemsController < ApplicationController
   end
 
   def current_line_item
-    # binding.pry
     @current_line_item ||= current_cart.line_items.find(params[:id])
   end
 
