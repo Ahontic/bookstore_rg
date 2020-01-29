@@ -33,7 +33,8 @@ class LineItemsController < ApplicationController
   end
 
   def current_line_item
-    @current_line_item ||= LineItem.find(params[:id])
+    # binding.pry
+    @current_line_item ||= current_cart.line_items.find(params[:id])
   end
 
   def save_and_redirect
