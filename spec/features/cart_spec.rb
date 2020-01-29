@@ -3,7 +3,7 @@
 feature 'Cart page' do
   let!(:customer) { create(:customer, :confirmed) }
   let!(:book) { create(:book, :with_author) }
-  let(:coupon) { create(:coupon) }
+  let(:coupon) { create(:coupon, cart: nil) }
 
   feature 'allows customer to', js: true do
     scenario 'add a book into cart' do
@@ -19,7 +19,6 @@ feature 'Cart page' do
       visit category_book_path(category_id: book.category_id, id: book.id)
 
       click_button 'Add to Cart'
-
       fill_in 'coupon[code]', with: coupon.code
       first('.btn[type=submit]').click
       expect(page).to have_content('You successfully applied coupon!')

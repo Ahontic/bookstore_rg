@@ -28,6 +28,6 @@ RSpec.describe Coupon do
   end
 
   describe 'associations' do
-    it { is_expected.to belong_to(:cart) }
+    it { is_expected.to belong_to(:cart).without_validating_presence }
   end
 end
