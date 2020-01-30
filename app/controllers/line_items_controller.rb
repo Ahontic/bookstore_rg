@@ -2,26 +2,22 @@
 
 class LineItemsController < ApplicationController
   def create
-    line_item = current_cart.line_items.find_or_initialize_by(book_id: params[:book_id])
-    line_item.quantity += 1
-    line_item.save
-    redirect_to cart_path(@current_cart)
+    @current_line_item = current_cart.line_items.find_or_initialize_by(book_id: params[:book_id])
+    current_line_item.quantity += 1
+    save_and_redirect
   end
 
   def destroy
-    current_line_item
-    @current_line_item.destroy
+    current_line_item.destroy
     redirect_to cart_path(@current_cart)
   end
 
   def add_quantity
-    current_line_item
     current_line_item.quantity += 1
     save_and_redirect
   end
 
   def reduce_quantity
-    current_line_item
     current_line_item.quantity -= 1 if current_line_item.quantity > 1
     save_and_redirect
   end

@@ -4,8 +4,7 @@ class CouponsController < ApplicationController
   def create
     coupon = Coupon.find_by(code: coupon_params[:code], cart: nil)
 
-    if coupon
-      coupon.update(cart: current_cart)
+    if coupon&.update(cart: current_cart)
       flash[:notice] = I18n.t('coupon.successfully_applied')
     else
       flash[:alert] = I18n.t('coupon.invalid')
@@ -14,12 +13,12 @@ class CouponsController < ApplicationController
   end
 
   def destroy
-    if @current_cart.coupon.update(cart_id: nil)
+    if current_cart.coupon.update(cart_id: nil)
       flash[:notice] = I18n.t('coupon.removed')
     else
       flash[:alert] = 'Unable to remove coupon'
     end
-    redirect_to cart_path(@current_cart)
+    redirect_to cart_path(current_cart)
   end
 
   private
