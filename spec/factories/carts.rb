@@ -9,7 +9,7 @@
 #  updated_at :datetime         not null
 #
 
-# FactoryBot.define do
-#   factory :cart do
-#   end
-# end
+FactoryBot.define do
+  factory :cart do
+  end
+end

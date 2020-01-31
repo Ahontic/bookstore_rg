@@ -23,13 +23,11 @@ Rails.application.routes.draw do
   resources :books, only: [] do
     resources :reviews
   end
-
   resources :orders, only: %i[index show new]
-  post 'line_items/:id/add' => 'line_items#add_quantity', as: 'line_item_add'
-  post 'line_items/:id/reduce' => 'line_items#reduce_quantity', as: 'line_item_reduce'
-  post 'line_items' => 'line_items#create'
-  get 'line_items/:id' => 'line_items#show', as: 'line_item'
-  delete 'line_items/:id' => 'line_items#destroy'
+  resources :line_items, only: %i[create show destroy] do
+    post 'add', to: 'line_items#add_quantity', as: 'add', on: :member
+    post 'reduce', to: 'line_items#reduce_quantity', as: 'reduce', on: :member
+  end
 
   match '*unmatched', to: 'application#not_found', constraints: lambda { |req|
     req.path.exclude? 'rails/active_storage'

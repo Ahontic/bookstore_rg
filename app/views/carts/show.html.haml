@@ -23,10 +23,10 @@
               %span.in-grey-600 Quantity
             %td
               .input-group
-                = link_to line_item_reduce_path(id: line_item), method: :post do
+                = link_to reduce_line_item_path(id: line_item), method: :post do
                   %i.fa.fa-minus.line-heaght-40
                 %input.quantity-input{ value: "#{line_item.quantity}", type: "text"}
-                = link_to line_item_add_path(id: line_item), method: :post do
+                = link_to add_line_item_path(id: line_item), method: :post do
                   %i.fa.fa-plus.line-heaght-40
           %tr
             %td
@@ -60,10 +60,10 @@
             %span.font-16.in-gold-500= number_to_currency(line_item.book.price, unit: '€')
           %td
             .input-group
-              = link_to line_item_reduce_path(id: line_item), method: :post do
-                %i.fa.fa-minus.line-heaght-40
+              = link_to reduce_line_item_path(id: line_item), method: :post do
+                %i.fa.fa-minus.line-heaght-40#reduce_qty
               %input.quantity-input{value: "#{line_item.quantity}", type: "text"}
-              = link_to line_item_add_path(id: line_item), method: :post do
+              = link_to add_line_item_path(id: line_item), method: :post do
                 %i.fa.fa-plus.line-heaght-40#add_qty
           %td
             %span.font-16.in-gold-500= number_to_currency(line_item.total_price, unit: '€')
