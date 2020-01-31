@@ -15,10 +15,13 @@
 #
 
 RSpec.describe Category do
-  let!(:category) { create(:category) }
-
   describe 'validations' do
-    it { is_expected.to validate_uniqueness_of(:title) }
+    describe 'uniqueness' do
+      before { create(:category) }
+
+      it { is_expected.to validate_uniqueness_of(:title) }
+    end
+
     it { is_expected.to validate_presence_of(:title) }
   end
 

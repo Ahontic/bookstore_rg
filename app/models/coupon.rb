@@ -23,5 +23,6 @@
 
 class Coupon < ApplicationRecord
   validates :description, :code, uniqueness: true, presence: true
-  belongs_to :cart
+  validates :discount_percent, presence: true
+  belongs_to :cart, optional: true
 end

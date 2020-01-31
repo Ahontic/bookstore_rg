@@ -26,6 +26,9 @@ FactoryBot.define do
     code { FFaker::CheesyLingo.unique.word.upcase }
     description { FFaker::Book.description }
     discount_percent { rand(3..15) }
-    cart
+
+    trait :with_cart do
+      cart
+    end
   end
 end

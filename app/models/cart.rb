@@ -19,10 +19,10 @@ class Cart < ApplicationRecord
   end
 
   def discount
-    coupon.nil? ? 0.00 : sub_total * coupon.discount_percent / 100
+    coupon ? sub_total * coupon.discount_percent / 100 : 0.00
   end
 
   def order_total
-    coupon.nil? ? sub_total : sub_total - discount
+    coupon ? sub_total - discount : sub_total
   end
 end

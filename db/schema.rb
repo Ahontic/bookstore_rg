@@ -157,7 +157,7 @@ ActiveRecord::Schema.define(version: 20_200_121_143_743) do
   end
 
   create_table 'line_items', force: :cascade do |t|
-    t.integer 'quantity', default: 1
+    t.integer 'quantity', default: 0
     t.bigint 'book_id'
     t.bigint 'cart_id'
     t.datetime 'created_at', precision: 6, null: false
@@ -170,6 +170,15 @@ ActiveRecord::Schema.define(version: 20_200_121_143_743) do
     t.string 'name', null: false
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
+  end
+
+  create_table 'orders', force: :cascade do |t|
+    t.string 'number'
+    t.integer 'status'
+    t.bigint 'customer_id'
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.index ['customer_id'], name: 'index_orders_on_customer_id'
   end
 
   create_table 'reviews', force: :cascade do |t|
@@ -191,6 +200,7 @@ ActiveRecord::Schema.define(version: 20_200_121_143_743) do
   add_foreign_key 'coupons', 'carts'
   add_foreign_key 'line_items', 'books'
   add_foreign_key 'line_items', 'carts'
+  add_foreign_key 'orders', 'customers'
   add_foreign_key 'reviews', 'books'
   add_foreign_key 'reviews', 'customers'
 end
