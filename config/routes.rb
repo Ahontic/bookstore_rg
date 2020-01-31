@@ -15,8 +15,8 @@ Rails.application.routes.draw do
     resources :books, only: %i[index show]
   end
 
-  resources :checkouts
-  resources :coupons
+  resources :checkouts, only: %i[show]
+  resources :coupons, only: %i[create destroy]
   resources :carts, only: %i[destroy show update] do
     resources :coupons
   end
