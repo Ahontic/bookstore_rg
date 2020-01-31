@@ -1,0 +1,8 @@
+- if @current_cart.coupon
+  = link_to 'Remove Coupon', coupon_path(@current_cart.coupon), class: 'btn btn-primary mr-5 mb-15', id: 'coupon-code-btn', method: :delete
+- else
+  = simple_form_for(:coupon, url: coupons_path, method: :post) do |f|
+    .input-group.general-input-group
+      = f.input :code, required: false, placeholder: 'Enter Your Coupon Code', input_html: { class: 'mb-30' }, label_html: { class: 'input-label' }, label: 'Enter Your Coupon Code'
+      %div
+        = f.button :submit, class: 'btn-primary mr-5 mb-15', value: 'Apply Coupon', id: 'coupon-code-btn'

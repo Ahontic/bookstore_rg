@@ -53,6 +53,8 @@ class Book < ApplicationRecord
   belongs_to :category
   belongs_to :material
 
+  has_many :line_items, dependent: :destroy
+
   validates :title, presence: true
   validates :price, presence: true
   validates :quantity, presence: true

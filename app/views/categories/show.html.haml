@@ -4,9 +4,13 @@
   .hidden-xs.clearfix
     .dropdowns.pull-right
       .dropdown.width-240
-        = form_tag({url: category_path}, method: :get) do
-          = select_tag :status, options_for_select(Book::AVAILABLE_FILTERS)
-          = submit_tag 'Filter'
+        %a.dropdown-toggle.lead.small{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false", id: 'filters-md'}
+          = I18n.t('book_sort.newest_first')
+          %i.fa.fa-angle-down.dropdown-icon.pull-right
+        %ul.dropdown-menu
+          - Book::AVAILABLE_FILTERS.each_value do |filter|
+            %li
+              = link_to I18n.t("book_sort.#{filter.to_s}"), categories_path(status: filter)
     %ul.list-inline.pt-10.mb-25.mr-240
       %li.mr-35
         %a.filter-link{href: categories_path}
@@ -19,6 +23,16 @@
             = category.title
             %span.badge.general-badge
               = category.books.count
+  .dropdowns.mb-25.visible-xs
+    %p.lead.small.mb-10 Filter by category
+    .dropdown
+      %a.dropdown-toggle.lead.small{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
+        Newest first
+        %i.fa.fa-angle-down.dropdown-icon.pull-right
+      %ul.dropdown-menu
+        - Book::AVAILABLE_FILTERS.each_value do |filter|
+          %li
+            = link_to I18n.t("book_sort.#{filter.to_s}"), categories_path(status: filter)
   .mb-120
     .row
       -@books.each do |book|

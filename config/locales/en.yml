@@ -42,3 +42,8 @@ en:
 
   address:
     address_created: 'Your address has been added.'
+    address_modified: 'Your address has been modified.'
+  coupon:
+    successfully_applied: 'You successfully applied coupon!'
+    invalid: 'Sorry, invalid coupon code! Use valid code.'
+    removed: 'You successfully removed coupon!'

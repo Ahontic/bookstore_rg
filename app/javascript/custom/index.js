@@ -21,11 +21,11 @@ $(document).on("turbolinks:load",function() {
     bookCost.text(unit + newValue * bookPrice.val())
   });
 
-
+  const ratyAssetsPath = process.env.NODE_ENV == 'development' ? '/assets/' : ''
   $('.review-rating').raty({
       readOnly: true,
       score: function() {
-        return $(this).attr('data-score');
+          return $(this).attr('data-score');
       },
       path: '/assets/'
   });
@@ -36,11 +36,11 @@ $(document).on("turbolinks:load",function() {
   });
 });
 
+
 $(document).ready(function() {
   $('#delete-account-checkbox').change(function() {
     $('.delete-link button').toggleClass('btn-disabled')
     $('.delete-link button').attr('disabled', !this.checked)
-
   });
 });
 
@@ -52,3 +52,6 @@ $(function() {
 $(function() {
   $('[data-toggle="popover"]').popover();
 });
+
+
+
