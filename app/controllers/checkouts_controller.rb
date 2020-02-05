@@ -37,7 +37,11 @@ class CheckoutsController < ApplicationController
     end
   end
 
-  def delivery; end
+  def delivery
+    return jump_to(previous_step) unless current_customer.addresses.presence
+
+    render_wizard
+  end
 
   def payment; end
 

@@ -14,6 +14,8 @@ class Cart < ApplicationRecord
   has_many :books, through: :line_items
   has_one :coupon
 
+  belongs_to :delivery, optional: true
+
   def sub_total
     line_items.sum(&:total_price)
   end
