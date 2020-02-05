@@ -36,7 +36,7 @@
               = f.input :phone, placeholder: "Example +355 66 123 4567"
             .text-center.general-text-align
               = f.submit "Save", class: 'btn btn-default.mb-10'
-        .col-md-5.col-md-offset-1
+        .col-md-5.col-md-offset-1#hidden_fields
           %h3.general-subtitle Shipping Address
           = simple_form_for((@address if @address&.shipping?) || current_customer.addresses.find_or_initialize_by(address_type: 'shipping'), defaults: { input_html: { action: edit_address_path, class: 'form-control' }, required: false }) do |f|
             .form-group
@@ -61,7 +61,7 @@
               = f.submit "Save", class: 'btn btn-default.mb-10'
       .form-group.checkbox
         %label.checkbox-label
-          %input.checkbox-input{type: "checkbox", hidden: "true"}
+          %input.checkbox-input{type: "checkbox", id: 'hide_address', hidden: "true"}
           %span.checkbox-icon
             %i.fa.fa-check
           %span.checkbox-text Use Billing Adress

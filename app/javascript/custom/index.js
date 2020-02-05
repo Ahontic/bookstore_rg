@@ -53,5 +53,17 @@ $(function() {
   $('[data-toggle="popover"]').popover();
 });
 
+$(function() {
 
+    var checkbox = $("#hide_address");
+    var hidden = $("#hidden_fields");
+    hidden.show();
+    checkbox.change(function() {
+      if (checkbox.is(':checked')) {
+        hidden.hide();
+      } else {
+        hidden.show();
+      }
+    });
+  });
 
