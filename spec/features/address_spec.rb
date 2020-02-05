@@ -5,7 +5,7 @@ feature 'Address page' do
   let(:invalid_params) { FactoryBot.attributes_for(:address, first_name: 'Qaz123') }
   let(:invalid_name_error_message) { /First name is invalid/ }
 
-  feature 'forbids customer to create address with' do
+  feature 'forbids customer to create address with', js: true do
     scenario 'invalid_params' do
       sign_in(customer)
       visit edit_customer_registration_path

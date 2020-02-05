@@ -1,0 +1,93 @@
+%main.container
+  %h1.general-title-margin Checkout
+  %ul.steps.list-inline
+    %li.step.active
+      %span.step-number 1
+      %span.step-text.hidden-xs Address
+    %li.step-divider
+    %li.step
+      %span.step-number 2
+      %span.step-text.hidden-xs Delivery
+    %li.step-divider
+    %li.step
+      %span.step-number 3
+      %span.step-text.hidden-xs Payment
+    %li.step-divider
+    %li.step
+      %span.step-number 4
+      %span.step-text.hidden-xs Confirm
+    %li.step-divider
+    %li.step
+      %span.step-number 5
+      %span.step-text.hidden-xs Complete
+    .hidden-xs.hidden-sm
+      .row
+        .col-md-5
+          %h3.general-subtitle Billing Address
+          = simple_form_for((@address if @address&.billing?) || current_customer.addresses.find_or_initialize_by(address_type: Address.address_types.keys.first), defaults: { input_html: { class: 'form-control' }, required: false }) do |f|
+            .form-group
+              = f.input :address_type, as: :hidden, autocomplete: "off", id: 'address_type', class: 'hidden', placeholder: "Address type"
+            .form-group
+              = f.input :first_name, autocomplete: "off", placeholder: "First name"
+            .form-group
+              = f.input :last_name, autocomplete: "off", placeholder: "Last name"
+            .form-group
+              = f.input :address, autocomplete: "off", placeholder: "Address"
+            .form-group
+              = f.input :city, autocomplete: "off", placeholder: "City"
+            .form-group
+              = f.input :zipcode, autocomplete: "off", placeholder: "Zipcode"
+            .form-group
+              = f.label :country, required: false
+              %br/
+              = f.country_select(:country, { priority_countries: ["UA", "US"], priority_countries_divider: "~~~~~~"}, {autocomplete: "off", id: 'сountry', class: 'form-control' })
+            .form-group
+              = f.input :phone, placeholder: "Example +355 66 123 4567"
+            .text-center.general-text-align
+              = f.submit "Save", class: 'btn btn-default.mb-10'
+        .col-md-5.col-md-offset-1
+          %h3.general-subtitle Shipping Address
+          = simple_form_for((@address if @address&.shipping?) || current_customer.addresses.find_or_initialize_by(address_type: 'shipping'), defaults: { input_html: { action: edit_address_path, class: 'form-control' }, required: false }) do |f|
+            .form-group
+              = f.input :address_type, as: :hidden, autocomplete: "off", id: 'address_type', class: 'hidden', placeholder: "Address type"
+            .form-group
+              = f.input :first_name, autocomplete: "off", placeholder: "First name"
+            .form-group
+              = f.input :last_name, autocomplete: "off", placeholder: "Last name"
+            .form-group
+              = f.input :address, autocomplete: "off", placeholder: "Address"
+            .form-group
+              = f.input :city, autocomplete: "off", placeholder: "City"
+            .form-group
+              = f.input :zipcode, autocomplete: "off", placeholder: "Zipcode"
+            .form-group
+              = f.label :country, required: false
+              %br/
+              = f.country_select(:country, { priority_countries: ["UA", "US"], priority_countries_divider: "~~~~~~"}, {autocomplete: "off", id: 'сountry', class: 'form-control' })
+            .form-group
+              = f.input :phone, placeholder: "Example +355 66 123 4567"
+            .text-center.general-text-align
+              = f.submit "Save", class: 'btn btn-default.mb-10'
+      .form-group.checkbox
+        %label.checkbox-label
+          %input.checkbox-input{type: "checkbox", hidden: "true"}
+          %span.checkbox-icon
+            %i.fa.fa-check
+          %span.checkbox-text Use Billing Adress
+    .general-text-align.mb-60
+      %p.in-gold-500.font-18 Order Summary
+      %table.general-summary-table
+      - current_cart.line_items.each do |line_item|
+        %tr
+          %td
+            %p.font-16 Item Total:
+          %td
+            %p.font-16
+              = number_to_currency(line_item.total_price, unit: '€')
+        %tr
+          %td
+            %p.font-16 Order Total:
+          %td
+            %p.font-16
+              = number_to_currency(current_cart.order_total, unit: '€')
+      %button.btn.disabled.center-block.mb-20 Save and Continue
