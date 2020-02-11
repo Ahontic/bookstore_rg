@@ -3,45 +3,29 @@
 class CheckoutsController < ApplicationController
   include Wicked::Wizard
 
+  before_action :test_case_name, only: :show
+
   steps :login, :address, :delivery, :payment, :confirm, :complete
 
-  # rubocop:disable Metrics/CyclomaticComplexity
   def show
-    case step
-    when :login then login
-    when :address then address
-    when :delivery then delivery
-    when :payment then payment
-    when :confirm then confirm
-    when :complete then complete
-    end
-  end
-  # rubocop:enable Metrics/CyclomaticComplexity
-
-  private
-
-  def login
-    if step.eql?(:login) && customer_signed_in?
-      redirect_to wizard_path(next_step)
-    else
-      render_wizard
-    end
-    cookies[:from_checkout] = { value: true, expires: 1.day.from_now }
+    @service = CheckoutRendererService.new(current_cart, current_customer, step, cookies, params)
+    @service.call
+    render_wizard
   end
 
-  def address
-    if customer_signed_in?
-      render_wizard
-    else
-      redirect_to wizard_path(previous_step)
-    end
+  def update
+    @service = CheckoutRendererService.new(current_cart, current_customer, step, cookies, cart_params)
+    redirect_to next_wizard_path if @service.update(step, cart_params)
+    render_wizard
   end
 
-  def delivery; end
+  def test_case_name
+    redirect_to wizard_path(next_step) if customer_signed_in? && step == :login
+  end
 
-  def payment; end
-
-  def confirm; end
-
-  def complete; end
+  def cart_params
+    type = params[:cart][:billing].except('country').values.reject!(&:empty?) ? :shipping : :billing
+    params[:cart].require(type).permit(:first_name, :last_name, :address, :city, :zipcode, :country, :phone,
+                                       :address_type)
+  end
 end
