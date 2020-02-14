@@ -28,7 +28,7 @@ class Address < ApplicationRecord
 
   validates :first_name, :last_name, :address, :city, :country, :phone, :zipcode, :address_type, presence: true
   validates :first_name, :last_name, :city, :country, format: { with: /\A[a-zA-Z ]*\z/ }, length: { maximum: 50 }
-  validates :address, format: { with: /\A[a-zA-Z0-9 \-\,]*\z/ }, length: { maximum: 50 }
+  validates :address, format: { with: /\A[a-zA-Z0-9 \-\,\']*\z/ }, length: { maximum: 50 }
   validates :zipcode, format: { with: /\A[0-9 \-]*\z/ }, length: { maximum: 10 }
   validates :phone, format: { with: /\A\+[0-9 \-]*\z/ }, length: { maximum: 15 }
 

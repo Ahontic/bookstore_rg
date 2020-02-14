@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-class CheckoutRendererService < ApplicationController
-  attr_reader :cart, :customer, :step, :cookies
+class CheckoutService < ApplicationService
+  attr_reader :cart, :customer, :step, :cookies, :use_billing
 
-  def initialize(current_cart, current_customer, step, cookies, cart_params)
-    @cart_params = cart_params
+  def initialize(current_cart, current_customer, step, cookies, params)
+    @params = params
     @current_cart = current_cart
     @cookies = cookies
     @step = step
@@ -15,18 +15,10 @@ class CheckoutRendererService < ApplicationController
     send(step)
   end
 
-  def update(step, cart_params)
+  def save
     case step
-    when :address then update_addresses(cart_params)
+    when :address then update_addresses
     end
-  end
-
-  def login
-    cookies[:from_checkout] = { value: true, expires: 1.day.from_now }
-  end
-
-  def address
-    billing && shipping
   end
 
   def billing
@@ -45,9 +37,29 @@ class CheckoutRendererService < ApplicationController
     end
   end
 
-  def update_addresses(cart_params)
-    type = %w[0 billing].include?(cart_params[:address_type]) ? billing : shipping
-    type.update(cart_params.except('address_type'))
+  def cart_params
+    @params.require(:cart).permit(:use_billing,
+                                  billing: %i[first_name last_name address city zipcode country phone],
+                                  shipping: %i[first_name last_name address city zipcode country phone])
+  end
+
+  def address_params_type(type)
+    type = cart_params[:use_billing] == '1' ? :billing : type
+    cart_params.require(type)
+  end
+
+  private
+
+  def login
+    cookies[:from_checkout] = { value: true, expires: 1.day.from_now }
+  end
+
+  def update_addresses
+    billing.update(address_params_type(:billing)) & shipping.update(address_params_type(:shipping))
+  end
+
+  def address
+    billing && shipping
   end
 
   def delivery; end

@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_200_121_143_743) do
+ActiveRecord::Schema.define(version: 20_200_212_123_358) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
@@ -113,6 +113,7 @@ ActiveRecord::Schema.define(version: 20_200_121_143_743) do
   create_table 'carts', force: :cascade do |t|
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
+    t.boolean 'use_billing', default: false
   end
 
   create_table 'categories', force: :cascade do |t|
@@ -130,6 +131,15 @@ ActiveRecord::Schema.define(version: 20_200_121_143_743) do
     t.datetime 'updated_at', precision: 6, null: false
     t.bigint 'cart_id'
     t.index ['cart_id'], name: 'index_coupons_on_cart_id'
+  end
+
+  create_table 'credit_cards', force: :cascade do |t|
+    t.string 'number'
+    t.string 'name_on_card'
+    t.string 'month_year'
+    t.string 'cvv'
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
   end
 
   create_table 'customers', force: :cascade do |t|
@@ -156,6 +166,14 @@ ActiveRecord::Schema.define(version: 20_200_121_143_743) do
     t.index ['reset_password_token'], name: 'index_customers_on_reset_password_token', unique: true
   end
 
+  create_table 'deliveries', force: :cascade do |t|
+    t.string 'name'
+    t.string 'time'
+    t.decimal 'price'
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+  end
+
   create_table 'line_items', force: :cascade do |t|
     t.integer 'quantity', default: 0
     t.bigint 'book_id'
@@ -170,15 +188,6 @@ ActiveRecord::Schema.define(version: 20_200_121_143_743) do
     t.string 'name', null: false
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
-  end
-
-  create_table 'orders', force: :cascade do |t|
-    t.string 'number'
-    t.integer 'status'
-    t.bigint 'customer_id'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.index ['customer_id'], name: 'index_orders_on_customer_id'
   end
 
   create_table 'reviews', force: :cascade do |t|
@@ -200,7 +209,6 @@ ActiveRecord::Schema.define(version: 20_200_121_143_743) do
   add_foreign_key 'coupons', 'carts'
   add_foreign_key 'line_items', 'books'
   add_foreign_key 'line_items', 'carts'
-  add_foreign_key 'orders', 'customers'
   add_foreign_key 'reviews', 'books'
   add_foreign_key 'reviews', 'customers'
 end
