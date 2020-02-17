@@ -1,25 +1,16 @@
 %main.container.general-main-wrap
   %h1.general-title-margin Checkout
   %ul.steps.list-inline
-    %li.step.active
-      %span.step-number 1
-      %span.step-text.hidden-xs Address
-    %li.step-divider
-    %li.step
-      %span.step-number 2
-      %span.step-text.hidden-xs Delivery
-    %li.step-divider
-    %li.step
-      %span.step-number 3
-      %span.step-text.hidden-xs Payment
-    %li.step-divider
-    %li.step
-      %span.step-number 4
-      %span.step-text.hidden-xs Confirm
-    %li.step-divider
-    %li.step
-      %span.step-number 5
-      %span.step-text.hidden-xs Complete
+    - wizard_steps[1,5].each_with_index do |step, index|
+      %li.step{ class: step_state(step)}
+        = link_to wizard_path(step), class: 'step-link' do
+          %span.step-number
+            = index + 1 unless step_done?(step)
+          - if step_done?(step)
+            %i.fas.fa-camera-retro
+          %span.step-text.hidden-xs= step.capitalize
+      - unless step == :complete
+        %li.step-divider
   .row.mb-20
     .col-sm-3
       %h3.general-subtitle Shipping Address
