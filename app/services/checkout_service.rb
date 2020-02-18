@@ -37,6 +37,8 @@ class CheckoutService < ApplicationService
     end
   end
 
+  private
+
   def cart_params
     @params.require(:cart).permit(:use_billing,
                                   billing: %i[first_name last_name address city zipcode country phone],
@@ -47,8 +49,6 @@ class CheckoutService < ApplicationService
     type = cart_params[:use_billing] == '1' ? :billing : type
     cart_params.require(type)
   end
-
-  private
 
   def login
     cookies[:from_checkout] = { value: true, expires: 1.day.from_now }

@@ -14,7 +14,8 @@ feature 'Checkout page' do
       click_button 'Checkout'
       fill_in_address_form
       click_button 'Save and Continue'
-      expect(page).to have_content('Credit Card')
+
+      expect(page).to have_current_path(checkout_path(:delivery))
     end
   end
 end

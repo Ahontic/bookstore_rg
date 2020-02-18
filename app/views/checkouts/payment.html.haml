@@ -6,8 +6,8 @@
         = link_to wizard_path(step), class: 'step-link' do
           %span.step-number
             = index + 1 unless step_done?(step)
-          - if step_done?(step)
-            %i.fas.fa-camera-retro
+            - if step_done?(step)
+              %i.fa.fa-check
           %span.step-text.hidden-xs= step.capitalize
       - unless step == :complete
         %li.step-divider

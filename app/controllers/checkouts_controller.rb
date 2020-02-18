@@ -3,7 +3,7 @@
 class CheckoutsController < ApplicationController
   include Wicked::Wizard
 
-  before_action :test_case_name, only: :show
+  before_action :login_step_authentication_check, only: :show
 
   steps :login, :address, :delivery, :payment, :confirm, :complete
 
@@ -18,7 +18,9 @@ class CheckoutsController < ApplicationController
     render_wizard @service
   end
 
-  def test_case_name
+  private
+
+  def login_step_authentication_check
     redirect_to wizard_path(next_step) if customer_signed_in? && step == :login
   end
 end
