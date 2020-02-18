@@ -1,22 +1,26 @@
 # frozen_string_literal: true
 
 RSpec.describe CheckoutService do
-  subject { CheckoutService.new(current_cart, current_customer, step, cookies, params) }
+  subject { described_class.new(current_cart, current_customer, step, cookies, params) }
   let(:cookies) {}
-  let(:params) { FactoryBot.attributes_for(:address) }
+  let(:params) do
+    ActionController::Parameters.new('cart': { 'billing': FactoryBot.attributes_for(:address),
+                                               'shipping': FactoryBot.attributes_for(:address) })
+  end
   let(:current_customer) { create(:customer) }
-  let(:current_cart) { create(:cart) }
+  let(:current_cart) { create(:cart, customer: current_customer) }
 
-  describe 'service' do
-    context 'allows customer to' do
+  describe '#save' do
+    before do
+      subject.save
+    end
+
+    context 'when step is address' do
       let(:step) { :address }
-      it 'update cart addresses' do
-        @service = CheckoutService.new(current_cart, current_customer, step, cookies, params)
-        @service.billing.update(params.merge(address_type: 'billing'))
-        @service.shipping.update(params.merge(address_type: 'shipping'))
 
-        expect(@service.billing.valid?).to eq(true)
-        expect(@service.shipping.valid?).to eq(true)
+      example 'update cart with addresses' do
+        expect(current_cart.addresses.billing).to be_exists
+        expect(current_cart.addresses.shipping).to be_exists
       end
     end
   end

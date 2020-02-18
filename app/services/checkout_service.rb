@@ -5,10 +5,10 @@ class CheckoutService < ApplicationService
 
   def initialize(current_cart, current_customer, step, cookies, params)
     @params = params
-    @current_cart = current_cart
+    @cart = current_cart
     @cookies = cookies
     @step = step
-    @current_customer = current_customer
+    @customer = current_customer
   end
 
   def call
@@ -23,17 +23,17 @@ class CheckoutService < ApplicationService
 
   def billing
     @billing ||= begin
-        attributes = @current_customer.addresses.billing.first&.attributes || {}
-        @current_cart.addresses.billing.first_or_initialize(attributes.except('id', 'addressable_type',
-                                                                              'addressable_id'))
+        attributes = @customer.addresses.billing.first&.attributes || {}
+        @cart.addresses.billing.first_or_initialize(attributes.except('id', 'addressable_type',
+                                                                      'addressable_id'))
       end
   end
 
   def shipping
     @shipping ||= begin
-      attributes = @current_customer.addresses.shipping.first&.attributes || {}
-      @current_cart.addresses.shipping.first_or_initialize(attributes.except('id', 'addressable_type',
-                                                                             'addressable_id'))
+      attributes = @customer.addresses.shipping.first&.attributes || {}
+      @cart.addresses.shipping.first_or_initialize(attributes.except('id', 'addressable_type',
+                                                                     'addressable_id'))
     end
   end
 
