@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 feature 'Book page' do
+  include SessionHelper
   let!(:customer) { create(:customer, :confirmed) }
   let!(:book) { create(:book, :with_author) }
 

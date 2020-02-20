@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 feature 'Checkout page' do
+  include SessionHelper
+  include CheckoutHelper
   let!(:book) { create(:book) }
   let!(:customer) { create(:customer, :confirmed) }
   let(:valid_params) { FactoryBot.attributes_for(:address) }

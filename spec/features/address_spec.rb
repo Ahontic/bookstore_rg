@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 feature 'Address page' do
+  include SessionHelper
+  include CheckoutHelper
   let!(:customer) { create(:customer, :confirmed) }
   let(:invalid_params) { FactoryBot.attributes_for(:address, first_name: 'Qaz123') }
   let(:invalid_name_error_message) { /First name is invalid/ }

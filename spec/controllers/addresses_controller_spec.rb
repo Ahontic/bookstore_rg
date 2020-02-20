@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe AddressesController do
+  include CheckoutHelper
   let!(:customer) { create(:customer, :confirmed) }
   let(:address) { FactoryBot.attributes_for(:address) }
   before { sign_in(customer) }
