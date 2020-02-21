@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 feature 'Account' do
-  include SessionHelper
   let(:customer) { create(:customer, password: '7qLyxOACqQ', confirmed_at: '2019-12-18 10:37:37.104758') }
   let(:lower_case_error_message) { /Password must contain at least one lower-case letter/ }
   let(:upper_case_error_message) { /Password must contain at least one upper-case letter/ }
