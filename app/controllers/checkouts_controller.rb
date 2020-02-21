@@ -21,6 +21,10 @@ class CheckoutsController < ApplicationController
   private
 
   def login_step_authentication_check
-    redirect_to wizard_path(next_step) if customer_signed_in? && step == :login
+    redirect_to wizard_path(next_step) if signed_at_login_step?
+  end
+
+  def signed_at_login_step?
+    customer_signed_in? && step == :login
   end
 end

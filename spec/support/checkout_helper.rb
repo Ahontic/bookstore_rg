@@ -12,8 +12,8 @@ module CheckoutHelper
   def fill_in_address_form
     %w[first_name last_name address city phone].each do |field|
       fill_in "cart_billing_#{field}", with: valid_params[field.to_sym]
-      fill_in 'cart_billing_zipcode', with: 12_345
-      fill_in 'cart_shipping_zipcode', with: 12_345
+      fill_in 'cart_billing_zipcode', with: FFaker::AddressUA.zip_code
+      fill_in 'cart_shipping_zipcode', with: FFaker::AddressUA.zip_code
       fill_in "cart_shipping_#{field}", with: valid_params[field.to_sym]
     end
   end
