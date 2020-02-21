@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_05_164020) do
+ActiveRecord::Schema.define(version: 2020_02_18_105129) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -112,6 +112,9 @@ ActiveRecord::Schema.define(version: 2020_02_05_164020) do
   create_table "carts", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "use_billing", default: false
+    t.bigint "customer_id"
+    t.index ["customer_id"], name: "index_carts_on_customer_id"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -131,15 +134,6 @@ ActiveRecord::Schema.define(version: 2020_02_05_164020) do
     t.index ["cart_id"], name: "index_coupons_on_cart_id"
   end
 
-  create_table "credit_cards", force: :cascade do |t|
-    t.string "number"
-    t.string "name_on_card"
-    t.string "month_year"
-    t.string "cvv"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "customers", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -153,23 +147,15 @@ ActiveRecord::Schema.define(version: 2020_02_05_164020) do
     t.string "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
-    t.string "avatar"
     t.integer "sign_in_count", default: 0, null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
+    t.string "avatar"
     t.index ["confirmation_token"], name: "index_customers_on_confirmation_token", unique: true
     t.index ["email"], name: "index_customers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_customers_on_reset_password_token", unique: true
-  end
-
-  create_table "deliveries", force: :cascade do |t|
-    t.string "name"
-    t.string "time"
-    t.decimal "price"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "line_items", force: :cascade do |t|
@@ -188,15 +174,6 @@ ActiveRecord::Schema.define(version: 2020_02_05_164020) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "orders", force: :cascade do |t|
-    t.string "number"
-    t.integer "status"
-    t.bigint "customer_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["customer_id"], name: "index_orders_on_customer_id"
-  end
-
   create_table "reviews", force: :cascade do |t|
     t.string "title", null: false
     t.string "body", null: false
@@ -213,10 +190,10 @@ ActiveRecord::Schema.define(version: 2020_02_05_164020) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "books", "categories"
   add_foreign_key "books", "materials"
+  add_foreign_key "carts", "customers"
   add_foreign_key "coupons", "carts"
   add_foreign_key "line_items", "books"
   add_foreign_key "line_items", "carts"
-  add_foreign_key "orders", "customers"
   add_foreign_key "reviews", "books"
   add_foreign_key "reviews", "customers"
 end
