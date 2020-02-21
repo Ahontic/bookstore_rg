@@ -159,14 +159,6 @@ ActiveRecord::Schema.define(version: 20_200_218_105_129) do
     t.index ['reset_password_token'], name: 'index_customers_on_reset_password_token', unique: true
   end
 
-  create_table 'deliveries', force: :cascade do |t|
-    t.string 'name'
-    t.string 'time'
-    t.decimal 'price'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-  end
-
   create_table 'line_items', force: :cascade do |t|
     t.integer 'quantity', default: 0
     t.bigint 'book_id'
