@@ -26,6 +26,7 @@ gem 'sidekiq'
 gem 'simple_form'
 gem 'turbolinks', '~> 5'
 gem 'webpacker', '~> 4.0'
+gem 'wicked'
 
 gem 'bootsnap', '>= 1.4.2', require: false
 

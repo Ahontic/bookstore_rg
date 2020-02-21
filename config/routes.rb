@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   devise_for :customers, controllers: { omniauth_callbacks: 'customers/omniauth_callbacks',
-                                        registrations: 'customers/registrations' }
+                                        registrations: 'customers/registrations',
+                                        confirmations: 'customers/confirmations' }
 
   root to: 'pages#home'
 
@@ -15,7 +16,7 @@ Rails.application.routes.draw do
     resources :books, only: %i[index show]
   end
 
-  resources :checkouts, only: %i[show]
+  resources :checkouts, only: %i[show update]
   resources :coupons, only: %i[create destroy]
   resources :carts, only: %i[destroy show update] do
     resources :coupons
@@ -23,6 +24,7 @@ Rails.application.routes.draw do
   resources :books, only: [] do
     resources :reviews
   end
+
   resources :orders, only: %i[index show new]
   resources :line_items, only: %i[create show destroy] do
     post 'add', to: 'line_items#add_quantity', as: 'add', on: :member

@@ -22,14 +22,13 @@
 #  fk_rails_...  (cart_id => carts.id)
 #
 
-class LineItem < ApplicationRecord
-  belongs_to :book
-  belongs_to :cart
-
-  validates :quantity, presence: true, numericality: { only_integer: true,
-                                                       greater_than: 0 }
-
-  def total_price
-    quantity * book.price
+RSpec.describe LineItem do
+  describe 'validations' do
+    it { is_expected.to validate_presence_of :quantity }
+    it { is_expected.to validate_numericality_of(:quantity).only_integer.is_greater_than(0) }
+  end
+  describe 'associations' do
+    it { is_expected.to belong_to(:book) }
+    it { is_expected.to belong_to(:cart) }
   end
 end

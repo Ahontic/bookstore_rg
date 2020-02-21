@@ -18,7 +18,7 @@ class AddressesController < ApplicationController
   def update
     @address = current_customer.addresses.find(params[:id])
     if @address.update(address_params)
-      flash[:notice] = I18n.t('address_modified')
+      flash[:notice] = I18n.t('address.address_modified')
       redirect_to edit_customer_registration_path
     else
       render 'devise/registrations/edit'

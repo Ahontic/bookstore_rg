@@ -35,6 +35,7 @@ require 'open-uri'
 class Customer < ApplicationRecord
   has_many :addresses, as: :addressable
   has_many :reviews, dependent: :destroy
+  has_many :carts, dependent: :destroy
 
   validates :email, presence: true
   validates :email, confirmation: true
