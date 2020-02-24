@@ -1,0 +1,9 @@
+pre-commit:
+  parallel: true
+  commands:
+    brakeman:
+      run: bundle exec brakeman --no-pager
+    rubocop:
+      run: bundle exec rubocop -c .rubocop.yml
+    bundle_audit:
+      run: bundle exec bundle audit --update

@@ -47,3 +47,19 @@ en:
     successfully_applied: 'You successfully applied coupon!'
     invalid: 'Sorry, invalid coupon code! Use valid code.'
     removed: 'You successfully removed coupon!'
+  checkout:
+    address:
+        billing_address: 'Billing Address'
+        shipping_address: 'Shipping Address'
+        fields_required: 'all fields are required'
+        use_billing_address: 'Use Billing Adress'
+
+    delivery:
+        method: 'Method'
+        days: 'Days'
+        price: 'Price'
+
+    complete:
+        thank_you: 'Thank You for your Order!'
+        order_confirmation: 'An order confirmation has been has been sent to %{email}'
+

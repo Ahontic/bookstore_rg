@@ -22,7 +22,6 @@
 #  fk_rails_...  (cart_id => carts.id)
 #
 
-
 RSpec.describe LineItem do
   describe 'validations' do
     it { is_expected.to validate_presence_of :quantity }

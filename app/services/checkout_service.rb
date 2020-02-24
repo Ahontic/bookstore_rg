@@ -16,7 +16,6 @@ class CheckoutService < ApplicationService
   end
 
   def save
-    binding.pry
     case step
     when :address then update_addresses
     when :delivery then update_delivery
@@ -58,7 +57,6 @@ class CheckoutService < ApplicationService
   end
 
   def update_delivery
-    binding.pry
     @cart.update(delivery_id: @params[:cart][:delivery_id])
   end
 
@@ -77,7 +75,6 @@ class CheckoutService < ApplicationService
   end
 
   def payment
-    binding.pry
     @cart.credit_card || CreditCard.new
   end
 

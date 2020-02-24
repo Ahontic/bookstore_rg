@@ -5,16 +5,15 @@
 # Table name: deliveries
 #
 #  id         :bigint           not null, primary key
-#  name       :string
-#  price      :decimal(, )
-#  time       :string
+#  name       :string           not null
+#  price      :decimal(, )      not null
+#  time       :string           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 
-
 class Delivery < ApplicationRecord
-  has_many :orders, dependent: :destroy
+  has_many :carts
   validates :name, :time, :price, presence: true
 
   validates :name, uniqueness: true
