@@ -38,6 +38,7 @@ RSpec.describe Customer do
   end
 
   describe 'associations' do
+    it { is_expected.to have_many(:addresses) }
     it { is_expected.to have_many(:reviews) }
   end
 end

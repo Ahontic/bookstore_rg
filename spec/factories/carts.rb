@@ -29,5 +29,7 @@
 
 FactoryBot.define do
   factory :cart do
+    use_billing { true }
+    customer
   end
 end

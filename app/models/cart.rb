@@ -32,6 +32,7 @@ class Cart < ApplicationRecord
   has_many :books, through: :line_items
   has_many :addresses, as: :addressable, dependent: :destroy
   has_one :coupon
+  belongs_to :customer, optional: true
 
   belongs_to :customer, optional: true
   belongs_to :delivery, optional: true

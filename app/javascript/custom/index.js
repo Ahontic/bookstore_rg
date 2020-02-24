@@ -21,7 +21,6 @@ $(document).on("turbolinks:load",function() {
     bookCost.text(unit + newValue * bookPrice.val())
   });
 
-  const ratyAssetsPath = process.env.NODE_ENV == 'development' ? '/assets/' : ''
   $('.review-rating').raty({
       readOnly: true,
       score: function() {
@@ -36,6 +35,18 @@ $(document).on("turbolinks:load",function() {
   });
 });
 
+$(function() {
+    var checkbox = $("#hide_address");
+    var hidden = $("#hidden_fields");
+    hidden.show();
+    checkbox.change(function() {
+      if (checkbox.is(':checked')) {
+        hidden.hide();
+      } else {
+        hidden.show();
+      }
+    });
+  });
 
 $(document).ready(function() {
   $('#delete-account-checkbox').change(function() {
@@ -52,18 +63,3 @@ $(function() {
 $(function() {
   $('[data-toggle="popover"]').popover();
 });
-
-$(function() {
-
-    var checkbox = $("#hide_address");
-    var hidden = $("#hidden_fields");
-    hidden.show();
-    checkbox.change(function() {
-      if (checkbox.is(':checked')) {
-        hidden.hide();
-      } else {
-        hidden.show();
-      }
-    });
-  });
-
