@@ -6,4 +6,4 @@ pre-commit:
     rubocop:
       run: bundle exec rubocop -c .rubocop.yml
     bundle_audit:
-      run: bundle exec bundle audit --update
+      run: bundle exec bundle audit --update --force-exclusion
