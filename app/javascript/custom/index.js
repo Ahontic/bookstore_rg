@@ -33,20 +33,20 @@ $(document).on("turbolinks:load",function() {
     path: '/assets/',
     scoreName: 'review[rating]'
   });
-});
 
-$(function() {
-    var checkbox = $("#hide_address");
-    var hidden = $("#hidden_fields");
-    hidden.show();
-    checkbox.change(function() {
-      if (checkbox.is(':checked')) {
-        hidden.hide();
-      } else {
-        hidden.show();
-      }
+  $(function() {
+      var checkbox = $("#hide_address");
+      var hidden = $("#hidden_fields");
+      hidden.show();
+      checkbox.change(function() {
+        if (checkbox.is(':checked')) {
+          hidden.hide();
+        } else {
+          hidden.show();
+        }
+      });
     });
-  });
+});
 
 $(document).ready(function() {
   $('#delete-account-checkbox').change(function() {

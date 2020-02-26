@@ -5,9 +5,9 @@
 # Table name: deliveries
 #
 #  id         :bigint           not null, primary key
-#  name       :string           not null
-#  price      :decimal(, )      not null
-#  time       :string           not null
+#  name       :string
+#  price      :decimal(, )
+#  time       :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #

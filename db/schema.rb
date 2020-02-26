@@ -175,9 +175,9 @@ ActiveRecord::Schema.define(version: 20_200_220_114_551) do
   end
 
   create_table 'deliveries', force: :cascade do |t|
-    t.string 'name', null: false
-    t.string 'time', null: false
-    t.decimal 'price', null: false
+    t.string 'name'
+    t.string 'time'
+    t.decimal 'price'
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
   end

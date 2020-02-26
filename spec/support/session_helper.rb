@@ -8,7 +8,7 @@ module SessionHelper
     fill_in :password, with: '7qLyxOACqQ'
     fill_in :password_confirmation, with: '7qLyxOACqQ'
 
-    click_on 'Sign up'
+    click_on 'Sign Up'
   end
 
   def sign_in(customer)
