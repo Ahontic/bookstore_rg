@@ -15,7 +15,7 @@ class CheckoutsController < ApplicationController
 
   def update
     @service = CheckoutService.new(current_cart, current_customer, step, cookies, params)
-    render_wizard @service
+    render_wizard(@service, id: step)
   end
 
   private
