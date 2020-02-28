@@ -1,16 +1,5 @@
 %main.container.mb-res-50
-  %h1.general-title-margin Checkout
-  %ul.steps.list-inline
-    - wizard_steps[1,5].each_with_index do |step, index|
-      %li.step{ class: step_state(step)}
-        = link_to wizard_path(step), class: 'step-link' do
-          %span.step-number
-            = index + 1 unless step_done?(step)
-            - if step_done?(step)
-              %i.fa.fa-check
-          %span.step-text.hidden-xs= step.capitalize
-      - unless step == :complete
-        %li.step-divider
+  = render 'progress_bar'
   %h3.general-subtitle Credit Card
   = simple_form_for @current_cart, url: wizard_path, method: :put, class: 'res-mb-100', defaults: { input_html: { class: 'form-control' }, required: false } do |f|
     = f.simple_fields_for :credit_card, @current_cart.credit_card do |ff|
