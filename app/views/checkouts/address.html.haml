@@ -67,12 +67,7 @@
     .row
       .col-md-5.mb-40
         .form-group.checkbox
-          %label.checkbox-label
-            = f.check_box :use_billing, class: 'checkbox-input', type: "checkbox", id: 'hide_address', hidden: "true"
-            %span.checkbox-icon
-              %i.fa.fa-check
-            %span.checkbox-text
-              = I18n.t('checkout.address.use_billing_address')
+          = f.input :use_billing, as: :boolean, type: "checkbox", label: I18n.t('checkout.address.use_billing_address'), checked_value: true, unchecked_value: nil, input_html: {class: 'checkbox-input', id: 'hide_address'}
     .general-text-align.mb-60
       %p.in-gold-500.font-18 Order Summary
       %table.general-summary-table
