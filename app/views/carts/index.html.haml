@@ -1,0 +1,67 @@
+%main.container.general-main-wrap
+  %h1.mt-0.mb-25 My Orders
+  %p.lead.small.mb-10.visible-xs Sort by
+  .dropdowns.dropdown.general-order-dropdown
+    %a.dropdown-toggle.lead.small{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
+      = I18n.t('order_sort.waiting_for_processing')
+      %i.fa.fa-angle-down.dropdown-icon.pull-right
+    %ul.dropdown-menu
+      - Cart::AVAILABLE_FILTERS.each_value do |filter|
+        %li
+          = link_to I18n.t("order_sort.#{filter.to_s}"), carts_path(status: filter)
+  .visible-xs
+    - @orders.each do |order|
+      .general-cart-item.divider-lg-bottom.pt-0
+        %table.table
+          %tr
+            %td.col-half
+              %span.in-grey-600 Number
+            %td.col-half
+              %span.general-order-number
+                = order.number
+          %tr
+            %td
+              %span.in-grey-600 Completed at
+            %td
+              %span.in-grey-900.font-16.fw-300
+                = order.created_at.strftime('%Y-%m-%d')
+          %tr
+            %td
+              %span.in-grey-600 Status
+            %td
+              %span.font-16.in-grey-900.fw-300
+                = order.status.tr('_', ' ').capitalize
+          %tr
+            %td
+              %span.in-grey-600 Total
+            %td
+              %strong.font-16
+                = number_to_currency(order.order_total, unit: '€')
+  .hidden-xs.mb-res-50
+    - @orders.each do |order|
+      %table.table.table-hover
+        %thead
+          %tr
+            %th
+              %span.in-grey-600 Number
+            %th
+              %span.in-grey-600 Completed at
+            %th
+              %span.in-grey-600 Status
+            %th
+              %span.in-grey-600 Total
+        %tbody
+          %tr
+            %td
+              %span.general-order-number
+                = link_to show_order_cart_path(order), class: "general-order-number" do
+                  = order.number
+            %td
+              %span.in-grey-900.font-16.fw-300
+                = order.created_at.strftime('%Y-%m-%d')
+            %td
+              %span.font-16.in-grey-900.fw-300
+                = order.status.tr('_', ' ').capitalize
+            %td
+              %strong.font-16
+                = number_to_currency(order.order_total, unit: '€')

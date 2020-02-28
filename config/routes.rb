@@ -25,7 +25,9 @@ Rails.application.routes.draw do
     resources :reviews
   end
 
-  resources :orders, only: %i[index show new]
+  resources :carts, only: %i[index show] do
+    get 'show_order', to: 'carts#show_order', as: 'show_order', on: :member
+  end
   resources :line_items, only: %i[create show destroy] do
     post 'add', to: 'line_items#add_quantity', as: 'add', on: :member
     post 'reduce', to: 'line_items#reduce_quantity', as: 'reduce', on: :member

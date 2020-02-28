@@ -16,6 +16,10 @@ en:
   latest_books: 'Latest Books'
   catalog: 'Catalog'
   all: 'All'
+  welcome: 'Welcome to our amazing Bookstore!'
+  invitation_to_shop: 'We pore through hundreds of new books each month and select the five best we can find to share with our members.'
+  previous: 'Previous'
+  next: 'Next'
 
   book:
     piece:
@@ -39,6 +43,12 @@ en:
     price_high_to_low: 'Price: high to low'
     alphabetically: 'A - Z'
     analphabetically: 'Z - A'
+
+  order_sort:
+    waiting_for_processing: 'Waiting for processing'
+    in_delivery: 'In delivery'
+    delivered: 'Delivered'
+    canceled: 'Canceled'
 
   address:
     address_created: 'Your address has been added.'

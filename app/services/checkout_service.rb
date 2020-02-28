@@ -52,7 +52,7 @@ class CheckoutService < ApplicationService
   end
 
   def address_params_type(type)
-    type = cart_params[:use_billing] == '1' ? :billing : type
+    type = cart_params[:use_billing] ? :billing : type
     cart_params.require(type)
   end
 
