@@ -38,8 +38,8 @@ class CheckoutService < ApplicationService
   def cart_params
     @params.require(:cart).permit(
       :use_billing,
-      billing: %i[first_name last_name address city zipcode country phone address_type],
-      shipping: %i[first_name last_name address city zipcode country phone address_type]
+      billing: %i[first_name last_name address city zipcode country phone],
+      shipping: %i[first_name last_name address city zipcode country phone]
     )
   end
 
