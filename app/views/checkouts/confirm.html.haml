@@ -3,7 +3,7 @@
   .row.mb-20
     - current_cart.addresses.each do |current_address|
       .col-sm-3
-        %h3.general-subtitle= current_address.address_type.capitalize
+        %h3.general-subtitle= current_address.address_type
         %p.general-address
           = current_address.first_name
           = current_address.last_name
