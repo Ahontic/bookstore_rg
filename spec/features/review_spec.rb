@@ -28,6 +28,7 @@ feature 'Book page' do
     let!(:review_approved) { create(:review, book: book, customer: customer, status: 'approved') }
     let!(:review_pending) { create(:review, book: book, customer: customer) }
     let!(:review_rejected) { create(:review, book: book, customer: customer, status: 'rejected') }
+
     scenario 'only approved reviews' do
       sign_in(customer)
       visit category_book_path(category_id: book.category_id, id: book.id)

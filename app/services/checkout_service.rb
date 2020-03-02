@@ -26,25 +26,21 @@ class CheckoutService < ApplicationService
   end
 
   def billing
-    @billing ||= begin
-        attributes = @customer.addresses.billing.first&.attributes || {}
-        @cart.addresses.billing.first_or_initialize(attributes.except('id', 'addressable_type',
-                                                                      'addressable_id'))
-      end
+    attributes = @customer.addresses.billing.first&.attributes || {}
+    @billing ||= @cart.addresses.billing.first_or_initialize(attributes.except(attributes_for_address_form))
   end
 
   def shipping
-    @shipping ||= begin
-      attributes = @customer.addresses.shipping.first&.attributes || {}
-      @cart.addresses.shipping.first_or_initialize(attributes.except('id', 'addressable_type',
-                                                                     'addressable_id'))
-    end
+    attributes = @customer.addresses.shipping.first&.attributes || {}
+    @shipping ||= @cart.addresses.shipping.first_or_initialize(attributes.except(attributes_for_address_form))
   end
 
   def cart_params
-    @params.require(:cart).permit(:use_billing,
-                                  billing: %i[first_name last_name address city zipcode country phone],
-                                  shipping: %i[first_name last_name address city zipcode country phone])
+    @params.require(:cart).permit(
+      :use_billing,
+      billing: %i[first_name last_name address city zipcode country phone address_type],
+      shipping: %i[first_name last_name address city zipcode country phone address_type]
+    )
   end
 
   def credit_card_params
@@ -90,6 +86,10 @@ class CheckoutService < ApplicationService
 
   def address
     billing && shipping
+  end
+
+  def attributes_for_address_form
+    %w[id addressable_type addressable_id]
   end
 
   def confirm; end

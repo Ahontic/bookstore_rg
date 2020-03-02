@@ -9,7 +9,7 @@ feature 'Checkout page' do
   let(:checkout_page) { CheckoutPage.new(valid_address_params, valid_credit_card_params) }
 
   feature 'Checkout', js: true do
-    scenario 'address step' do
+    scenario 'steps' do
       sign_in(customer)
       visit category_book_path(category_id: book.category_id, id: book.id)
 

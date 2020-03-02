@@ -15,7 +15,7 @@
                 .form-group.radio.mt-0.mb-0
                   %label.radio-label
                     = option.label(class: 'radio-label') do
-                      = option.radio_button(class: 'radio-input', hidden: "true")
+                      = option.radio_button(class: 'radio-input')
                       %span.radio-icon
                       %span.radio-text= option.object.name
     .hidden-xs.mb-res-50
@@ -36,10 +36,9 @@
             %tr
               %td
                 .form-group.radio.mt-0.mb-0
-                  = option.label(class: 'radio-label') do
-                    = option.radio_button(class: 'radio-input', hidden: 'true')
-                    %span.radio-icon
-                    %span.radio-text= option.object.name
+                = option.radio_button(class: 'radio-icon')
+                %span.radio-text
+                  = option.object.name
               %td
                 %span= option.object.time
               %td
