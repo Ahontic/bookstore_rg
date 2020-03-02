@@ -20,8 +20,6 @@
               = I18n.t('checkout.address.fields_required')
           = f.simple_fields_for :billing, @service.billing do |ff|
             .form-group
-              = ff.input :address_type, as: :hidden, :input_html => { value: 'billing' }
-            .form-group
               = ff.input :first_name, autocomplete: "off", placeholder: "First name"
             .form-group
               = ff.input :last_name, autocomplete: "off", placeholder: "Last name"
@@ -39,8 +37,6 @@
               = ff.input :phone, placeholder: "Example +355 66 123 4567"
         .col-md-5.col-md-offset-1#hidden_fields
           = f.simple_fields_for :shipping, @service.shipping do |ff|
-            .form-group
-              = ff.input :address_type, as: :hidden, :input_html => { value: 'shipping' }
             .form-group
               = ff.input :first_name, autocomplete: "off", placeholder: "First name"
             .form-group
