@@ -16,6 +16,7 @@ en:
   latest_books: 'Latest Books'
   catalog: 'Catalog'
   all: 'All'
+  welcome_to_store: 'Welcome to our amazing Bookstore!'
 
   book:
     piece:
@@ -48,6 +49,20 @@ en:
     invalid: 'Sorry, invalid coupon code! Use valid code.'
     removed: 'You successfully removed coupon!'
   checkout:
+    shipments: 'Shipments'
+    payment_information: 'Payment Information'
+    quantity: 'Quantity'
+    subtotal: 'Subtotal'
+    checkout: 'Checkout'
+    order_summary: 'Order Summary'
+    book: 'Book'
+    coupon: 'Coupon'
+    item_total: 'Item Total'
+    shipping: 'Shipping'
+    order_total: 'Order Total'
+    credit_card: 'Credit Card'
+    total: 'Total'
+
     address:
         billing_address: 'Billing Address'
         shipping_address: 'Shipping Address'
@@ -58,6 +73,7 @@ en:
         method: 'Method'
         days: 'Days'
         price: 'Price'
+        shipping_method: 'Shipping method'
 
     complete:
         thank_you: 'Thank You for your Order!'

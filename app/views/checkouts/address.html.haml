@@ -58,29 +58,34 @@
         .form-group.checkbox
           = f.input :use_billing, as: :boolean, type: "checkbox", label: I18n.t('checkout.address.use_billing_address'), checked_value: true, unchecked_value: nil, input_html: {class: 'checkbox-input', id: 'hide_address'}
     .general-text-align.mb-60
-      %p.in-gold-500.font-18 Order Summary
+      %p.in-gold-500.font-18
+        = I18n.t('checkout.payment_information')
       %table.general-summary-table
         %tr
           %td
-            %p.font-16 Item Total:
+            %p.font-16
+              = I18n.t('checkout.item_total')
           %td
             %p.font-16
               = number_to_currency(current_cart.sub_total, unit: '€')
         %tr
           %td
-            %p.font-16 Coupon:
+            %p.font-16
+              = I18n.t('checkout.coupon')
           %td
             %p.font-16
               = number_to_currency(current_cart.discount, unit: '€')
         %tr
           %td
-            %p.font-16 Shipping:
+            %p.font-16
+              = I18n.t('checkout.shipping')
           %td
             %p.font-16
               = number_to_currency(current_cart.delivery ? current_cart.delivery.price : 0.00, unit: '€')
         %tr
           %td
-            %p.font-16 Order Total:
+            %p.font-16
+              = I18n.t('checkout.order_total')
           %td
             %p.font-16
               = number_to_currency(current_cart.order_total, unit: '€')

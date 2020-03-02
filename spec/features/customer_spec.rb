@@ -36,7 +36,7 @@ feature 'Account' do
 
   scenario 'user signs in successfully' do
     sign_in customer
-    find('a', text: I18n.t('my_account')).click
+    click_link(I18n.t('my_account'))
 
     expect(page).to have_content(customer.email)
     expect(page).to have_content('Sign Out')

@@ -44,7 +44,7 @@
               .general-thumb-link-wrap
                 %a.thumb-hover-link{href: category_book_path(book.category_id, book)}
                   %i.fa.fa-eye.thumb-icon{'aria-hidden': "true"}
-                %a.thumb-hover-link{href: line_items_path(line_items: {book_id: book.id}) }
+                = link_to line_items_path(book_id: book.id), method: :post, class: 'thumb-hover-link shopping-cart-buy-btn' do
                   %i.fa.fa-shopping-cart.thumb-icon
         .general-thumb-info
           %p.title

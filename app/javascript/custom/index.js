@@ -22,11 +22,11 @@ $(document).on("turbolinks:load",function() {
   });
 
   $('.review-rating').raty({
-      readOnly: true,
-      score: function() {
-          return $(this).attr('data-score');
-      },
-      path: '/assets/'
+    readOnly: true,
+    score: function() {
+        return $(this).attr('data-score');
+    },
+    path: '/assets/'
   });
 
   $('#rating-form').raty({
@@ -35,17 +35,17 @@ $(document).on("turbolinks:load",function() {
   });
 
   $(function() {
-      var checkbox = $("#hide_address");
-      var hidden = $("#hidden_fields");
-      hidden.show();
-      checkbox.change(function() {
-        if (checkbox.is(':checked')) {
-          hidden.hide();
-        } else {
-          hidden.show();
-        }
-      });
+    let checkbox = $("#hide_address");
+    let hidden = $("#hidden_fields");
+    hidden.show();
+    checkbox.change(function() {
+      if (checkbox.is(':checked')) {
+        hidden.hide();
+      } else {
+        hidden.show();
+      }
     });
+  });
 });
 
 $(document).ready(function() {

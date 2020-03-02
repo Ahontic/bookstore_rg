@@ -31,7 +31,7 @@ feature 'Checkout page' do
       expect(checkout_page).to have_current_path(checkout_path(:confirm))
 
       ['Billing', 'Shipping', 'Shipments', 'Payment Information'].each do |content|
-        expect(checkout_page).to have_content(content)
+        expect(page).to have_content(content)
       end
 
       expect(checkout_page).to have_book_image

@@ -38,19 +38,22 @@
         %table.table
           %tr
             %td
-              %span.in-grey-600 Price
+              %span.in-grey-600
+                = I18n.t('delivery.price')
             %td
               %span.font-16.in-gold-500
                 = number_to_currency(line_item.book.price, unit: '€')
           %tr
             %td.vertical-middle
-              %span.in-grey-600 Quantity
+              %span.in-grey-600
+                = I18n.t('checkout.quantity')
             %td
               %span
                 = line_item.quantity
           %tr
             %td
-              %span.in-grey-600 SubTotal
+              %span.in-grey-600
+                = I18n.t('checkout.subtotal')
             %td
               %span.font-16.in-gold-500
                 = number_to_currency(line_item.total_price, unit: '€')
@@ -63,19 +66,22 @@
         %table.table
           %tr
             %td
-              %span.in-grey-600 Price
+              %span.in-grey-600
+                = I18n.t('delivery.price')
             %td
               %span.font-16.in-gold-500
                 = number_to_currency(line_item.book.price, unit: '€')
           %tr
             %td.vertical-middle
-              %span.in-grey-600 Quantity
+              %span.in-grey-600
+                = I18n.t('checkout.quantity')
             %td
               %span
                 = line_item.quantity
           %tr
             %td
-              %span.in-grey-600 SubTotal
+              %span.in-grey-600
+                = I18n.t('checkout.subtotal')
             %td
               %span.font-16.in-gold-500
                 = number_to_currency(line_item.total_price, unit: '€')
@@ -85,14 +91,18 @@
         %thead
           %tr
             %th
-              %span.in-grey-600 Book
+              %span.in-grey-600
+                = I18n.t('checkout.book')
             %th.col-method
             %th
-              %span.in-grey-600 Price
+              %span.in-grey-600
+                = I18n.t('delivery.price')
             %th
-              %span.in-grey-600 Quantity
+              %span.in-grey-600
+                = I18n.t('checkout.quantity')
             %th
-              %span.in-grey-600 Total
+              %span.in-grey-600
+                = I18n.t('checkout.total')
         %tbody
           %tr
             %td
@@ -113,29 +123,34 @@
               %span.font-16.in-gold-500
                 = number_to_currency(line_item.total_price, unit: '€')
   .text-center.general-text-right
-    %p.in-gold-500.font-18 Order Summary
+    %p.in-gold-500.font-18
+      = I18n.t('checkout.order_summary')
     %table.general-summary-table.general-summary-table-right.general-text-right
       %tr
         %td
-          %p.font-16 Subtotal:
+          %p.font-16
+            = I18n.t('checkout.order_summary')
         %td
           %p.font-16
             = number_to_currency(current_cart.sub_total, unit: '€')
       %tr
         %td
-          %p.font-16 Coupon:
+          %p.font-16
+            = I18n.t('checkout.coupon')
         %td
           %p.font-16
             = number_to_currency(current_cart.discount, unit: '€')
       %tr
         %td
-          %p.font-16 Shipping:
+          %p.font-16
+            = I18n.t('checkout.shipping')
         %td
           %p.font-16
             = number_to_currency(current_cart.delivery.price, unit: '€')
       %tr
         %td
-          %strong.font-18 Order Total:
+          %strong.font-18
+            = I18n.t('checkout.order_total')
         %td
           %strong.font-18
             = number_to_currency(current_cart.order_total, unit: '€')
