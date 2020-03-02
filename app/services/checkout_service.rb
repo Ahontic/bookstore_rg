@@ -27,12 +27,12 @@ class CheckoutService < ApplicationService
 
   def billing
     attributes = @customer.addresses.billing.first&.attributes || {}
-    @billing ||= @cart.addresses.billing.first_or_initialize(attributes.except(*attributes_for_address_form))
+    @billing ||= @cart.addresses.billing.first_or_initialize(attributes.except(*attr_from_customer_address_form))
   end
 
   def shipping
     attributes = @customer.addresses.shipping.first&.attributes || {}
-    @shipping ||= @cart.addresses.shipping.first_or_initialize(attributes.except(*attributes_for_address_form))
+    @shipping ||= @cart.addresses.shipping.first_or_initialize(attributes.except(*attr_from_customer_address_form))
   end
 
   def cart_params
@@ -88,7 +88,7 @@ class CheckoutService < ApplicationService
     billing && shipping
   end
 
-  def attributes_for_address_form
+  def attr_from_customer_address_form
     %w[id addressable_type addressable_id]
   end
 
