@@ -38,8 +38,8 @@ class CheckoutService < ApplicationService
   def cart_params
     @params.require(:cart).permit(
       :use_billing,
-      billing: %i[first_name last_name address city zipcode country phone],
-      shipping: %i[first_name last_name address city zipcode country phone]
+      billing: %i[first_name last_name address city zipcode country phone address_type],
+      shipping: %i[first_name last_name address city zipcode country phone address_type]
     )
   end
 
@@ -81,7 +81,9 @@ class CheckoutService < ApplicationService
   end
 
   def update_addresses
-    billing.update(address_params_type(:billing)) & shipping.update(address_params_type(:shipping))
+    billing.update(address_params_type(:billing).merge(address_type: 'billing')) & shipping.update(
+      address_params_type(:shipping).merge(address_type: 'shipping')
+    )
   end
 
   def address
