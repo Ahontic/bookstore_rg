@@ -81,9 +81,7 @@ class CheckoutService < ApplicationService
   end
 
   def update_addresses
-    billing.update(address_params_type(:billing).merge(address_type: 'billing')) & shipping.update(
-      address_params_type(:shipping).merge(address_type: 'shipping')
-    )
+    billing.update(address_params_type(:billing)) & shipping.update(address_params_type(:shipping))
   end
 
   def address
