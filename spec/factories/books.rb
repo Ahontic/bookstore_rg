@@ -38,9 +38,9 @@ FactoryBot.define do
     depth { rand(1.0..10.0).round(2) }
     height { rand(1.0..10.0).round(2) }
     width { rand(1.0..10.0).round(2) }
-    category_id { Category.ids.sample }
+    category { Category.order('RANDOM()').first }
     issue_date { rand(1990..2010) }
-    material_id { Material.ids.sample }
+    material { Material.order('RANDOM()').first }
 
     trait :with_author do
       after(:create) do |book, _evaluator|
