@@ -62,8 +62,8 @@ class CheckoutService < ApplicationService
 
   def update_payment
     @credit_card = CreditCard.new(credit_card_params)
-    @credit_card.save
-    @cart.update(credit_card_id: @credit_card.id) if @credit_card.save
+    @cart.update(credit_card: @credit_card)
+    return true if @credit_card.errors.none?
   end
 
   def update_confirm
@@ -92,9 +92,14 @@ class CheckoutService < ApplicationService
     %w[id addressable_type addressable_id]
   end
 
-  def confirm; end
+  def confirm
+    @cookies[:order_done] = false
+  end
 
   def complete
+    return false unless @cart.customer
+
     OrderMailer.send_order_confirmation(customer).deliver_later
+    @cookies[:order_done] = true
   end
 end

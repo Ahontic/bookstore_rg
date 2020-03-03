@@ -9,7 +9,8 @@
     .col-sm-6
       .visible-xs
         %p.general-order-number.mb-0 Order ##{current_cart.number}
-        %p.general-address.mb-30 October 29, 2016
+        %p.general-address.mb-30
+          = current_cart.created_at.strftime("%B %d, %Y")
       %p.general-address
         = current_cart.addresses.shipping.first.first_name
         = current_cart.addresses.shipping.first.last_name
@@ -24,7 +25,8 @@
         = current_cart.addresses.shipping.first.phone
     .col-sm-6.hidden-xs.text-right
       %p.general-order-number.mb-0 Order ##{current_cart.number}
-      %p.general-address.mb-30 October 29, 2016
+      %p.general-address.mb-30
+        = current_cart.created_at.strftime("%B %d, %Y")
   .visible-xs
     - current_cart.line_items.each do |line_item|
       .general-cart-item.divider-lg
@@ -39,7 +41,7 @@
           %tr
             %td
               %span.in-grey-600
-                = I18n.t('delivery.price')
+                = I18n.t('checkout.delivery.price')
             %td
               %span.font-16.in-gold-500
                 = number_to_currency(line_item.book.price, unit: '€')
@@ -67,7 +69,7 @@
           %tr
             %td
               %span.in-grey-600
-                = I18n.t('delivery.price')
+                = I18n.t('checkout.delivery.price')
             %td
               %span.font-16.in-gold-500
                 = number_to_currency(line_item.book.price, unit: '€')
@@ -96,7 +98,7 @@
             %th.col-method
             %th
               %span.in-grey-600
-                = I18n.t('delivery.price')
+                = I18n.t('checkout.delivery.price')
             %th
               %span.in-grey-600
                 = I18n.t('checkout.quantity')

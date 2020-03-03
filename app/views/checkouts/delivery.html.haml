@@ -70,7 +70,8 @@
               = number_to_currency(current_cart.delivery ? current_cart.delivery.price : 0.00, unit: '€')
         %tr
           %td
-            %strong.font-18 Order Total:
+            %strong.font-18
+              = I18n.t('checkout.order_total')
           %td
             %strong.font-18
               = number_to_currency(current_cart.order_total, unit: '€')
