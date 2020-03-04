@@ -44,6 +44,6 @@
         %br/
         = f.country_select(:country, { priority_countries: ["UA", "US"], priority_countries_divider: "~~~~~~"}, { id: 'сountry', class: 'form-control' })
       .form-group
-        = f.input :phone, placeholder: "Example +355 66 123 4567"
+        = f.input :phone, placeholder: "Example +355 66 123 4567", input_html: { :'data-mask'=> '000-000-0000'}
       .text-center.general-text-align
         = f.submit "Save", class: 'btn btn-default.mb-10'

@@ -6,11 +6,11 @@
     = f.simple_fields_for :credit_card, @current_cart.credit_card do |ff|
       .row
         .col-sm-6
-          = ff.input :number, placeholder: "Card Number"
+          = ff.input :number, placeholder: "Card Number", input_html: {'data-mask': '1234-1234-1234-1234'}
           .col-sm-6
             = ff.input :name_on_card, placeholder: "Name on Card"
           .col-sm-3
-            = ff.input :month_year, placeholder: "MM / YY"
+            = ff.input :month_year, placeholder: "MM / YY", input_html: { 'data-mask': '1111' }
           .col-sm-3
             = ff.input :cvv, placeholder: "CVV", input_html: { "data-tooltip" => true, :class => "has-tip", :title => "3-digit security code, usually found on the back of your card. American Express cards has 4-digit code, located on the front" }
       .general-text-align
