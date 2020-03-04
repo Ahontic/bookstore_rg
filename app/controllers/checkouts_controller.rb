@@ -32,7 +32,7 @@ class CheckoutsController < ApplicationController
   end
 
   def line_items_check
-    return redirect_to root_path if current_cart.line_items.none?
+    redirect_to root_path if current_cart.line_items.none?
   end
 
   def empty_cart_if_order_done

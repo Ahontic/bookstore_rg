@@ -6,7 +6,6 @@ class CategoriesController < ApplicationController
 
   def index
     @pagy, @books = pagy(BookSorter.call(sort_params))
-    @filter = params[:status] ? params[:status].to_s : BookSorter::DEFAULT_FILTER
   end
 
   def show
