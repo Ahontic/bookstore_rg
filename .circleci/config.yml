@@ -27,6 +27,10 @@ jobs:
             bundle install --jobs=4 --retry=3 --path vendor/bundle
 
       - run:
+          name: Run lintering with lefthook
+          command: bundle exec lefthook run pre-commit
+
+      - run:
           name: Bundle Audit
           command: bundle exec bundle-audit check --update --ignore CVE-2015-9284
 

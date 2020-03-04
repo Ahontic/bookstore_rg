@@ -5,7 +5,7 @@
     .dropdowns.pull-right
       .dropdown.width-240
         %a.dropdown-toggle.lead.small{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false", id: 'filters-md'}
-          = I18n.t('book_sort.newest_first')
+          = I18n.t("book_sort.#{@filter}")
           %i.fa.fa-angle-down.dropdown-icon.pull-right
         %ul.dropdown-menu
           - Book::AVAILABLE_FILTERS.each_value do |filter|
@@ -27,7 +27,7 @@
     %p.lead.small.mb-10 Filter by category
     .dropdown
       %a.dropdown-toggle.lead.small{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
-        Newest first
+        = I18n.t("book_sort.#{@filter}")
         %i.fa.fa-angle-down.dropdown-icon.pull-right
       %ul.dropdown-menu
         - Book::AVAILABLE_FILTERS.each_value do |filter|
@@ -35,23 +35,6 @@
             = link_to I18n.t("book_sort.#{filter.to_s}"), categories_path(status: filter)
   .mb-120
     .row
-      -@books.each do |book|
-        .col-xs-6.col-sm-3
-          .general-thumb-wrap
-            .thumbnail.general-thumbnail
-              %img.img-shadow.general-thumbnail-img{src: "http://jonathantweedy.com/resources/thumbs/SmashingBook5ResponsiveWebDesign.jpg", alt: "design-book"}
-              .thumb-hover
-                .general-thumb-link-wrap
-                  %a.thumb-hover-link{href: category_book_path(@category, book)}
-                    %i.fa.fa-eye.thumb-icon{'aria-hidden': "true"}
-                  %a.thumb-hover-link{href: "#"}
-                    %i.fa.fa-shopping-cart.thumb-icon
-          .general-thumb-info
-            %p.title
-              = book.title
-            %p.font-16.in-gold-500
-              = book.price
-            %span.divider-sm
-            %p.lead.small
-              = book.decorate.authors_names
+      -books.each do |book|
+        = render 'partials/book', book: book.decorate
   = pagy_bootstrap_nav(@pagy).html_safe

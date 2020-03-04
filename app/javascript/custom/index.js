@@ -22,22 +22,21 @@ $(document).on("turbolinks:load",function() {
   });
 
   $('.review-rating').raty({
-      readOnly: true,
-      score: function() {
-          return $(this).attr('data-score');
-      },
-      path: '/assets/'
+    readOnly: true,
+    score: function() {
+      return $(this).attr('data-score');
+    },
+    path: '/assets/'
   });
 
   $('#rating-form').raty({
     path: '/assets/',
     scoreName: 'review[rating]'
   });
-});
 
-$(function() {
-    var checkbox = $("#hide_address");
-    var hidden = $("#hidden_fields");
+  $(function() {
+    let checkbox = $("#hide_address");
+    let hidden = $("#hidden_fields");
     hidden.show();
     checkbox.change(function() {
       if (checkbox.is(':checked')) {
@@ -47,13 +46,14 @@ $(function() {
       }
     });
   });
-
-$(document).ready(function() {
-  $('#delete-account-checkbox').change(function() {
-    $('.delete-link button').toggleClass('btn-disabled')
-    $('.delete-link button').attr('disabled', !this.checked)
+  $(document).ready(function() {
+    $('#delete-account-checkbox').change(function() {
+      $('.delete-link button').toggleClass('btn-disabled')
+      $('.delete-link button').attr('disabled', !this.checked)
+    });
   });
 });
+
 
 //custom.js
 $(function() {

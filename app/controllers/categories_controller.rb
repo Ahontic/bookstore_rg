@@ -2,6 +2,7 @@
 
 class CategoriesController < ApplicationController
   decorates_assigned :category, :books
+  before_action :show_filter, only: %i[index show]
 
   def index
     @pagy, @books = pagy(BookSorter.call(sort_params))
@@ -16,5 +17,9 @@ class CategoriesController < ApplicationController
 
   def sort_params
     params.permit(:status, :id, :category)
+  end
+
+  def show_filter
+    @filter = params[:status] ? params[:status].to_s : BookSorter::DEFAULT_FILTER
   end
 end

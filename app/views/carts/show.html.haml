@@ -12,9 +12,6 @@
           %button.close.general-cart-close{type: "button", 'aria-label': "Close"}
             = link_to line_item_path(line_item), method: :delete, type: "button", 'aria-label': "Close" do
               %span{'aria-hidden': "true"} &times;
-          .general-img-wrap-table
-            %img.cart-img-shadow
-              = image_tag url_for(line_item.book.images.first)
           %p.title
             = line_item.book.title
           %table.table
@@ -37,7 +34,8 @@
               %td
                 %span.in-grey-600 SubTotal
               %td
-                %span.font-16.in-gold-500 €32.90
+                %span.font-16.in-gold-500
+                  = number_to_currency(current_cart.sub_total, unit: '€')
       .hidden-xs
         %table.table.table-hover
           %tr.no-hover

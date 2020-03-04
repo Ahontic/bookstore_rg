@@ -1,53 +1,49 @@
 %main.container.mb-res-50
-  %h1.general-title-margin Checkout
-  %ul.steps.list-inline
-    - wizard_steps[1,5].each_with_index do |step, index|
-      %li.step{ class: step_state(step)}
-        = link_to wizard_path(step), class: 'step-link' do
-          %span.step-number
-            = index + 1 unless step_done?(step)
-            - if step_done?(step)
-              %i.fa.fa-check
-          %span.step-text.hidden-xs= step.capitalize
-      - unless step == :complete
-        %li.step-divider
-  %h3.general-subtitle Credit Card
-  %form.max-600.mb-80
-    .form-group.has-error
-      %label.control-label.input-label{for: "cardNumber"} Card Number
-      %input#cardNumber.form-control{type: "number", name: "cardnumber", placeholder: "Card Number"}
-      %span.help-block Please enter a valid credit card number
-    .row
-      .col-sm-6
-        .form-group
-          %label.control-label.input-label{for: "cardName"} Name on Card
-          %input#cardName.form-control{type: "text", name: "ccname", placeholder: "Name on Card"}
-      .col-sm-3
-        .form-group
-          %label.control-label.input-label{for: "firstName"} MM / YY
-          %input#firstName.form-control{name: "exp-date", type: "text", placeholder: "MM / YY"}
-      .col-sm-3
-        .form-group.relative
-          %label.control-label.input-label{for: "firstName"} CVV
-          %input#firstName.form-control{name: "cvc", type: "number", placeholder: "CVV"}
-          %i.fa.fa-question-circle.general-form-help
-  .general-text-align
-    %p.in-gold-500.font-18 Order Summary
-    %table.general-summary-table
-      %tr
-        %td
-          %p.font-16 Subtotal:
-        %td
-          %p.font-16 €117.69
-      %tr
-        %td
-          %p.font-16 Coupon:
-        %td
-          %p.font-16 €0.00
-      %tr
-        %td
-          %strong.font-18 Order Total:
-        %td
-          %strong.font-18 €117.69
-  .text-center
-    %button.btn.btn-default.mb-80 Save and Continue
+  = render 'progress_bar'
+  %h3.general-subtitle
+    = I18n.t('checkout.credit_card')
+  = simple_form_for @current_cart, url: wizard_path, method: :put, class: 'res-mb-100', defaults: { input_html: { class: 'form-control' }, required: false } do |f|
+    = f.simple_fields_for :credit_card, @current_cart.credit_card do |ff|
+      .row
+        .col-sm-6
+          = ff.input :number, placeholder: "Card Number", input_html: {'data-mask': '1234-1234-1234-1234'}
+          .col-sm-6
+            = ff.input :name_on_card, placeholder: "Name on Card"
+          .col-sm-3
+            = ff.input :month_year, placeholder: "MM / YY", input_html: { 'data-mask': '1111' }
+          .col-sm-3
+            = ff.input :cvv, placeholder: "CVV", input_html: { "data-tooltip" => true, :class => "has-tip", :title => "3-digit security code, usually found on the back of your card. American Express cards has 4-digit code, located on the front" }
+      .general-text-align
+        %p.in-gold-500.font-18
+          = I18n.t('checkout.order_summary')
+        %table.general-summary-table
+          %tr
+            %td
+              %p.font-16
+                = I18n.t('checkout.subtotal')
+            %td
+              %p.font-16
+                = number_to_currency(current_cart.sub_total, unit: '€')
+          %tr
+            %td
+              %p.font-16
+                = I18n.t('checkout.coupon')
+            %td
+              %p.font-16
+                = number_to_currency(current_cart.discount, unit: '€')
+          %tr
+            %td
+              %p.font-16
+                = I18n.t('checkout.shipping')
+            %td
+              %p.font-16
+                = number_to_currency(current_cart.delivery ? current_cart.delivery.price : 0.00, unit: '€')
+          %tr
+            %td
+              %strong.font-18
+                = I18n.t('checkout.order_total')
+            %td
+              %strong.font-18
+                = number_to_currency(current_cart.order_total, unit: '€')
+    .actions.text-center
+      = f.submit 'Save and Continue', class: 'btn btn-default mb-20'

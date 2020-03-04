@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 feature 'Home page' do
+  let!(:category) { create(:category) }
   before :each do
     visit root_path
   end
@@ -15,12 +16,13 @@ feature 'Home page' do
 
   scenario 'when click Home proceed to Home page' do
     first('a', text: I18n.t(:home)).click
-    expect(page).to have_content('Welcome to our amazing Bookstore!')
+    expect(page).to have_content(I18n.t(:welcome_to_store))
   end
 
   scenario 'when click Get Started proceed to Catalog page' do
-    first('a', text: I18n.t(:shop)).click
+    click_link(I18n.t(:shop), match: :first)
+    click_link(category.title)
 
-    expect(page).to have_content('Catalog')
+    expect(page).to have_content(I18n.t(:catalog))
   end
 end
