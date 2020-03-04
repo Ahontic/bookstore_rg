@@ -20,7 +20,7 @@ Coupon.create(code: 'WINTERSALE', discount: 5.00)
 Coupon.create(code: 'RUBYGARAGE', discount: 7.50)
 
 def random_cover
-  "app/assets/images/image_#{rand(1..4)}.jpg"
+  "app/assets/images/image_#{rand(1..3)}.jpg"
 end
 
 20.times do
