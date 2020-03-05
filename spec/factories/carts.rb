@@ -6,7 +6,7 @@
 #
 #  id             :bigint           not null, primary key
 #  number         :string
-#  status         :integer
+#  status         :integer          default("in_progress")
 #  use_billing    :boolean          default(FALSE)
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null

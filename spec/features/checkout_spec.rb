@@ -9,7 +9,7 @@ feature 'Checkout page' do
   let(:checkout_page) { CheckoutPage.new(valid_address_params, valid_credit_card_params) }
 
   feature 'Checkout', js: true do
-    scenario 'address step' do
+    scenario 'steps' do
       sign_in(customer)
       visit category_book_path(category_id: book.category_id, id: book.id)
 
@@ -31,7 +31,7 @@ feature 'Checkout page' do
       expect(checkout_page).to have_current_path(checkout_path(:confirm))
 
       ['Billing', 'Shipping', 'Shipments', 'Payment Information'].each do |content|
-        expect(checkout_page).to have_content(content)
+        expect(page).to have_content(content)
       end
 
       expect(checkout_page).to have_book_image

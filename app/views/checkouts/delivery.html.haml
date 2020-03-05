@@ -1,17 +1,7 @@
 %main.container.general-main-wrap
-  %h1.general-title-margin Checkout
-  %ul.steps.list-inline
-    - wizard_steps[1,5].each_with_index do |step, index|
-      %li.step{ class: current_step?(step) ? 'active' : 'done'}
-        = link_to wizard_path(step), class: 'step-link' do
-          %span.step-number
-            = index + 1 unless past_step?(step)
-            - if past_step?(step)
-              %i.fa.fa-check.step-icon
-          %span.step-text.hidden-xs= step.capitalize
-      - unless step == :complete
-        %li.step-divider
-  %h3.general-subtitle Shipping method
+  = render 'progress_bar'
+  %h3.general-subtitle
+    = I18n.t('checkout.delivery.shipping_method')
   = simple_form_for @current_cart, url: wizard_path, method: :put, class: 'res-mb-100', defaults: { input_html: { class: 'form-control' }, required: false } do |f|
     .visible-xs
       .general-cart-item.divider-lg-bottom
@@ -21,11 +11,13 @@
               %span.in-grey-600
                 = I18n.t('checkout.delivery.method')
             %td.col-half
-              .form-group.radio.mt-0.mb-0
-                %label.radio-label
-                  %input.radio-input{type: "radio", hidden: "true"}
-                  %span.radio-icon
-                  %span.radio-text Delivery Next Day!
+              = f.collection_radio_buttons :delivery_id, @service.delivery, :id, :name, {}, { checked: true } do |option|
+                .form-group.radio.mt-0.mb-0
+                  %label.radio-label
+                    = option.label(class: 'radio-label') do
+                      = option.radio_button(class: 'radio-input')
+                      %span.radio-icon
+                      %span.radio-text= option.object.name
     .hidden-xs.mb-res-50
       %table.table.table-hover
         %thead
@@ -44,38 +36,42 @@
             %tr
               %td
                 .form-group.radio.mt-0.mb-0
-                  = option.label(class: 'radio-label') do
-                    = option.radio_button(class: 'radio-input', hidden: "true")
-                    %span.radio-icon
-                    %span.radio-text= option.object.name
+                = option.radio_button(class: 'radio-icon')
+                %span.radio-text
+                  = option.object.name
               %td
                 %span= option.object.time
               %td
                 %span.font-16.in-gold-500= number_to_currency(option.object.price, unit: '€')
     .general-text-align
-      %p.in-gold-500.font-18 Order Summary
+      %p.in-gold-500.font-18
+        = I18n.t('checkout.order_summary')
       %table.general-summary-table
         %tr
           %td
-            %p.font-16 Subtotal:
+            %p.font-16
+              = I18n.t('checkout.order_summary')
           %td
             %p.font-16
               = number_to_currency(current_cart.sub_total, unit: '€')
         %tr
           %td
-            %p.font-16 Coupon:
+            %p.font-16
+              = I18n.t('checkout.coupon')
           %td
             %p.font-16
               = number_to_currency(current_cart.discount, unit: '€')
         %tr
           %td
-            %p.font-16 Shipping:
+            %p.font-16
+              = I18n.t('checkout.shipping')
           %td
             %p.font-16
               = number_to_currency(current_cart.delivery ? current_cart.delivery.price : 0.00, unit: '€')
         %tr
           %td
-            %strong.font-18 Order Total:
+            %strong.font-18
+              = I18n.t('checkout.order_total')
           %td
             %strong.font-18
               = number_to_currency(current_cart.order_total, unit: '€')

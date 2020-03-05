@@ -118,7 +118,7 @@ ActiveRecord::Schema.define(version: 20_200_220_114_551) do
     t.bigint 'delivery_id'
     t.bigint 'credit_card_id'
     t.string 'number'
-    t.integer 'status'
+    t.integer 'status', default: 0
     t.index ['credit_card_id'], name: 'index_carts_on_credit_card_id'
     t.index ['customer_id'], name: 'index_carts_on_customer_id'
     t.index ['delivery_id'], name: 'index_carts_on_delivery_id'

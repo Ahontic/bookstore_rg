@@ -6,7 +6,7 @@
 #
 #  id             :bigint           not null, primary key
 #  number         :string
-#  status         :integer
+#  status         :integer          default("in_progress")
 #  use_billing    :boolean          default(FALSE)
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
@@ -43,6 +43,7 @@ class Cart < ApplicationRecord
   has_many :line_items, dependent: :destroy
   has_many :books, through: :line_items
   has_many :addresses, as: :addressable, dependent: :destroy
+  accepts_nested_attributes_for :addresses
   has_one :coupon
 
   belongs_to :customer, optional: true
@@ -51,7 +52,7 @@ class Cart < ApplicationRecord
 
   after_create :set_number_and_status
 
-  enum status: %i[waiting_for_processing in_delivery delivered canceled]
+  enum status: { in_progress: 0, in_queue: 1, in_delivery: 2, delivered: 3, canceled: 4 }
 
   def sub_total
     line_items.sum(&:total_price)
@@ -69,6 +70,6 @@ class Cart < ApplicationRecord
   private
 
   def set_number_and_status
-    update(number: "R#{id.to_s.rjust(8, '0')}", status: 0)
+    update(number: "R#{id.to_s.rjust(8, '0')}")
   end
 end

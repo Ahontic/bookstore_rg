@@ -6,7 +6,7 @@
 #
 #  id             :bigint           not null, primary key
 #  number         :string
-#  status         :integer
+#  status         :integer          default("in_progress")
 #  use_billing    :boolean          default(FALSE)
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
@@ -34,5 +34,12 @@ RSpec.describe Cart do
     it { is_expected.to have_many(:books).through(:line_items) }
     it { is_expected.to have_one(:coupon) }
     it { is_expected.to belong_to(:customer).optional }
+  end
+
+  describe 'validations' do
+    it {
+      is_expected.to define_enum_for(:status).with_values(in_progress: 0, in_queue: 1, in_delivery: 2, delivered: 3,
+                                                          canceled: 4)
+    }
   end
 end
