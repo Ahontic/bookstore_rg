@@ -20,6 +20,7 @@ en:
   invitation_to_shop: 'We pore through hundreds of new books each month and select the five best we can find to share with our members.'
   previous: 'Previous'
   next: 'Next'
+  filter_by_category: 'Filter by category'
 
   book:
     piece:
@@ -88,3 +89,10 @@ en:
     complete:
         thank_you: 'Thank You for your Order!'
         order_confirmation: 'An order confirmation has been has been sent to %{email}'
+  order:
+    my_orders: 'My Orders'
+    number: 'Number'
+    completed_at: 'Completed at'
+    status: 'Status'
+    total: 'Total'
+    sort_by: 'Sort by'

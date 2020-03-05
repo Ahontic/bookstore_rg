@@ -52,7 +52,7 @@ class Cart < ApplicationRecord
 
   after_create :set_number_and_status
 
-  enum status: { in_progress: 0, in_queue: 1, in_delivery: 2, delivered: 3, canceled: 4 }
+  enum status: { waiting_for_processing: 0, in_delivery: 1, delivered: 2, canceled: 3 }
 
   def sub_total
     line_items.sum(&:total_price)

@@ -52,6 +52,10 @@ class CheckoutService < ApplicationService
     cart_params.require(type)
   end
 
+  def delivery
+    Delivery.all
+  end
+
   private
 
   def update_delivery
@@ -74,10 +78,6 @@ class CheckoutService < ApplicationService
 
   def login
     cookies[:from_checkout] = { value: true, expires: 1.day.from_now }
-  end
-
-  def delivery
-    Delivery.all
   end
 
   def address

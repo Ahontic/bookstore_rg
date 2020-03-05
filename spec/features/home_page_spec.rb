@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 feature 'Home page' do
-  let!(:book) { create_list(:book, 4) }
+  let!(:book) { create(:book) }
   let!(:category) { create(:category) }
   let(:home_page) { HomePage.new }
 
@@ -10,7 +10,7 @@ feature 'Home page' do
   end
 
   scenario 'has appropriate content' do
-    expect(home_page).to have_title
+    expect(home_page).to have_home_page_link
     expect(home_page).to have_get_started
     expect(home_page).to have_latest_books
     expect(home_page).to have_best_sellers
@@ -18,7 +18,7 @@ feature 'Home page' do
   end
 
   scenario 'when click Home proceed to Home page' do
-    click_link(I18n.t(:home))
+    click_link(I18n.t(:home), match: :first)
 
     expect(page).to have_content(I18n.t(:welcome))
   end
@@ -30,8 +30,17 @@ feature 'Home page' do
     expect(page).to have_content(I18n.t(:catalog))
   end
 
-  scenario 'slider' do
+  scenario 'latest book slider' do
     expect(home_page).to have_slider
-    expect(page).to have_content(I18n.t(:catalog))
+    expect(home_page).to have_latest_books
+
+    home_page.buy_now_button.click
+
+    expect(home_page).to have_current_path(cart_path(Cart.first.id))
+    expect(home_page).to have_content(book.title)
+  end
+
+  scenario 'bestsellers' do
+    expect(home_page).to have_best_sellers
   end
 end

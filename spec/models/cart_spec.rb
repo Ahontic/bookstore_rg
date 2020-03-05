@@ -38,8 +38,8 @@ RSpec.describe Cart do
 
   describe 'validations' do
     it {
-      is_expected.to define_enum_for(:status).with_values(in_progress: 0, in_queue: 1, in_delivery: 2, delivered: 3,
-                                                          canceled: 4)
+      is_expected.to define_enum_for(:status).with_values(waiting_for_processing: 0, in_delivery: 1, delivered: 2,
+                                                          canceled: 3)
     }
   end
 end
