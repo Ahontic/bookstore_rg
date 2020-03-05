@@ -62,8 +62,6 @@ class Book < ApplicationRecord
   validates :quantity, presence: true
 
   def self.most_popular_books(quantity = 4)
-    products = LineItem.group(:book_id).sum(:quantity)
-    ids = products.sort_by { |_book, times| -times }.first(quantity).to_h.keys
-    Book.find(ids)
+    Book.find(LineItem.group(:book_id).sum(:quantity).first(quantity).to_h.keys)
   end
 end
