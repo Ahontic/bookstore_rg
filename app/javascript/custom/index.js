@@ -46,14 +46,14 @@ $(document).on("turbolinks:load",function() {
       }
     });
   });
+
   $(document).ready(function() {
     $('#delete-account-checkbox').change(function() {
       $('.delete-link button').toggleClass('btn-disabled')
       $('.delete-link button').attr('disabled', !this.checked)
+      });
     });
   });
-});
-
 
 //custom.js
 $(function() {

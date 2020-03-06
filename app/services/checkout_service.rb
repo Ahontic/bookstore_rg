@@ -52,12 +52,14 @@ class CheckoutService < ApplicationService
     cart_params.require(type)
   end
 
-  def update_delivery
-    @cart.update(delivery_id: @params[:cart][:delivery_id])
-  end
-
   def delivery
     Delivery.all
+  end
+
+  private
+
+  def update_delivery
+    @cart.update(delivery_id: @params[:cart][:delivery_id])
   end
 
   def update_payment
@@ -74,18 +76,16 @@ class CheckoutService < ApplicationService
     @cart.credit_card || CreditCard.new
   end
 
-  private
-
   def login
     cookies[:from_checkout] = { value: true, expires: 1.day.from_now }
   end
 
-  def update_addresses
-    billing.update(address_params_type(:billing)) & shipping.update(address_params_type(:shipping))
-  end
-
   def address
     billing && shipping
+  end
+
+  def update_addresses
+    billing.update(address_params_type(:billing)) & shipping.update(address_params_type(:shipping))
   end
 
   def attr_from_customer_address_form

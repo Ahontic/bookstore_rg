@@ -36,6 +36,7 @@ feature 'Account' do
 
   scenario 'user signs in successfully' do
     sign_in customer
+    visit root_path
     click_link(I18n.t('my_account'))
 
     expect(page).to have_content(customer.email)

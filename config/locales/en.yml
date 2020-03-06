@@ -16,7 +16,11 @@ en:
   latest_books: 'Latest Books'
   catalog: 'Catalog'
   all: 'All'
-  welcome_to_store: 'Welcome to our amazing Bookstore!'
+  welcome: 'Welcome to our amazing Bookstore!'
+  invitation_to_shop: 'We pore through hundreds of new books each month and select the five best we can find to share with our members.'
+  previous: 'Previous'
+  next: 'Next'
+  filter_by_category: 'Filter by category'
 
   book:
     piece:
@@ -41,6 +45,12 @@ en:
     alphabetically: 'A - Z'
     analphabetically: 'Z - A'
 
+  order_sort:
+    waiting_for_processing: 'Waiting for processing'
+    in_delivery: 'In delivery'
+    delivered: 'Delivered'
+    canceled: 'Canceled'
+
   address:
     address_created: 'Your address has been added.'
     address_modified: 'Your address has been modified.'
@@ -48,6 +58,7 @@ en:
     successfully_applied: 'You successfully applied coupon!'
     invalid: 'Sorry, invalid coupon code! Use valid code.'
     removed: 'You successfully removed coupon!'
+
   checkout:
     shipments: 'Shipments'
     payment_information: 'Payment Information'
@@ -78,4 +89,10 @@ en:
     complete:
         thank_you: 'Thank You for your Order!'
         order_confirmation: 'An order confirmation has been has been sent to %{email}'
-
+  order:
+    my_orders: 'My Orders'
+    number: 'Number'
+    completed_at: 'Completed at'
+    status: 'Status'
+    total: 'Total'
+    sort_by: 'Sort by'

@@ -28,12 +28,18 @@
 #
 
 class Cart < ApplicationRecord
+  AVAILABLE_FILTERS = {
+    I18n.t('order_sort.waiting_for_processing') => 'waiting_for_processing',
+    I18n.t('order_sort.in_delivery') => 'in_delivery',
+    I18n.t('order_sort.delivered') => 'delivered',
+    I18n.t('order_sort.canceled') => 'canceled'
+  }.freeze
+
   has_many :line_items, dependent: :destroy
   has_many :books, through: :line_items
   has_many :addresses, as: :addressable, dependent: :destroy
   accepts_nested_attributes_for :addresses
   has_one :coupon
-  belongs_to :customer, optional: true
 
   belongs_to :customer, optional: true
   belongs_to :delivery, optional: true
@@ -41,7 +47,7 @@ class Cart < ApplicationRecord
 
   after_create :set_number_and_status
 
-  enum status: { in_progress: 0, in_queue: 1, in_delivery: 2, delivered: 3, canceled: 4 }
+  enum status: { waiting_for_processing: 0, in_delivery: 1, delivered: 2, canceled: 3 }
 
   def sub_total
     line_items.sum(&:total_price)

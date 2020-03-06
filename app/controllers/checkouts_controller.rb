@@ -36,7 +36,7 @@ class CheckoutsController < ApplicationController
   end
 
   def empty_cart_if_order_done
-    current_cart.line_items.delete_all if cookies[:order_done] == true
+    session[:cart_id] = nil if cookies[:order_done] == true
   end
 
   def move_to_right_step

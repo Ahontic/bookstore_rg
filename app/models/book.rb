@@ -46,6 +46,8 @@ class Book < ApplicationRecord
   scope :alphabetically, -> { order(title: :asc) }
   scope :analphabetically, -> { order(title: :desc) }
 
+  scope :latest, -> { order(:created_at).last(3) }
+
   has_many :book_authors
   has_many :authors, through: :book_authors
   has_many :reviews
@@ -58,4 +60,8 @@ class Book < ApplicationRecord
   validates :title, presence: true
   validates :price, presence: true
   validates :quantity, presence: true
+
+  def self.most_popular_books(quantity = 4)
+    Book.find(LineItem.group(:book_id).sum(:quantity).first(quantity).to_h.keys)
+  end
 end
