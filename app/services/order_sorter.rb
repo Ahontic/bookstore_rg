@@ -9,7 +9,14 @@ class OrderSorter < ApplicationService
   end
 
   def call
-    current_sort = Cart::AVAILABLE_FILTERS.values.include?(@params[:status]) ? (@params[:status]).to_s : DEFAULT_FILTER
     @carts.public_send(current_sort)
+  end
+
+  private
+
+  def current_sort
+    return @params[:status] if Cart::AVAILABLE_FILTERS.values.include?(@params[:status])
+
+    DEFAULT_FILTER
   end
 end

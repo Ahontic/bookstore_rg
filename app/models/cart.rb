@@ -35,11 +35,6 @@ class Cart < ApplicationRecord
     I18n.t('order_sort.canceled') => 'canceled'
   }.freeze
 
-  scope :waiting_for_processing, -> { where(status: 'waiting_for_processing') }
-  scope :in_delivery, -> { where(status: 'in_delivery') }
-  scope :delivered, -> { order(status: 'delivered') }
-  scope :canceled, -> { order(status: 'canceled') }
-
   has_many :line_items, dependent: :destroy
   has_many :books, through: :line_items
   has_many :addresses, as: :addressable, dependent: :destroy
