@@ -1,0 +1,106 @@
+%main.container.general-main-wrap
+  %h1.general-title-margin Cart
+  - if current_cart.line_items.empty?
+    .text-center
+      %p.font-18 Cart is empty
+      = link_to "Go to Store", categories_path, class: "btn btn-default mb-20"
+  - else
+    - current_cart.line_items.each do |line_item|
+      .visible-xs
+        .general-cart-item.divider-lg-bottom
+          = link_to "Empty cart", cart_path(current_cart),method: :delete, data: {confirm: "Are you sure?"}
+          %button.close.general-cart-close{type: "button", 'aria-label': "Close"}
+            = link_to line_item_path(line_item), method: :delete, type: "button", 'aria-label': "Close" do
+              %span{'aria-hidden': "true"} &times;
+          %p.title
+            = line_item.book.title
+          %table.table
+            %tr
+              %td
+                %span.in-grey-600 Price
+              %td
+                %span.font-16.in-gold-500= number_to_currency(line_item.book.price, unit: '€')
+            %tr
+              %td.vertical-middle
+                %span.in-grey-600 Quantity
+              %td
+                .input-group
+                  = link_to reduce_line_item_path(id: line_item), method: :post do
+                    %i.fa.fa-minus.line-heaght-40
+                  %input.quantity-input{ value: "#{line_item.quantity}", type: "text"}
+                  = link_to add_line_item_path(id: line_item), method: :post do
+                    %i.fa.fa-plus.line-heaght-40
+            %tr
+              %td
+                %span.in-grey-600 SubTotal
+              %td
+                %span.font-16.in-gold-500
+                  = number_to_currency(current_cart.sub_total, unit: '€')
+      .hidden-xs
+        %table.table.table-hover
+          %tr.no-hover
+            %th.col-pic.pl-0
+              %span.in-grey-600 Product
+            %th.col-title
+            %th.col-price
+              %span.in-grey-600 Price
+            %th.col-quantity
+              %span.in-grey-600 Quantity
+            %th.col-total
+              %span.in-grey-600 SubTotal
+            %th.col-close
+          %tr
+            %td
+              .general-img-wrap-table
+                = link_to category_book_path(line_item.book.category_id, line_item.book.id) do
+                  %img.cart-img-shadow.pull-left
+                    = image_tag url_for(line_item.book.images.first)
+            %td
+              %p.title
+                = link_to category_book_path(line_item.book.category_id, line_item.book.id) do
+                  = line_item.book.title
+            %td
+              %span.font-16.in-gold-500= number_to_currency(line_item.book.price, unit: '€')
+            %td
+              .input-group
+                = link_to reduce_line_item_path(id: line_item), method: :post do
+                  %i.fa.fa-minus.line-heaght-40#reduce_qty
+                %input.quantity-input{value: "#{line_item.quantity}", type: "text"}
+                = link_to add_line_item_path(id: line_item), method: :post do
+                  %i.fa.fa-plus.line-heaght-40#add_qty
+            %td
+              %span.font-16.in-gold-500= number_to_currency(line_item.total_price, unit: '€')
+            %td
+              %button.close.general-cart-close
+                = link_to line_item_path(line_item), method: :delete, type: "button", 'aria-label': "Close" do
+                  %span{'aria-hidden': "true"} &times;
+    .general-order-wrap
+      .row
+        .col-sm-4
+          = render 'coupons/coupon_form'
+        .col-sm-8
+          .res-mr-200.text-center.general-text-right
+            %p.in-gold-500.font-18 Order Summary
+            %table.general-summary-table.general-summary-table-right.general-text-right
+              %tr
+                %td
+                  %p.font-16 Subtotal:
+                %td
+                  %p.font-16
+                    = number_to_currency(current_cart.sub_total, unit: '€')
+              %tr
+                %td
+                  %p.font-16 Coupon:
+                %td
+                  %p.font-16
+                    = number_to_currency(current_cart.discount, unit: '€')
+              %tr
+                %td
+                  %strong.font-18 Order Total:
+                %td
+                  %strong.font-18
+                    = number_to_currency(current_cart.order_total, unit: '€')
+          %button.btn.btn-default.mb-20.visible-xs-inline-block
+            = link_to "Checkout", checkout_path(:login), class: 'btn-default'
+        %button.btn.btn-default.mb-20.hidden-xs.center-block
+          = link_to "Checkout", checkout_path(:login), class: 'btn-default'

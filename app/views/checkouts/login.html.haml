@@ -1,0 +1,42 @@
+%main.container
+  .row
+    .col-md-5.mb-40
+      .text-center
+        %h3.general-subtitle Returning Customer
+        = link_to customer_facebook_omniauth_authorize_path, method: :post, class: 'general-login-icon' do
+          %i.fab.fa-facebook.fa-3x.mx-2
+        %p.general-login-text or
+      %form.general-form
+        .mb-40
+          %p.mb-15 Log In with Password
+      = form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: 'general-form'}) do |f|
+        .form-group.mb-30
+          = f.label :email, class: 'control-label input-label', html: {  'data-bar' => 'Enter Email' }
+          = f.email_field :email, autofocus: true, autocomplete: "email", id: 'email', class: 'form-control', placeholder: "Enter Email"
+        .form-group.mb-30
+          = f.label :password, class: 'control-label input-label', html: { 'data-bar' => 'Password' }
+          = f.password_field :password, autocomplete: "off", id: 'password', class: 'form-control', placeholder: "Password"
+          - if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations'
+            = link_to "Forgot password?", new_password_path(resource_name), class: 'help-block in-gold-500'
+            = f.submit "Log In with Password", class: 'btn btn-default mb-20'
+    .col-md-5.col-md-offset-1.mb-60
+      .text-center
+        %h3.general-subtitle New Customer
+        %a.general-login-icon
+        = link_to customer_facebook_omniauth_authorize_path, method: :post, class: 'general-login-icon' do
+          %i.fab.fa-facebook.fa-3x.mx-2
+        %p.general-login-text or
+      %form.general-form
+      = form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: 'general-form'}) do |f|
+        = render partial: 'devise/shared/error_messages'
+        .mb-40
+          %p.mb-5 Quik Register
+          %p.general-info-text.font-12.mb-20 You’ll be able to create password later
+        .form-group.mb-30
+          = f.label :email, class: 'control-label input-label', html: {  'data-bar' => 'Enter Email' }
+          = f.email_field :email, autofocus: true, autocomplete: "email", id: 'email', class: 'form-control', placeholder: "Enter Email"
+        .form-group.mb-30
+          = f.password_field :password, autocomplete: "off", id: 'password', type: 'hidden', class: 'form-control', value: "Password123"
+          = f.password_field :password_confirmation, autocomplete: "off", type: 'hidden', id: 'password_confirmation', class: 'form-control', placeholder: "Confirm Password", value: "Password123"
+        .text-center
+          = f.submit "Continue to Checkout", class: 'btn btn-default mb-20'

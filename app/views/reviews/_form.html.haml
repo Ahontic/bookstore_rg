@@ -1,0 +1,9 @@
+= simple_form_for([@book, @book.reviews.build]) do |f|
+  #rating-form
+    %label Rating
+  .form-group
+    = f.input :title, required: false
+  .form-group.mb-30
+    = f.input :body, required: false, label: "Review"
+  .actions
+    = f.button :submit, "Post", class: "btn btn-default mb-20 pull-right mb-55"

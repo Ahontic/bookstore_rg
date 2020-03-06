@@ -4,7 +4,22 @@ Style/Documentation:
   Enabled: false
 Metrics/BlockLength:
   Exclude:
+    - config/**/*
     - spec/**/*
+    - lib/tasks/*
+    - db/**/*
+    - app/admin/**/*
+Metrics/MethodLength:
+    Exclude:
+    - db/**/*
+    - bin/**/*
 Metrics/ModuleLength:
   Exclude:
     - spec/**/*
+Metrics:
+  Exclude:
+    - bin/**/*
+Style/ClassAndModuleChildren:
+  Exclude:
+    - app/controllers/customers/*
+    - app/helpers/**/*

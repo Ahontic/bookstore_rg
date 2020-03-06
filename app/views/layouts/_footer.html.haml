@@ -1,0 +1,20 @@
+%footer.navbar-inverse
+  .container
+    .row
+      .col-sm-9
+        %ul.list-inline.general-align.mb-25
+          %li
+            = link_to t(:home), root_path, class: 'nav-link'
+          %li
+            = link_to t(:shop), categories_path, class: 'nav-link'
+          %li
+            %a.nav-link{href: "#"}
+              = t :orders
+          %li
+            %a.nav-link{href: "#"}
+              = t :settings
+      .col-sm-3
+        %p.general-nav-mail
+          = t :nav_mail
+        %p.general-nav-number
+          = t :nav_number

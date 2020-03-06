@@ -1,0 +1,19 @@
+.col-xs-6.col-sm-3
+  .general-thumb-wrap
+    .thumbnail.general
+      %img.img-shadow
+        = image_tag(url_for(book.images.first), size: '400x400')
+        .thumb-hover
+          .general-thumb-link-wrap
+            %a.thumb-hover-link{href: category_book_path(book.category_id, book)}
+              %i.fa.fa-eye.thumb-icon{'aria-hidden': "true"}
+            = link_to line_items_path(book_id: book.id), method: :post, class: 'thumb-hover-link shopping-cart-buy-btn' do
+              %i.fa.fa-shopping-cart.thumb-icon
+  .general-thumb-info
+    %p.title
+      = book.title
+    %p.font-16.in-gold-500
+      = book.price
+    %span.divider-sm
+    %p.lead.small
+      = book.authors_names

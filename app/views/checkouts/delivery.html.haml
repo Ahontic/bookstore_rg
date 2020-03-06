@@ -1,0 +1,79 @@
+%main.container.general-main-wrap
+  = render 'progress_bar'
+  %h3.general-subtitle
+    = I18n.t('checkout.delivery.shipping_method')
+  = simple_form_for @current_cart, url: wizard_path, method: :put, class: 'res-mb-100', defaults: { input_html: { class: 'form-control' }, required: false } do |f|
+    .visible-xs
+      .general-cart-item.divider-lg-bottom
+        %table.table
+          %tr
+            %td.col-half
+              %span.in-grey-600
+                = I18n.t('checkout.delivery.method')
+            %td.col-half
+              = f.collection_radio_buttons :delivery_id, @service.delivery, :id, :name, {}, { checked: true } do |option|
+                .form-group.radio.mt-0.mb-0
+                  %label.radio-label
+                    = option.label(class: 'radio-label') do
+                      = option.radio_button(class: 'radio-input')
+                      %span.radio-icon
+                      %span.radio-text= option.object.name
+    .hidden-xs.mb-res-50
+      %table.table.table-hover
+        %thead
+          %tr
+            %th.col-method
+              %span.in-grey-600.ml-40
+                = I18n.t('checkout.delivery.method')
+            %th
+              %span.in-grey-600
+                = I18n.t('checkout.delivery.days')
+            %th
+              %span.in-grey-600
+                = I18n.t('checkout.delivery.price')
+        %tbody
+          = f.collection_radio_buttons :delivery_id, @service.delivery, :id, :name, {}, { checked: true } do |option|
+            %tr
+              %td
+                .form-group.radio.mt-0.mb-0
+                = option.radio_button(class: 'radio-icon')
+                %span.radio-text
+                  = option.object.name
+              %td
+                %span= option.object.time
+              %td
+                %span.font-16.in-gold-500= number_to_currency(option.object.price, unit: '€')
+    .general-text-align
+      %p.in-gold-500.font-18
+        = I18n.t('checkout.order_summary')
+      %table.general-summary-table
+        %tr
+          %td
+            %p.font-16
+              = I18n.t('checkout.order_summary')
+          %td
+            %p.font-16
+              = number_to_currency(current_cart.sub_total, unit: '€')
+        %tr
+          %td
+            %p.font-16
+              = I18n.t('checkout.coupon')
+          %td
+            %p.font-16
+              = number_to_currency(current_cart.discount, unit: '€')
+        %tr
+          %td
+            %p.font-16
+              = I18n.t('checkout.shipping')
+          %td
+            %p.font-16
+              = number_to_currency(current_cart.delivery ? current_cart.delivery.price : 0.00, unit: '€')
+        %tr
+          %td
+            %strong.font-18
+              = I18n.t('checkout.order_total')
+          %td
+            %strong.font-18
+              = number_to_currency(current_cart.order_total, unit: '€')
+    .actions.text-center
+      = f.submit 'Save and Continue', class: 'btn btn-default mb-20'

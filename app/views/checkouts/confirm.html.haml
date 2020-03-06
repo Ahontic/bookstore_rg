@@ -1,0 +1,140 @@
+%main.container.general-main-wrap
+  = render 'progress_bar'
+  .row.mb-20
+    - current_cart.addresses.each do |current_address|
+      .col-sm-3
+        %h3.general-subtitle= current_address.address_type.capitalize
+        %p.general-address
+          = current_address.first_name
+          = current_address.last_name
+          = link_to "edit", checkout_path(:address), class: "general-edit"
+          %br
+          = current_address.address
+          %br
+          = current_address.zipcode
+          %br
+          = current_address.country
+          %br
+          = current_address.phone
+    .col-sm-3
+      %h3.general-subtitle
+        = I18n.t('checkout.shipments')
+      %p.general-address
+        = current_cart.delivery.name
+        = link_to "edit", checkout_path(:delivery), class: "general-edit"
+        %br
+        = current_cart.delivery.time
+        %br
+        = number_to_currency(current_cart.delivery.price, unit: '€')
+    .col-sm-3
+      %h3.general-subtitle
+        = I18n.t('checkout.payment_information')
+      %p.general-address
+        ** ** ** #{current_cart.credit_card.number.last(4)}
+        = link_to "edit", checkout_path(:payment), class: "general-edit"
+        %br
+        = current_cart.credit_card.month_year
+  .visible-xs
+    - current_cart.line_items.each do |line_item|
+      .general-cart-item.divider-lg
+        .general-img-wrap-table
+          %img.cart-img-shadow
+            = image_tag url_for(line_item.book.images.first)
+        %p.title
+          = line_item.book.title
+        %P.in-grey-600.fw-300
+          = line_item.book.description.split('.').first
+        %table.table
+          %tr
+            %td
+              %span.in-grey-600
+                = I18n.t('delivery.price')
+            %td
+              %span.font-16.in-gold-500
+                = number_to_currency(line_item.book.price, unit: '€')
+          %tr
+            %td.vertical-middle
+              %span.in-grey-600
+                = I18n.t('checkout.quantity')
+            %td
+              %span
+                = line_item.quantity
+          %tr
+            %td
+              %span.in-grey-600
+                = I18n.t('checkout.subtotal')
+            %td
+              %span.font-16.in-gold-500
+                = number_to_currency(line_item.total_price, unit: '€')
+  .hidden-xs.divider-lg.pt-20
+    %table.table.table-hover
+      %thead
+        %tr
+          %th
+            %span.in-grey-600
+              = I18n.t('checkout.book')
+          %th.col-method
+          %th
+            %span.in-grey-600
+              = I18n.t('checkout.delivery.price')
+          %th
+            %span.in-grey-600
+              = I18n.t('checkout.quantity')
+          %th
+            %span.in-grey-600
+              = I18n.t('checkout.total')
+      %tbody
+        - current_cart.line_items.each do |line_item|
+          %tr
+            %td
+              .general-img-wrap-table
+                %img.cart-img-shadow.pull-left
+                  = image_tag url_for(line_item.book.images.first)
+            %td
+              %p.title
+                = line_item.book.title
+              %p.in-grey-600.fw-300
+                = line_item.book.description.split('.').first
+            %td
+              %span.font-16.in-gold-500
+                = number_to_currency(line_item.book.price, unit: '€')
+            %td
+              %span.ml-30= line_item.quantity
+            %td
+              %span.font-16.in-gold-500
+                = number_to_currency(line_item.total_price, unit: '€')
+  .text-center.general-text-right
+    %p.in-gold-500.font-18
+      = I18n.t('checkout.order_summary')
+    %table.general-summary-table.general-summary-table-right.general-text-right
+      %tr
+        %td
+          %p.font-16
+            = I18n.t('checkout.order_summary')
+        %td
+          %p.font-16
+            = number_to_currency(current_cart.sub_total, unit: '€')
+      %tr
+        %td
+          %p.font-16
+            = I18n.t('checkout.coupon')
+        %td
+          %p.font-16
+            = number_to_currency(current_cart.discount, unit: '€')
+      %tr
+        %td
+          %p.font-16
+            = I18n.t('checkout.shipping')
+        %td
+          %p.font-16
+            = number_to_currency(current_cart.delivery.price, unit: '€')
+      %tr
+        %td
+          %strong.font-18
+            = I18n.t('checkout.order_total')
+        %td
+          %strong.font-18
+            = number_to_currency(current_cart.order_total, unit: '€')
+  .text-center
+    %button.btn.btn-default.mb-20
+      = button_to 'Place Order', wizard_path, method: :put, class: 'btn btn-default'

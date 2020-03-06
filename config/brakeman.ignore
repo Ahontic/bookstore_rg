@@ -1,0 +1,66 @@
+{
+  "ignored_warnings": [
+    {
+      "warning_type": "Unscoped Find",
+      "warning_code": 82,
+      "fingerprint": "87df4754942d5c53fc666aeccf52e4b37b1a97535fb62a8ac72d9b22f07b46ed",
+      "check_name": "UnscopedFind",
+      "message": "Unscoped call to `Book#find`",
+      "file": "app/controllers/reviews_controller.rb",
+      "line": 13,
+      "link": "https://brakemanscanner.org/docs/warning_types/unscoped_find/",
+      "code": "Book.find(params[:book_id])",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "ReviewsController",
+        "method": "create"
+      },
+      "user_input": "params[:book_id]",
+      "confidence": "Weak",
+      "note": ""
+    },
+    {
+      "warning_type": "Unscoped Find",
+      "warning_code": 82,
+      "fingerprint": "f51edd8394d53b0a17bed72f8f82d1762ea7d712fc9cc0514495c1d0d312fca8",
+      "check_name": "UnscopedFind",
+      "message": "Unscoped call to `Book#find`",
+      "file": "app/controllers/reviews_controller.rb",
+      "line": 7,
+      "link": "https://brakemanscanner.org/docs/warning_types/unscoped_find/",
+      "code": "Book.find(params[:book_id])",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "ReviewsController",
+        "method": "index"
+      },
+      "user_input": "params[:book_id]",
+      "confidence": "Weak",
+      "note": ""
+    },
+    {
+      "warning_type": "Unscoped Find",
+      "warning_code": 82,
+      "fingerprint": "f5ca44df14bd5bfe61f16734b2b62ff43cf2a3036c9205f00cdcf137c872ff73",
+      "check_name": "UnscopedFind",
+      "message": "Unscoped call to `Book#find`",
+      "file": "app/models/book.rb",
+      "line": 65,
+      "link": "https://brakemanscanner.org/docs/warning_types/unscoped_find/",
+      "code": "Book.find(LineItem.group(:book_id).sum(:quantity).first(quantity).to_h.keys)",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Book",
+        "method": "Book.most_popular_books"
+      },
+      "user_input": "LineItem.group(:book_id).sum(:quantity)",
+      "confidence": "Weak",
+      "note": ""
+    }
+  ],
+  "updated": "2020-03-05 19:47:08 +0200",
+  "brakeman_version": "4.7.2"
+}

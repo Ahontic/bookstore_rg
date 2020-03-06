@@ -1,0 +1,49 @@
+.row
+  .col-md-5.mb-40
+    .visible-xs.visible-sm
+      %h3.general-subtitle.mt-0 Billing Address
+    = simple_form_for((@address if @address&.billing?) || current_customer.addresses.billing.find_or_initialize_by(address_type: 'billing'), defaults: { input_html: { class: 'form-control' }, required: false }) do |f|
+      .form-group
+        = f.input :address_type, as: :hidden, autocomplete: "off", id: 'address_type', class: 'hidden', placeholder: "Address type"
+      .form-group
+        = f.input :first_name, autocomplete: "off", placeholder: "First name"
+      .form-group
+        = f.input :last_name, autocomplete: "off", placeholder: "Last name"
+      .form-group
+        = f.input :address, autocomplete: "off", placeholder: "Address"
+      .form-group
+        = f.input :city, autocomplete: "off", placeholder: "City"
+      .form-group
+        = f.input :zipcode, autocomplete: "off", placeholder: "Zipcode"
+      .form-group
+        = f.label :country, required: false
+        %br/
+        = f.country_select(:country, { priority_countries: ["UA", "US"], priority_countries_divider: "~~~~~~"}, {autocomplete: "off", id: 'сountry', class: 'form-control' })
+      .form-group
+        = f.input :phone, placeholder: "Example +355 66 123 4567"
+      .text-center.general-text-align
+        = f.submit "Save", class: 'btn btn-default.mb-10'
+  .col-md-5.col-md-offset-1.mb-25
+    .visible-xs.visible-sm
+      %h3.general-subtitle.mt-0 Shipping Address
+    = simple_form_for((@address if @address&.shipping?) || current_customer.addresses.shipping.find_or_initialize_by(address_type: 'shipping'), defaults: { input_html: { class: 'form-control' }, required: false }) do |f|
+      .form-group
+        = f.input :address_type, as: :hidden, id: 'address_type', class: 'hidden', placeholder: "Address type"
+      .form-group
+        = f.input :first_name, placeholder: "First name"
+      .form-group
+        = f.input :last_name, placeholder: "Last name"
+      .form-group
+        = f.input :address, placeholder: "Address"
+      .form-group
+        = f.input :city, placeholder: "City"
+      .form-group
+        = f.input :zipcode, placeholder: "Zipcode"
+      .form-group
+        = f.label :country, required: false
+        %br/
+        = f.country_select(:country, { priority_countries: ["UA", "US"], priority_countries_divider: "~~~~~~"}, { id: 'сountry', class: 'form-control' })
+      .form-group
+        = f.input :phone, placeholder: "Example +355 66 123 4567", input_html: { :'data-mask'=> '000-000-0000'}
+      .text-center.general-text-align
+        = f.submit "Save", class: 'btn btn-default.mb-10'
