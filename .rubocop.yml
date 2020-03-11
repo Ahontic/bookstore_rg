@@ -2,6 +2,12 @@ Metrics/LineLength:
   Max: 120
 Style/Documentation:
   Enabled: false
+Style/HashEachMethods:
+  Enabled: true
+Style/HashTransformKeys:
+  Enabled: true
+Style/HashTransformValues:
+  Enabled: true
 Metrics/BlockLength:
   Exclude:
     - config/**/*

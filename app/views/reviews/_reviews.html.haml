@@ -8,7 +8,8 @@
           .general-message-date.hidden-xs= review.created_at&.strftime('%B %e, %Y')
           .review-rating{"data-score" => "#{review.rating}"}
           .max-240
-            .general-message-verified Verified Reviewer
+            - if review.customer.books.include?(@book)
+              .general-message-verified Verified Reviewer
             .general-message-name= review.title
         .mb-15
         %p

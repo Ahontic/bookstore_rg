@@ -36,6 +36,7 @@ class Customer < ApplicationRecord
   has_many :addresses, as: :addressable
   has_many :reviews, dependent: :destroy
   has_many :carts, dependent: :destroy
+  has_many :books, through: :carts
 
   validates :email, presence: true
   validates :email, confirmation: true
