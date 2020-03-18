@@ -1,0 +1,11 @@
+template:
+  default: &default
+    base_branch: master
+    label: needs review
+    assignees:
+      - any
+      - github
+      - reviewer
+      - you
+      - want
+    description_main_body: describe your changes here

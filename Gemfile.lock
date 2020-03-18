@@ -354,6 +354,8 @@ GEM
     ruby_dep (1.5.0)
     ruby_parser (3.14.2)
       sexp_processor (~> 4.9)
+    rubyhub (0.1.7)
+      thor
     rubyzip (2.2.0)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
@@ -475,6 +477,7 @@ DEPENDENCIES
   rails (~> 6.0.1)
   rspec-rails (~> 4.0.0.beta3)
   rubocop
+  rubyhub
   sass-rails (>= 6)
   selenium-webdriver
   shoulda-matchers
