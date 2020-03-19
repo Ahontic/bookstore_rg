@@ -1,8 +1,23 @@
 template:
   default: &default
-    base_branch: master
-    label: bug
+    base_branch: develop
+    labels: bug
     assignees:
-      - yevhenii.bulatkin@rubygarage.org
+      - Ahontic
+    reviewers:
+      - Volosh1n
     description_main_body: Changes
     push: true
+    open: true
+  backend:
+      <<: *default
+      reviewers:
+        - some
+        - backend
+        - developers
+  frontend:
+    <<: *default
+    # reviewers:
+    #   - some
+    #   - backend
+    #   - developers
