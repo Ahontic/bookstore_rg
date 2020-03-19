@@ -1,12 +1,15 @@
 template:
   default: &default
     base_branch: develop
-    labels: bug
+    labels:
+      - needs review
+      - another label
     assignees:
       - Ahontic
     reviewers:
-      - Volosh1n
+      - Ahontic
     description_main_body: Changes
+    jira_base_url: https://sample.atlassian.net/browse/
     push: true
     open: true
   backend:
@@ -17,7 +20,7 @@ template:
         - developers
   frontend:
     <<: *default
-    # reviewers:
-    #   - some
-    #   - backend
-    #   - developers
+    reviewers:
+      - some
+      - backend
+      - developers
