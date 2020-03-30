@@ -57,6 +57,7 @@ group :test do
   gem 'capybara', '>= 2.15'
   gem 'database_cleaner'
   gem 'rspec-rails', '~> 4.0.0.beta3'
+  gem 'rspec_junit_formatter'
   gem 'selenium-webdriver'
   gem 'simplecov'
   gem 'webdrivers'
