@@ -9,7 +9,7 @@ jobs:
       - image: circleci/postgres:10.10
         environment:
           POSTGRES_USER: circleci
-    working_directory: ~/repo
+    working_directory: ~/bookstore_rg
 
     steps:
       - checkout
@@ -91,11 +91,11 @@ jobs:
       - image: circleci/ruby:2.5.1-stretch-node
     environment:
       CC_TEST_REPORTER_ID: 5666871d0283148b076911196b02a8797b0ad9df9ce987f1ae386b9de3fbe9e8
-    working_directory: ~/bikeindex/bike_index
+    working_directory: ~/bookstore_rg/
 
     steps:
       - attach_workspace:
-          at: ~/bikeindex/bike_index
+          at: ~/bookstore_rg/
       - run:
           name: Install Code Climate Test Reporter
           command: |
