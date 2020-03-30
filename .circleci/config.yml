@@ -110,4 +110,6 @@ workflows:
   build_and_test:
     jobs:
       - build
-      - upload-coverage
+      - upload-coverage:
+          requires:
+            - build
