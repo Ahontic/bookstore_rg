@@ -27,6 +27,12 @@ jobs:
             bundle install --jobs=4 --retry=3 --path vendor/bundle
 
       - run:
+          name: Install Code Climate Test Reporter
+          command: |
+            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+            chmod +x ./cc-test-reporter
+
+      - run:
           name: Run lintering with lefthook
           command: bundle exec lefthook run pre-commit
 
@@ -65,8 +71,36 @@ jobs:
 
             bin/rake spec
 
+      - run:
+          name: Code Climate Test Coverage
+          command: |
+            ./cc-test-reporter format-coverage -t simplecov -o "coverage/codeclimate.$CIRCLE_NODE_INDEX.json"
+      - persist_to_workspace:
+          root: coverage
+          paths:
+            - codeclimate.*.json
+
       - store_test_results:
           path: tmp/rspec
       - store_artifacts:
           path: /tmp/test-results
           destination: test-results
+
+  upload-coverage:
+    docker:
+      - image: circleci/ruby:2.5.1-stretch-node
+    environment:
+      CC_TEST_REPORTER_ID: 5666871d0283148b076911196b02a8797b0ad9df9ce987f1ae386b9de3fbe9e8
+    working_directory: ~/bikeindex/bike_index
+
+    steps:
+      - attach_workspace:
+          at: ~/bikeindex/bike_index
+      - run:
+          name: Install Code Climate Test Reporter
+          command: |
+            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+            chmod +x ./cc-test-reporter
+      - run:
+          command: |
+            ./cc-test-reporter sum-coverage --output - codeclimate.*.json | ./cc-test-reporter upload-coverage --debug --input -
