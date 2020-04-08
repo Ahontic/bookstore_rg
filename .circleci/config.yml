@@ -2,7 +2,7 @@ version: 2.1
 
 aliases:
   working_directory: &working_directory
-    working_directory: ~/tmp
+    working_directory: ~/bookstore_rg
 
 executors:
   default:
@@ -21,10 +21,6 @@ executors:
       - image: circleci/postgres:10.10
         environment:
           POSTGRES_USER: circleci
-    environment:
-      - BUNDLE_JOBS: 4
-      - BUNDLE_PATH: vendor/bundle
-      - BUNDLE_RETRY: 3
     <<: *working_directory
 
 commands:
@@ -146,7 +142,7 @@ commands:
       - run: bundle exec rake db:create
       - run: bundle exec rake db:schema:load
       - attach_workspace:
-          at: ~/tmp/tmp
+          at: ~/bookstore_rg/tmp
       - run:
           name: Run lintering with lefthook
           command: bundle exec lefthook run pre-commit
@@ -214,7 +210,7 @@ jobs:
     executor: default
     steps:
       - attach_workspace:
-          at: ~/tmp/tmp
+          at: ~/bookstore_rg/tmp
       - cc-sum-coverage:
           input: tmp/codeclimate.*.json
           parts: 1
