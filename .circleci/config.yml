@@ -52,7 +52,7 @@ commands:
               echo "Already installed."
             fi
       - save_cache:
-          key: cc-setup-<< parameters.version >>
+          key: v1-cc-setup-<< parameters.version >>
           paths:
             - ./tmp/cc-test-reporter
 
