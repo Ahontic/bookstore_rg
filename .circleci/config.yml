@@ -35,7 +35,7 @@ commands:
         type: string
     steps:
       - restore_cache:
-          key: v1-cc-setup-<< parameters.version >>
+          key: v1-cc-setup-<< parameters.version >>-{{ arch }}
       - run:
           name: Setup coverage
           command: |
