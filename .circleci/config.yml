@@ -142,6 +142,7 @@ commands:
   rspec:
     description: Test with RSpec
     steps:
+      - run: bundle exec rake app:db:create app:db:migrate app:db:test:prepare
       - attach_workspace:
           at: ~/bookstore_rg/tmp
       - run:
@@ -214,7 +215,7 @@ jobs:
           at: ~/bookstore_rg/tmp
       - cc-sum-coverage:
           input: tmp/codeclimate.*.json
-          parts: 3
+          parts: 1
       - cc-upload-coverage
 
 workflows:
