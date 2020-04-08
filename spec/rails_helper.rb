@@ -59,10 +59,6 @@ Capybara.register_driver :site_prism do |app|
   capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
     chromeOptions: { args: %w[headless disable-gpu] }
   )
-  Capybara::Selenium::Driver.new(app, browser: browser, desired_capabilities: capabilities)
-end
-
-Capybara.register_driver :selenium do |app|
   if ENV['SELENIUM_DRIVER_URL'].present?
     Capybara::Selenium::Driver.new(
       app,
@@ -71,7 +67,7 @@ Capybara.register_driver :selenium do |app|
       desired_capabilities: :chrome
     )
   else
-    Capybara::Selenium::Driver.new(app, browser: :chrome)
+    Capybara::Selenium::Driver.new(app, browser: browser, desired_capabilities: capabilities)
   end
 end
 
