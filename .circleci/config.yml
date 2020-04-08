@@ -115,7 +115,7 @@ commands:
         default: bundle-v1
     steps:
       - restore_cache:
-          key: 'bundle-v1-<< parameters.key >>-{{ arch }}-{{ checksum "Gemfile.lockc" }}'
+          key: 'bundle-v1-<< parameters.key >>-{{ arch }}-{{ checksum "Gemfile.lock" }}'
 
   bundle-install:
     description: Install gems with Bundler
@@ -135,7 +135,7 @@ commands:
         default: bundle-v1
     steps:
       - save_cache:
-          key: 'bundle-v1-<< parameters.key >>-{{ arch }}-{{ checksum "Gemfile.lockc" }}'
+          key: 'bundle-v1-<< parameters.key >>-{{ arch }}-{{ checksum "Gemfile.lock" }}'
           paths:
             - vendor/bundle
 
@@ -193,20 +193,6 @@ jobs:
           paths:
             - cc-test-reporter
 
-  ruby-2-5:
-    executor:
-      name: default
-      tag: "2.5"
-    steps:
-      - restore_cache:
-          key: checkout-{{ .Branch }}-{{ .Revision }}
-      - bundle-load-cache:
-          key: ruby-2.5
-      - bundle-install
-      - bundle-save-cache:
-          key: ruby-2.5
-      - rspec
-
   ruby-2-6:
     executor:
       name: default
@@ -219,20 +205,6 @@ jobs:
       - bundle-install
       - bundle-save-cache:
           key: ruby-2.6
-      - rspec
-
-  ruby-2-7:
-    executor:
-      name: default
-      tag: "2.7"
-    steps:
-      - restore_cache:
-          key: checkout-{{ .Branch }}-{{ .Revision }}
-      - bundle-load-cache:
-          key: ruby-2.7
-      - bundle-install
-      - bundle-save-cache:
-          key: ruby-2.7
       - rspec
 
   ruby-head:
