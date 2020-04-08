@@ -16,7 +16,6 @@ executors:
       - image: circleci/ruby:<< parameters.tag >>-node
         environment:
           RAILS_ENV: test
-          PGHOST: 127.0.0.1
           SELENIUM_DRIVER_URL: http://localhost:4444/wd/hub
       - image: circleci/postgres:10.10
         environment:
