@@ -235,15 +235,7 @@ workflows:
     jobs:
       - checkout
       - cc-setup-coverage
-      - ruby-2-5:
-          requires:
-            - checkout
-            - cc-setup-coverage
       - ruby-2-6:
-          requires:
-            - checkout
-            - cc-setup-coverage
-      - ruby-2-7:
           requires:
             - checkout
             - cc-setup-coverage
@@ -253,6 +245,4 @@ workflows:
             - cc-setup-coverage
       - cc-upload-coverage:
           requires:
-            - ruby-2-5
             - ruby-2-6
-            - ruby-2-7
