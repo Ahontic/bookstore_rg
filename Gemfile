@@ -3,7 +3,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.6'
+ruby '2.6.3'
 
 gem 'activeadmin'
 gem 'bundler-audit'

@@ -196,15 +196,15 @@ jobs:
   ruby-2-6:
     executor:
       name: default
-      tag: "2.6"
+      tag: "2.6.3"
     steps:
       - restore_cache:
           key: checkout-{{ .Branch }}-{{ .Revision }}
       - bundle-load-cache:
-          key: ruby-2.6
+          key: ruby-2.6.3
       - bundle-install
       - bundle-save-cache:
-          key: ruby-2.6
+          key: ruby-2.6.3
       - rspec
 
   cc-upload-coverage:
@@ -229,4 +229,4 @@ workflows:
             - cc-setup-coverage
       - cc-upload-coverage:
           requires:
-            - ruby-2-6
+            - ruby-2-6.3
