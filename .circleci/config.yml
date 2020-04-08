@@ -13,6 +13,7 @@ executors:
         type: string
         default: latest
     docker:
+      - image: selenium/standalone-chrome:latest
       - image: circleci/ruby:<< parameters.tag >>-node
         environment:
           RAILS_ENV: test
