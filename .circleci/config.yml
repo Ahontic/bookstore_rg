@@ -35,7 +35,7 @@ commands:
         type: string
     steps:
       - restore_cache:
-          key: v1-cc-setup-<< parameters.version >>-{{ arch }}
+          key: cc-setup-<< parameters.version >>-{{ arch }}
       - run:
           name: Setup coverage
           command: |
@@ -47,7 +47,7 @@ commands:
               echo "Already installed."
             fi
       - save_cache:
-          key: v1-cc-setup-<< parameters.version >>
+          key: cc-setup-<< parameters.version >>
           paths:
             - ./tmp/cc-test-reporter
 
@@ -111,7 +111,7 @@ commands:
         default: bundle-v1
     steps:
       - restore_cache:
-          key: 'bundle-v1-<< parameters.key >>-{{ arch }}-{{ checksum "Gemfile.lock" }}'
+          key: 'bundle-v2-<< parameters.key >>-{{ arch }}-{{ checksum "Gemfile.lock" }}'
 
   bundle-install:
     description: Install gems with Bundler
@@ -128,10 +128,10 @@ commands:
       key:
         description: The cache key to use
         type: string
-        default: bundle-v1
+        default: bundle-v2
     steps:
       - save_cache:
-          key: 'bundle-v1-<< parameters.key >>-{{ arch }}-{{ checksum "Gemfile.lock" }}'
+          key: 'bundle-v2-<< parameters.key >>-{{ arch }}-{{ checksum "Gemfile.lock" }}'
           paths:
             - vendor/bundle
 
