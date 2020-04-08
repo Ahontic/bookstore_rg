@@ -2,7 +2,7 @@ version: 2.1
 
 aliases:
   working_directory: &working_directory
-    working_directory: ~/repo
+    working_directory: ~/tmp
 
 executors:
   default:
@@ -40,7 +40,7 @@ commands:
         type: string
     steps:
       - restore_cache:
-          key: cc-setup-<< parameters.version >>
+          key: v1-cc-setup-<< parameters.version >>
       - run:
           name: Setup coverage
           command: |
@@ -146,7 +146,7 @@ commands:
       - run: bundle exec rake db:create
       - run: bundle exec rake db:schema:load
       - attach_workspace:
-          at: ~/repo/tmp
+          at: ~/tmp/tmp
       - run:
           name: Run lintering with lefthook
           command: bundle exec lefthook run pre-commit
@@ -214,7 +214,7 @@ jobs:
     executor: default
     steps:
       - attach_workspace:
-          at: ~/repo/tmp
+          at: ~/tmp/tmp
       - cc-sum-coverage:
           input: tmp/codeclimate.*.json
           parts: 1
