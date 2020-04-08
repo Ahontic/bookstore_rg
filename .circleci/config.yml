@@ -193,7 +193,7 @@ jobs:
           paths:
             - cc-test-reporter
 
-  ruby-2-6:
+  ruby-2-6-3:
     executor:
       name: default
       tag: "2.6.3"
@@ -223,10 +223,10 @@ workflows:
     jobs:
       - checkout
       - cc-setup-coverage
-      - ruby-2-6:
+      - ruby-2-6-3:
           requires:
             - checkout
             - cc-setup-coverage
       - cc-upload-coverage:
           requires:
-            - ruby-2-6.3
+            - ruby-2-6-3
