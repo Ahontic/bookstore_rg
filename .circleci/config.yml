@@ -21,7 +21,6 @@ executors:
       - image: circleci/postgres:10.10
         environment:
           POSTGRES_USER: circleci
-    <<: *working_directory
 
 commands:
   cc-setup-coverage:
