@@ -207,18 +207,6 @@ jobs:
           key: ruby-2.6
       - rspec
 
-  ruby-head:
-    executor: default
-    steps:
-      - restore_cache:
-          key: checkout-{{ .Branch }}-{{ .Revision }}
-      - bundle-load-cache:
-          key: ruby-head
-      - bundle-install
-      - bundle-save-cache:
-          key: ruby-head
-      - rspec
-
   cc-upload-coverage:
     executor: default
     steps:
@@ -236,10 +224,6 @@ workflows:
       - checkout
       - cc-setup-coverage
       - ruby-2-6:
-          requires:
-            - checkout
-            - cc-setup-coverage
-      - ruby-head:
           requires:
             - checkout
             - cc-setup-coverage
