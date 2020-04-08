@@ -2,7 +2,7 @@ version: 2.1
 
 aliases:
   working_directory: &working_directory
-    working_directory: ~/bookstore_rg
+    working_directory: ~/repo
 
 executors:
   default:
@@ -146,7 +146,7 @@ commands:
       - run: bundle exec rake db:create
       - run: bundle exec rake db:schema:load
       - attach_workspace:
-          at: ~/bookstore_rg/tmp
+          at: ~/repo/tmp
       - run:
           name: Run lintering with lefthook
           command: bundle exec lefthook run pre-commit
@@ -214,7 +214,7 @@ jobs:
     executor: default
     steps:
       - attach_workspace:
-          at: ~/bookstore_rg/tmp
+          at: ~/repo/tmp
       - cc-sum-coverage:
           input: tmp/codeclimate.*.json
           parts: 1
