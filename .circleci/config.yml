@@ -20,7 +20,7 @@ executors:
       - image: circleci/postgres:10.10
         environment:
           POSTGRES_USER: circleci
-      - image: selenium/standalone-chrome:latest
+      - image: selenium/standalone-chrome
 
 commands:
   cc-setup-coverage:
