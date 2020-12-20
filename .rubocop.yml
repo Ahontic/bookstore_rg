@@ -1,30 +1,61 @@
-Metrics/LineLength:
+require:
+  - rubocop-performance
+  - rubocop-rspec
+  - rubocop-rails
+
+AllCops:
+  TargetRubyVersion: 2.7
+  TargetRailsVersion: 6.0
+  NewCops: enable
+  Exclude:
+    - bin/*
+    - db/schema.rb
+    - db/migrate/*
+    - deploy/**/*
+    - node_modules/**/*
+    - vendor/bundle/**/*
+
+Rails/FilePath:
+  EnforcedStyle: arguments
+
+Rails:
+  Enabled: true
+    
+Layout/LineLength:
   Max: 120
+
+RSpec/MultipleExpectations:
+  Max: 5
+  Exclude:
+    - spec/features/*
+
+RSpec/ExampleLength:
+  Exclude:
+    - spec/features/*
+
 Style/Documentation:
   Enabled: false
+
 Style/HashEachMethods:
   Enabled: true
+
 Style/HashTransformKeys:
   Enabled: true
+
 Style/HashTransformValues:
   Enabled: true
+
 Metrics/BlockLength:
   Exclude:
     - config/**/*
     - spec/**/*
     - lib/tasks/*
-    - db/**/*
     - app/admin/**/*
-Metrics/MethodLength:
-    Exclude:
-    - db/**/*
-    - bin/**/*
+
 Metrics/ModuleLength:
   Exclude:
     - spec/**/*
-Metrics:
-  Exclude:
-    - bin/**/*
+
 Style/ClassAndModuleChildren:
   Exclude:
     - app/controllers/customers/*

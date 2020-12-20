@@ -43,3 +43,15 @@ yarn-debug.log*
 # Ignore application configuration
 /config/application.yml
 /config/cloudinary.yml
+
+!/log/.keep
+
+/vendor/bundle
+/public/uploads
+/public/javascripts
+
+/config/credentials/*.key
+
+/deploy/bin/variables/variables.sh
+
+.history

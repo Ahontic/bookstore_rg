@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-feature 'Category page' do
+describe 'Category page' do
   let(:category1) { create(:category) }
   let(:category2) { create(:category) }
   let(:material) { create(:material) }
@@ -11,7 +11,7 @@ feature 'Category page' do
     visit categories_path
   end
 
-  scenario 'has categories with its content' do
+  it 'has categories with its content' do
     expect(page).to have_content I18n.t(:catalog)
     expect(page).to have_current_path categories_path
 

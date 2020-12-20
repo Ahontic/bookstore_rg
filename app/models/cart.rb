@@ -1,32 +1,5 @@
 # frozen_string_literal: true
 
-# == Schema Information
-#
-# Table name: carts
-#
-#  id             :bigint           not null, primary key
-#  number         :string
-#  status         :integer          default("in_progress")
-#  use_billing    :boolean          default(FALSE)
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
-#  credit_card_id :bigint
-#  customer_id    :bigint
-#  delivery_id    :bigint
-#
-# Indexes
-#
-#  index_carts_on_credit_card_id  (credit_card_id)
-#  index_carts_on_customer_id     (customer_id)
-#  index_carts_on_delivery_id     (delivery_id)
-#
-# Foreign Keys
-#
-#  fk_rails_...  (credit_card_id => credit_cards.id)
-#  fk_rails_...  (customer_id => customers.id)
-#  fk_rails_...  (delivery_id => deliveries.id)
-#
-
 class Cart < ApplicationRecord
   AVAILABLE_FILTERS = {
     I18n.t('order_sort.waiting_for_processing') => 'waiting_for_processing',
@@ -39,7 +12,7 @@ class Cart < ApplicationRecord
   has_many :books, through: :line_items
   has_many :addresses, as: :addressable, dependent: :destroy
   accepts_nested_attributes_for :addresses
-  has_one :coupon
+  has_one :coupon, dependent: :destroy
 
   belongs_to :customer, optional: true
   belongs_to :delivery, optional: true

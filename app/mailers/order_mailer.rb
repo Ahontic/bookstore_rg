@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class OrderMailer < ActionMailer::Base
+class OrderMailer < ApplicationMailer
   default from: 'hwpauler@gmail.com'
 
   def send_order_confirmation(customer)

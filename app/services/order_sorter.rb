@@ -15,7 +15,7 @@ class OrderSorter < ApplicationService
   private
 
   def current_sort
-    return @params[:status] if Cart::AVAILABLE_FILTERS.values.include?(@params[:status])
+    return @params[:status] if Cart::AVAILABLE_FILTERS.value?(@params[:status])
 
     DEFAULT_FILTER
   end
