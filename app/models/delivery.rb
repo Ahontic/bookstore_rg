@@ -1,19 +1,7 @@
 # frozen_string_literal: true
 
-# == Schema Information
-#
-# Table name: deliveries
-#
-#  id         :bigint           not null, primary key
-#  name       :string
-#  price      :decimal(, )
-#  time       :string
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#
-
 class Delivery < ApplicationRecord
-  has_many :carts
+  has_many :carts, dependent: :destroy
   validates :name, :time, :price, presence: true
 
   validates :name, uniqueness: true

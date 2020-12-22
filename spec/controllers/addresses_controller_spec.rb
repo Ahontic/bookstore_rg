@@ -3,6 +3,7 @@
 RSpec.describe AddressesController do
   let!(:customer) { create(:customer, :confirmed) }
   let(:address) { FactoryBot.attributes_for(:address) }
+
   before { sign_in(customer) }
 
   describe '#create' do

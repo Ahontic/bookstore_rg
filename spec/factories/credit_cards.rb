@@ -1,18 +1,5 @@
 # frozen_string_literal: true
 
-# == Schema Information
-#
-# Table name: credit_cards
-#
-#  id           :bigint           not null, primary key
-#  cvv          :string
-#  month_year   :string
-#  name_on_card :string
-#  number       :string
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
-#
-
 FactoryBot.define do
   factory :credit_card do
     number { FFaker::Bank.card_number.gsub!(/\s+/, '') }

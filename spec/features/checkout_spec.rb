@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-feature 'Checkout page' do
+describe 'Checkout page' do
   let!(:book) { create(:book) }
   let!(:customer) { create(:customer, :confirmed) }
   let!(:delivery) { create_list(:delivery, 3) }
@@ -8,8 +8,8 @@ feature 'Checkout page' do
   let(:valid_credit_card_params) { FactoryBot.attributes_for(:credit_card) }
   let(:checkout_page) { CheckoutPage.new(valid_address_params, valid_credit_card_params) }
 
-  feature 'Checkout', js: true do
-    scenario 'steps' do
+  describe 'Checkout' do
+    it 'steps' do
       sign_in(customer)
       visit category_book_path(category_id: book.category_id, id: book.id)
 

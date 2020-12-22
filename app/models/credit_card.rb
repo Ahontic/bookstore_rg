@@ -1,18 +1,5 @@
 # frozen_string_literal: true
 
-# == Schema Information
-#
-# Table name: credit_cards
-#
-#  id           :bigint           not null, primary key
-#  cvv          :string
-#  month_year   :string
-#  name_on_card :string
-#  number       :string
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
-#
-
 class CreditCard < ApplicationRecord
   REGEX_RULES = { name_on_card: /\A[a-zA-Z]*\s*[a-zA-Z]*\z/, month_year: %r{\A(0[1-9]|10|11|12)/\d{2}\z} }.freeze
 

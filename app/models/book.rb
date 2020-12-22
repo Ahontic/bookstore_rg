@@ -1,34 +1,5 @@
 # frozen_string_literal: true
 
-# == Schema Information
-#
-# Table name: books
-#
-#  id          :bigint           not null, primary key
-#  depth       :decimal(, )      not null
-#  description :string           not null
-#  height      :decimal(, )      not null
-#  issue_date  :integer          not null
-#  price       :decimal(, )      not null
-#  quantity    :integer          not null
-#  title       :string           not null
-#  width       :decimal(, )      not null
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  category_id :bigint           not null
-#  material_id :bigint           not null
-#
-# Indexes
-#
-#  index_books_on_category_id  (category_id)
-#  index_books_on_material_id  (material_id)
-#
-# Foreign Keys
-#
-#  fk_rails_...  (category_id => categories.id)
-#  fk_rails_...  (material_id => materials.id)
-#
-
 class Book < ApplicationRecord
   AVAILABLE_FILTERS = {
     I18n.t('book_sort.newest_first') => 'newest_first',
@@ -48,9 +19,9 @@ class Book < ApplicationRecord
 
   scope :latest, -> { order(:created_at).last(3) }
 
-  has_many :book_authors
+  has_many :book_authors, dependent: :destroy
   has_many :authors, through: :book_authors
-  has_many :reviews
+  has_many :reviews, dependent: :destroy
   has_many_attached :images
   belongs_to :category
   belongs_to :material

@@ -1,9 +1,99 @@
 pre-commit:
   parallel: true
+
+  commands:
+    rubocop:
+      skip: true # TODO: fix rubocop
+      glob: "*.rb"
+      run: |
+        bundle exec rubocop {staged_files} --parallel
+
+    brakeman:
+      run: |
+        bundle exec brakeman --quiet \
+                             --ensure-latest \
+                             --no-pager \
+                             --no-summary
+
+    bundle:
+      glob: "{Gemfile,Gemfile.lock}"
+      run: |
+        bundle exec bundle-audit check --update \
+                                       --ignore CVE-2015-9284 \
+                                       --quiet && \
+        bundle exec bundle-leak check --update
+
+    yarn:
+      glob: "{package.json,yarn.lock}"
+      run: |
+        yarn audit
+
+    i18n:
+      glob: "*.{rb,yml,html.haml}"
+      run: |
+        bundle exec i18n-tasks health
+
+    haml-lint:
+      skip: true # TODO: fix haml-lint
+      run: |
+        bundle exec haml-lint
+
+default: &default
+  commands:
+    bundle:
+      files: git diff --name-only HEAD master
+      glob: "{Gemfile,Gemfile.lock}"
+      run: |
+        bundle install
+    yarn:
+      files: git diff --name-only HEAD master
+      glob: "{package.json,yarn.lock}"
+      run: |
+        yarn install
+
+post-checkout:
+  <<: *default
+
+post-merge:
+  <<: *default
+
+post-rewrite:
+  <<: *default
+
+all:
+  parallel: true
+
   commands:
     brakeman:
-      run: bundle exec brakeman --no-pager
+      run: |
+        bundle exec brakeman --ensure-latest \
+                             --no-pager
+
+    bundle:
+      run: |
+        bundle exec bundle-audit check --update \
+                                       --ignore CVE-2015-9284 && \
+        bundle exec bundle-leak check --update
+
     rubocop:
-      run: bundle exec rubocop -c .rubocop.yml
-    bundle_audit:
-      run: bundle exec bundle audit --update --force-exclusion
+      skip: true # TODO: fix rubocop
+      run: |
+        bundle exec rubocop --parallel
+
+    fasterer:
+      run: |
+        bundle exec fasterer
+
+    haml-lint:
+      skip: true # TODO: fix haml-lint
+      run: |
+        bundle exec haml-lint app
+
+    yarn:
+      run: |
+        yarn audit
+
+    i18n:
+      glob:
+      run: |
+        bundle exec i18n-tasks health

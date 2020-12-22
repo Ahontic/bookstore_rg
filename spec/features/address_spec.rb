@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-feature 'Address page' do
+describe 'Address page', type: :feature do
   let!(:customer) { create(:customer, :confirmed) }
   let(:invalid_params) { FactoryBot.attributes_for(:address, first_name: 'Qaz123') }
   let(:invalid_name_error_message) { /First name is invalid/ }
 
-  feature 'forbids customer to create address with', js: true do
-    scenario 'invalid_params' do
+  describe 'forbids customer to create address with' do
+    it 'invalid_params' do
       sign_in(customer)
       visit edit_customer_registration_path
       fill_in_address_billing_form

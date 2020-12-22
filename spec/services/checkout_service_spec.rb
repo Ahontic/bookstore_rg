@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 RSpec.describe CheckoutService do
-  subject { described_class.new(current_cart, current_customer, step, cookies, params) }
+  let(:checkout_service) { described_class.new(current_cart, current_customer, step, cookies, params) }
+
   let(:cookies) {}
   let(:params) do
     ActionController::Parameters.new('cart': { 'billing': FactoryBot.attributes_for(:address),
@@ -15,7 +16,7 @@ RSpec.describe CheckoutService do
 
   describe '#save' do
     before do
-      subject.save
+      checkout_service.save
     end
 
     context 'when step is address' do

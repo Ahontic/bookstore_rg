@@ -1,0 +1,125 @@
+skip_frontmatter: false
+
+linters:
+  AlignmentTabs:
+    enabled: true
+
+  AltText:
+    enabled: true
+
+  ClassAttributeWithStaticValue:
+    enabled: true
+
+  ClassesBeforeIds:
+    enabled: true
+
+  ConsecutiveComments:
+    enabled: true
+
+  ConsecutiveSilentScripts:
+    enabled: true
+    max_consecutive: 2
+
+  EmptyObjectReference:
+    enabled: true
+
+  EmptyScript:
+    enabled: true
+
+  FinalNewline:
+    enabled: true
+    present: true
+
+  HtmlAttributes:
+    enabled: true
+
+  IdNames:
+    enabled: true
+    style: snake_case
+    exclude:
+      - 'app/views/pages/partials/courses_page/_course_form.haml'
+
+  ImplicitDiv:
+    enabled: true
+
+  Indentation:
+    enabled: true
+    character: space  # or tab
+
+  InlineStyles:
+    enabled: true
+
+  InstanceVariables:
+    enabled: true
+    file_types: partials
+    matchers:
+      all: .*
+      partials: \A_.*\.haml\z
+
+  LeadingCommentSpace:
+    enabled: true
+
+  LineLength:
+    enabled: false
+    max: 120
+
+  MultilinePipe:
+    enabled: true
+
+  MultilineScript:
+    enabled: true
+
+  ObjectReferenceAttributes:
+    enabled: true
+
+  RepeatedId:
+    enabled: true
+
+  RuboCop:
+    enabled: true
+    ignored_cops:
+      - Layout/BlockAlignment
+      - Layout/EndAlignment
+      - Lint/Void
+      - Layout/HashAlignment
+      - Layout/CaseIndentation
+      - Layout/ElseAlignment
+      - Layout/EndOfLine
+      - Layout/HashAlignment
+      - Layout/IndentationWidth
+      - Layout/LineLength
+      - Layout/ParameterAlignment
+      - Layout/TrailingEmptyLines
+      - Layout/TrailingWhitespace
+      - Metrics/BlockLength
+      - Metrics/BlockNesting
+      - Naming/FileName
+      - Style/FrozenStringLiteralComment
+      - Style/IfUnlessModifier
+      - Style/Next
+      - Style/WhileUntilModifier
+
+  RubyComments:
+    enabled: true
+
+  SpaceBeforeScript:
+    enabled: true
+
+  SpaceInsideHashAttributes:
+    enabled: true
+    style: space
+
+  TagName:
+    enabled: true
+
+  TrailingWhitespace:
+    enabled: true
+
+  UnnecessaryInterpolation:
+    enabled: true
+
+  UnnecessaryStringOutput:
+    enabled: true
+
+  ViewLength:
+    enabled: false

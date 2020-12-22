@@ -15,7 +15,7 @@ class BookSorter < ApplicationService
   private
 
   def current_sort
-    return @params[:status] if Book::AVAILABLE_FILTERS.values.include?(@params[:status])
+    return @params[:status] if Book::AVAILABLE_FILTERS.value?(@params[:status])
 
     DEFAULT_FILTER
   end

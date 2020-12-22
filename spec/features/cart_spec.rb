@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-feature 'Cart page' do
+describe 'Cart page', type: :feature do
   let!(:customer) { create(:customer, :confirmed) }
   let!(:book) { create(:book, :with_author) }
   let!(:book1) { create(:book, :with_author) }
   let(:coupon) { create(:coupon, cart: nil) }
 
-  feature 'allows customer to', js: true do
-    scenario 'add a book into cart' do
+  describe 'allows customer to' do
+    it 'add a book into cart' do
       sign_in(customer)
       visit category_book_path(category_id: book.category_id, id: book.id)
 
@@ -16,7 +16,7 @@ feature 'Cart page' do
       expect(page).to have_content(book.price)
     end
 
-    scenario 'increase/decrease book quantity in cart', :js do
+    it 'increase/decrease book quantity in cart', :js do
       sign_in(customer)
       visit category_book_path(category_id: book.category_id, id: book.id)
       click_button 'Add to Cart'
@@ -28,7 +28,7 @@ feature 'Cart page' do
       expect(find('.quantity-input').value.to_i).to eq(1)
     end
 
-    scenario 'apply valid coupon', :js do
+    it 'apply valid coupon', :js do
       visit category_book_path(category_id: book.category_id, id: book.id)
 
       click_button 'Add to Cart'
@@ -43,7 +43,7 @@ feature 'Cart page' do
       expect(page).to have_content('You successfully removed coupon!')
     end
 
-    scenario 'apply invalid coupon' do
+    it 'apply invalid coupon' do
       visit category_book_path(category_id: book.category_id, id: book.id)
       click_button 'Add to Cart'
 
@@ -54,8 +54,8 @@ feature 'Cart page' do
     end
   end
 
-  feature 'allows customer to', js: true do
-    scenario 'remove book from cart' do
+  describe 'allows customer to' do
+    it 'remove book from cart' do
       sign_in(customer)
       visit category_book_path(category_id: book.category_id, id: book.id)
       click_button 'Add to Cart'
@@ -64,7 +64,7 @@ feature 'Cart page' do
       find('.close', match: :first).click
 
       expect(page).to have_content(book1.title)
-      expect(page).to_not have_content(book.title)
+      expect(page).not_to have_content(book.title)
     end
   end
 end
