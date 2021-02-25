@@ -15,6 +15,7 @@ executors:
     docker:
       - image: circleci/ruby:<< parameters.tag >>
     environment:
+      - RAILS_ENV: test
       - BUNDLE_JOBS: 4
       - BUNDLE_PATH: vendor/bundle
       - BUNDLE_RETRY: 3
