@@ -1,0 +1,152 @@
+[
+  {
+    "name": "web-server",
+    "image": "${web_server_ecr_repo}:staging",
+    "environment": [
+      {
+        "name": "STATIC_PATH",
+        "value": "/home/www/bookstore/public"
+      }
+    ],
+    "mountPoints": [
+      {
+        "containerPath": "/home/www/bookstore/public",
+        "sourceVolume": "public"
+      }
+    ],
+    "portMappings": [
+      {
+        "hostPort": 8080,
+        "containerPort": 8080,
+        "protocol": "tcp"
+      }
+    ],
+    "links": [
+      "web-app"
+    ],
+    "healthCheck": {
+      "command": [
+        "CMD-SHELL",
+        "ps ax | grep nginx | grep -v grep"
+      ],
+      "interval": 60,
+      "retries": 3,
+      "timeout": 5
+    },
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "${log_group}",
+        "awslogs-region": "${log_region}",
+        "awslogs-stream-prefix": "staging"
+      }
+    }
+  },
+
+  {
+    "name": "web-app",
+    "image": "${server_app_ecr_repo}:staging",
+    "entryPoint": [
+      "./docker/staging/docker-entrypoint.sh"
+    ],
+    "command": [
+      "bin/rails",
+      "s",
+      "-b",
+      "0.0.0.0"
+    ],
+    "environment": [
+      {
+        "name": "RAILS_ENV",
+        "value": "staging"
+      },
+      {
+        "name": "DB_HOST",
+        "value": "${db_host}"
+      },
+      {
+        "name": "POSTGRES_USER",
+        "value": "${db_username}"
+      },
+      {
+        "name": "POSTGRES_PASSWORD",
+        "value": "${db_password}"
+      },
+      {
+        "name": "REDIS_URL",
+        "value": "redis://redis:6379"
+      },
+      {
+        "name": "RAILS_LOG_TO_STDOUT",
+        "value": "true"
+      }
+    ],
+    "mountPoints": [
+      {
+        "containerPath": "/home/www/bookstore/public",
+        "sourceVolume": "public"
+      }
+    ],
+    "portMappings": [
+      {
+        "containerPort": 3000,
+        "protocol": "tcp"
+      }
+    ],
+    "links": [
+      "redis"
+    ],
+    "healthCheck": {
+      "command": [
+        "CMD-SHELL",
+        "curl -f http://localhost:3000/api/health || exit 1"
+      ],
+      "interval": 30,
+      "retries": 3,
+      "timeout": 5
+    },
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "${log_group}",
+        "awslogs-region": "${log_region}",
+        "awslogs-stream-prefix": "staging"
+      }
+    }
+  },
+
+  {
+    "name": "redis",
+    "image": "redis:6-alpine",
+    "mountPoints": [
+      {
+        "containerPath": "/data",
+        "sourceVolume": "redis"
+      }
+    ],
+    "portMappings": [
+      {
+        "hostPort": 6379,
+        "containerPort": 6379,
+        "protocol": "tcp"
+      }
+    ],
+    "healthCheck": {
+      "command": [
+        "CMD-SHELL",
+        "redis-cli -h localhost ping"
+      ],
+      "interval": 30,
+      "retries": 3,
+      "timeout": 5
+    },
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "${log_group}",
+        "awslogs-region": "${log_region}",
+        "awslogs-stream-prefix": "staging"
+      }
+    }
+  }
+]

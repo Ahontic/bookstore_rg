@@ -32,7 +32,7 @@ gem 'webpacker', '~> 4.0'
 gem 'wicked', '~> 1.3.4'
 
 group :development, :test do
-  gem 'brakeman', '~> 4.10.0'
+  gem 'brakeman', '~> 5.0'
   gem 'bullet', '~> 6.1'
   gem 'bundler-audit', '~> 0.7.0'
   gem 'bundler-leak', '~> 0.2.0'
