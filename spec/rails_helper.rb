@@ -4,10 +4,6 @@
 require 'spec_helper'
 require 'simplecov'
 
-SimpleCov.start do
-  minimum_coverage 95
-  add_filter '/admin/'
-end
 ENV['RAILS_ENV'] ||= 'test'
 
 require File.expand_path('../config/environment', __dir__)

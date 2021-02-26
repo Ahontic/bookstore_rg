@@ -51,7 +51,10 @@ yarn-debug.log*
 /public/javascripts
 
 /config/credentials/*.key
+/config/credentials/*.*.*
 
 /deploy/bin/variables/variables.sh
 
 .history
+
+/config/credentials/staging.key

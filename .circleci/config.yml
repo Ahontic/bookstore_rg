@@ -15,6 +15,7 @@ executors:
     docker:
       - image: circleci/ruby:<< parameters.tag >>
     environment:
+      - RAILS_ENV: test
       - BUNDLE_JOBS: 4
       - BUNDLE_PATH: vendor/bundle
       - BUNDLE_RETRY: 3
@@ -121,8 +122,8 @@ jobs:
       - image: circleci/ruby:2.7.2-node-browsers
       - image: circleci/postgres:12-alpine-ram
         environment:
-          POSTGRES_USER: bookstore_rg
-          POSTGRES_DB: bookstore_rg_test
+          POSTGRES_USER: bookstore
+          POSTGRES_DB: bookstore_test
           POSTGRES_PASSWORD: password
     parallelism: 2
     steps:

@@ -2,27 +2,26 @@
 
 default: &default
   adapter: postgresql
-  # TODO: add credentials 
   host: <%= ENV['DB_HOST'] || Rails.application.credentials.dig(:db, :host) %>
   port: <%= ENV['DB_PORT'] || Rails.application.credentials.dig(:db, :port) %>
   username: <%= ENV['DB_USERNAME'] || Rails.application.credentials.dig(:db, :username) %>
   password: <%= ENV["CI"] ? "" : (ENV['DB_PASSWORD'] || Rails.application.credentials.dig(:db, :password)) %>
-  pool: <%= Rails.application.credentials.dig(:db, :pool) %>
+  pool: <%= Rails.application.credentials.dig(:db, :pool) || 5 %>
   encoding: utf8
   timeout: 5000
 
 development:
   <<: *default
-  database: bookstore_rg_development
+  database: bookstore_development
 
 test:
   <<: *default
-  database: bookstore_rg_test
+  database: bookstore_test
 
 staging:
   <<: *default
-  database: bookstore_rg_staging
+  database: bookstore_staging
 
 production:
   <<: *default
-  database: bookstore_rg_production
+  database: bookstore_production

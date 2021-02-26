@@ -1,0 +1,13 @@
+.git
+/log/*
+/tmp/*
+!/log/.keep
+!/tmp/.keep
+!/tmp/pids/.keep
+/vendor/bundle
+/public/assets
+/public/uploads
+/.bundle
+/terraform
+/doc
+/node_modules

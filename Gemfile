@@ -12,9 +12,6 @@ gem 'devise', '~> 4.7.1'
 gem 'devise-security', '~> 0.14.3'
 gem 'draper', '~> 4.0.1'
 
-# TODO: remove after implementing credentials
-gem 'figaro'
-
 gem 'haml-rails', '~> 2.0.1'
 gem 'i18n', '~> 1.8.2'
 gem 'image_processing', '~> 1.10.3'
@@ -32,7 +29,7 @@ gem 'webpacker', '~> 4.0'
 gem 'wicked', '~> 1.3.4'
 
 group :development, :test do
-  gem 'brakeman', '~> 4.10.0'
+  gem 'brakeman', '~> 5.0'
   gem 'bullet', '~> 6.1'
   gem 'bundler-audit', '~> 0.7.0'
   gem 'bundler-leak', '~> 0.2.0'
