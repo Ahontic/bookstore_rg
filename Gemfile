@@ -12,9 +12,6 @@ gem 'devise', '~> 4.7.1'
 gem 'devise-security', '~> 0.14.3'
 gem 'draper', '~> 4.0.1'
 
-# TODO: remove after implementing credentials
-gem 'figaro'
-
 gem 'haml-rails', '~> 2.0.1'
 gem 'i18n', '~> 1.8.2'
 gem 'image_processing', '~> 1.10.3'

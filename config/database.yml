@@ -2,7 +2,6 @@
 
 default: &default
   adapter: postgresql
-  # TODO: add credentials 
   host: <%= ENV['DB_HOST'] || Rails.application.credentials.dig(:db, :host) %>
   port: <%= ENV['DB_PORT'] || Rails.application.credentials.dig(:db, :port) %>
   username: <%= ENV['DB_USERNAME'] || Rails.application.credentials.dig(:db, :username) %>
