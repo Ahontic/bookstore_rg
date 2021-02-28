@@ -12,6 +12,8 @@ gem 'devise', '~> 4.7.1'
 gem 'devise-security', '~> 0.14.3'
 gem 'draper', '~> 4.0.1'
 
+gem 'factory_bot_rails', '~> 6.1'
+gem 'ffaker', '~> 2.14.0'
 gem 'haml-rails', '~> 2.0.1'
 gem 'i18n', '~> 1.8.2'
 gem 'image_processing', '~> 1.10.3'
@@ -34,9 +36,7 @@ group :development, :test do
   gem 'bundler-audit', '~> 0.7.0'
   gem 'bundler-leak', '~> 0.2.0'
   gem 'database_consistency', '~> 0.8', require: false
-  gem 'factory_bot_rails', '~> 6.1'
   gem 'fasterer', '~> 0.8.3'
-  gem 'ffaker', '~> 2.14.0'
   gem 'haml_lint', '~> 0.36', require: false
   gem 'lefthook', '~> 0.7'
   gem 'pry-byebug', '~> 3.9'

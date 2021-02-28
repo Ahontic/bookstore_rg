@@ -1,5 +1,5 @@
 # Stage: Builder
-FROM ruby:2.7.1-alpine3.11 as Builder
+FROM ruby:2.7.2-alpine3.11 as Builder
 
 RUN apk add --update --no-cache \
     build-base libxml2-dev libxslt-dev git imagemagick tzdata curl nano wget unzip \
@@ -30,7 +30,7 @@ RUN rm -rf app/assets/images node_modules spec vendor/assets public/uploads tmp/
 RUN rm $(ls -d $APP_HOME/config/credentials/* | grep -v 'staging')
 
 # Stage: Final
-FROM ruby:2.7.1-alpine3.11
+FROM ruby:2.7.2-alpine3.11
 
 RUN apk add --update --no-cache libxml2-dev libxslt-dev \
     postgresql-dev file tzdata curl nodejs bash imagemagick git unzip

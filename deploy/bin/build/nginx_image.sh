@@ -4,8 +4,8 @@ set -e
 
 source "deploy/bin/variables/variables.sh"
 
-  RUNNING_TAG="staging"
-  IMAGE_NAME="bookstore/staging/web-server"
+RUNNING_TAG="staging"
+IMAGE_NAME="bookstore/staging/web-server"
 
 if [ -z $IMAGE_NAME ]; then
   echo "Need pass params"
@@ -19,7 +19,7 @@ HASH_TAG="$(git rev-parse --short HEAD)"
 RUNNING_IMAGE=$REPO:$RUNNING_TAG
 CURRENT_IMAGE=$IMAGE_NAME:$HASH_TAG
 
-$(aws ecr get-login --region $REGION --no-include-email)
+$(aws ecr get-login --region $REGION --no-include-email --profile custom)
 
 docker build --cache-from=$RUNNING_IMAGE -t $CURRENT_IMAGE ./docker/nginx
 

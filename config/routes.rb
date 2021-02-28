@@ -16,6 +16,8 @@ Rails.application.routes.draw do
     resources :books, only: %i[index show]
   end
 
+  get '/api/health', to: proc { [200, {}, ['Healthy']] }
+
   resources :checkouts, only: %i[show update]
   resources :coupons, only: %i[create destroy]
   resources :carts, only: %i[destroy show update] do
