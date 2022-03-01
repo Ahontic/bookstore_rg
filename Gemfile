@@ -17,7 +17,7 @@ gem 'figaro'
 
 gem 'haml-rails', '~> 2.0.1'
 gem 'i18n', '~> 1.8.2'
-gem 'image_processing', '~> 1.10.3'
+gem 'image_processing', '~> 1.12.2'
 gem 'omniauth-facebook', '~> 6.0.0'
 gem 'omniauth-rails_csrf_protection'
 gem 'pagy', '~> 3.7.5'
